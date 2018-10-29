@@ -21,7 +21,7 @@ Repositář pro týmovou práci z předmětu 4IT115
 
 ![Screenshot](Tutorial-img/03.png)
 
-6. Teď máš stažený obsah hlavní větve (*master*) našeho projektu ve svém PC. Ale jelikož je nepraktické (a nebezpečné) commitovat přímo do ní, tak si musíš založit svou vlastní větev, kterou pak budeme případně mergovat do hlavní (pokud projde mou "odbornou" kontrolou).
+6. Teď máš stažený obsah hlavní větve (*master*) našeho projektu ve svém PC. Ale jelikož je nepraktické (a v našem případě i  nebezpečné) commitovat přímo do ní, tak si musíš založit svou vlastní větev, kterou pak budeme případně mergovat do hlavní (pokud projde mou "odbornou" kontrolou).
 7. Vlastní větev založíš opět v záložce *Team -> Branch/Tag -> Create Branch...*
 
 ![Screenshot](Tutorial-img/04.png)
@@ -58,6 +58,8 @@ Repositář pro týmovou práci z předmětu 4IT115
 18. Teď v podstatě vytváříš žádost o zařazení svých změn do hlavní větve projektu, přidej krátkej popis změn a dej **Create pull request**, teď můžeme všichni vidět změny v kódu, diskutovat a případně žádost schváli a zařadit to tak do *master*u
 
 ![Screenshot](Tutorial-img/12.png)
+
+
 
 ## Stažení současné verze
 1. **Pokaždé** než začneš něco vytvářet, ujisti se, že máš současnou verzi kódu a že pracuješ na své větvi.
