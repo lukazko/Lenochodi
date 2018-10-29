@@ -47,7 +47,7 @@ Repositář pro týmovou práci z předmětu 4IT115
 ![Screenshot](Tutorial-img/09.png)
 
 15. Jelikož to děláš poprvé, vyskočí na tebe dvě shitty tabulky, jen je potvrď.
-16. Teď by mělo být hotovo, jdi na GitHub, do našeho repositáře [https://github.com/lukazko/Lenochodi], nad tou hnědou čarou můžeš spatřit tlačítko **branches**, na to klikni a vidíš všechny momentálně existující větve.
+16. Teď by mělo být hotovo, jdi na GitHub, do našeho repositáře https://github.com/lukazko/Lenochodi, nad tou hnědou čarou můžeš spatřit tlačítko **branches**, na to klikni a vidíš všechny momentálně existující větve.
 
 ![Screenshot](Tutorial-img/10.png)
 
@@ -62,7 +62,7 @@ Repositář pro týmovou práci z předmětu 4IT115
 
 
 ## Stažení současné verze
-1. **Pokaždé** než začneš něco vytvářet, ujisti se, že máš současnou verzi kódu a že pracuješ na své větvi.
+1. !!**Pokaždé**!! než začneš něco vytvářet, ujisti se, že máš současnou verzi kódu a že pracuješ na své větvi.
 2. Stažení aktuální verze se dělá přes *Team -> Remote -> Fetch...*, a tam zvolíš **master -> origin/master**, nic jiného.
 
 ![Screenshot](Tutorial-img/13.png)
@@ -70,8 +70,8 @@ Repositář pro týmovou práci z předmětu 4IT115
 
 3. Tím si do PC dostal součanou verzi *master* větve, teď ještě přes *Team -> Remote -> Pull* nekopíruješ její obsah do své větve. Což se udělá opět volbou **master -> origin/master**.
 
-![Screenshot](Tutorial-img/14.png)
 ![Screenshot](Tutorial-img/15.png)
+![Screenshot](Tutorial-img/16.png)
 
 4. Hotovo a můžeš tvořit.
 
