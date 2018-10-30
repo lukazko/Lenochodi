@@ -4,7 +4,7 @@ Repositář pro týmovou práci z předmětu 4IT115
 
 
 ## Návod k prvnímu spuštění Gitu
-1. Nainstaluj si Git v počítači, pokud ho ještě nemáš, [https://git-scm.com/downloads](https://git-scm.com/downloads), všude dávej Next.
+1. Nainstaluj si Git v počítači, pokud ho ještě nemáš, https://git-scm.com/downloads, všude dávej Next. Jakože zrovna tohle není povinný krok, protože nebudeme používat příkazovou řádku, ale tak do budoucnosti by se ti to mohlo hodit.
 2. Otevři si NetBeans, v horní liště je záložka *Team*, v té vyber možnost *Git* a následně *Clone...*
 
 ![Screenshot](Tutorial-img/00.png)
@@ -21,17 +21,17 @@ Repositář pro týmovou práci z předmětu 4IT115
 
 ![Screenshot](Tutorial-img/03.png)
 
-6. Teď máš stažený obsah hlavní větve (*master*) našeho projektu ve svém PC. Ale jelikož je nepraktické (a v našem případě i  nebezpečné) commitovat přímo do ní, tak si musíš založit svou vlastní větev, kterou pak budeme případně mergovat do hlavní (pokud projde mou "odbornou" kontrolou).
-7. Vlastní větev založíš opět v záložce *Team -> Branch/Tag -> Create Branch...*
+6. Teď máš stažený obsah hlavní větve (*master*) našeho projektu ve svém PC. Otevři si stažený projekt - normálně přes *Open Project* a najdi místo kam si ho nakopíroval.
+7. Ale jelikož je nepraktické (a v našem případě i  nebezpečné) commitovat přímo do hlavní větve, tak si musíš založit svou vlastní větev, kterou pak budeme případně mergovat do hlavní (pokud projde mou "odbornou" kontrolou).
+8. Vlastní větev založíš opět v záložce *Team -> Branch/Tag -> Create Branch...*
 
 ![Screenshot](Tutorial-img/04.png)
 
-8. Jako jméno větve použij své křestní jméno bez diakritiky, zkontroluj zaškrtnutí **Checkout Created Branch** a můžeš dát *Create.*
+9. Jako jméno větve použij své křestní jméno bez diakritiky, zkontroluj zaškrtnutí **Checkout Created Branch** a můžeš dát *Create.*
 
 ![Screenshot](Tutorial-img/05.png)
 
-9. Všechno, co teď v kódu provedeš se děje pouze na tvé větvi a neovlivňuješ tak ostatní větve.
-10. Otevři si stažený NetBeans projekt - normálně přes *Open Project* a najdi místo kam si ho nakopíroval.
+10. Všechno, co teď v kódu provedeš se děje pouze na tvé větvi a neovlivňuješ tak ostatní větve.
 11. Teď rozklikni hlavní třídu našeho projektu a dopiš do poznámky *@autor...* svoje jméno.
 
 ![Screenshot](Tutorial-img/06.png)
@@ -61,7 +61,7 @@ Repositář pro týmovou práci z předmětu 4IT115
 
 
 
-## Stažení současné verze
+## Stažení současné verze (pokaždé než začneš tvořit nějaký program)
 1. !!**Pokaždé**!! než začneš něco vytvářet, ujisti se, že máš současnou verzi kódu a že pracuješ na své větvi.
 2. Stažení aktuální verze se dělá přes *Team -> Remote -> Fetch...*, a tam zvolíš **master -> origin/master**, nic jiného.
 
