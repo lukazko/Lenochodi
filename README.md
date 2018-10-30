@@ -49,15 +49,15 @@ Repositář pro týmovou práci z předmětu 4IT115
 15. Jelikož to děláš poprvé, vyskočí na tebe dvě shitty tabulky, jen je potvrď.
 16. Teď by mělo být hotovo, jdi na GitHub, do našeho repositáře https://github.com/lukazko/Lenochodi, nad tou hnědou čarou můžeš spatřit tlačítko **branches**, na to klikni a vidíš všechny momentálně existující větve.
 
-![Screenshot](Tutorial-img/10.png)
+![Screenshot](Tutorial-img/git1.png)
 
 17. Najdi tu s tvým jménem a pokud se nic nepodělalo, tak bys tam měl vpravo mít možnost **New pull request**.
 
-![Screenshot](Tutorial-img/11.png)
+![Screenshot](Tutorial-img/git2.png)
 
-18. Teď v podstatě vytváříš žádost o zařazení svých změn do hlavní větve projektu, přidej krátkej popis změn a dej **Create pull request**, teď můžeme všichni vidět změny v kódu, diskutovat a případně žádost schváli a zařadit to tak do *master*u
+18. Teď v podstatě vytváříš žádost o zařazení svých změn do hlavní větve projektu, přidej krátkej popis změn a dej **Create pull request**, teď můžeme všichni vidět změny v kódu, diskutovat a případně žádost schválit a zařadit to tak do *master*u. Nikdy sám neklikej na zeleně svíticí tlačítko **Merge pull request**, to udělám až já.
 
-![Screenshot](Tutorial-img/12.png)
+![Screenshot](Tutorial-img/git3.png)
 
 
 
