@@ -32,7 +32,7 @@ Repositář pro týmovou práci z předmětu 4IT115
 ![Screenshot](Tutorial-img/05.png)
 
 10. Všechno, co teď v kódu provedeš se děje pouze na tvé větvi a neovlivňuješ tak ostatní větve.
-11. Teď rozklikni hlavní třídu našeho projektu a dopiš do poznámky *@autor...* svoje jméno.
+11. Dále rozklikni hlavní třídu našeho projektu a dopiš do poznámky *@autor...* svoje jméno.
 
 ![Screenshot](Tutorial-img/06.png)
 
