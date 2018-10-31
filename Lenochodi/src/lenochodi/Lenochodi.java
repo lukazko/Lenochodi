@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Lukáš, Pavel
+ * @author Lukáš, Pavel, Simona
  */
 public class Lenochodi extends Application {
     
