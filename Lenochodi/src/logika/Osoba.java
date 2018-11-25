@@ -11,7 +11,7 @@ package logika;
 
 public class Osoba {
 
-	private Integer id;
+	private int id;
 	private String jmeno;
 	private String prijmeni;
 	private String email;
@@ -25,11 +25,11 @@ public class Osoba {
                 this.telefon = telefon;
         }
         
-        public void setId(Integer id) {
+        public void setId(int id) {
 		this.id = id;
 	}
         
-        public Integer getId() {
+        public int getId() {
 		return id;
 	}
         
