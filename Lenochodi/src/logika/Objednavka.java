@@ -11,7 +11,7 @@ package logika;
 
 public class Objednavka {
 
-	private Integer id;
+	private int id;
 	private String stav;
 	private Vychazka vychazka;
 	private Zakaznik zakaznik;
@@ -23,11 +23,11 @@ public class Objednavka {
                 stav = "nezaplaceno";
         }
         
-        public void setId(Integer id) {
+        public void setId(int id) {
 		this.id = id;
 	}
         
-        public Integer getId() {
+        public int getId() {
 		return id;
 	}       
         

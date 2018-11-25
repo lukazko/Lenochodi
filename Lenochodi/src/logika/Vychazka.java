@@ -6,13 +6,13 @@ import java.util.Collection;
 
 public class Vychazka {
 
-	private Integer id;
+	private int id;
 	private String nazev;
 	private Date datum;
 	private Date casZacatek;
 	private String mistoZacatek;
 	private String jazyk;
-	private Integer kapacita;
+	private int kapacita;
 	private Float cena;
 	private Pruvodce pruvodce;
 	private Collection<Objednavka> seznamObjednavek;
@@ -27,6 +27,14 @@ public class Vychazka {
             this.kapacita = kapacita;
             this.cena = cena;
         }
+        
+        public void setId(int id) {
+		this.id = id;
+	}
+        
+        public int getId() {
+		return id;
+	}
         
 	public void setPruvodce(Pruvodce pruvodce) {
 		this.pruvodce = pruvodce;
