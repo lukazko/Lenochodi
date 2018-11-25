@@ -1,7 +1,6 @@
 package logika;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Collection;
 
 public class Vychazka {
