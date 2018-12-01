@@ -20,6 +20,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -29,7 +31,7 @@ import javafx.stage.Stage;
  */
 public class OknoHlavni implements Initializable {
 
-    @FXML
+@FXML
     private MenuItem zakazniciItem;
 
     @FXML
@@ -63,25 +65,18 @@ public class OknoHlavni implements Initializable {
     private MenuItem oProgramuItem;
 
     @FXML
+    private ImageView pozadi;
+
+    @FXML
     private MenuItem vychazkyItem;
 
     @FXML
     private MenuItem napovedaItem;
-
     
-    @FXML
-    void sracka(MouseEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/zdroje/OknoVychazka.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
-        } catch (IOException e) {
-            System.out.println("Now the output is redirected!");
-        }
-
-    }
+    /*@FXML
+    private void loadVychazky(ActionEvent event) throws IOException {
+        VBox vbox = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
+    }*/
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
