@@ -11,7 +11,7 @@ import logika.Aplikace;
 
 /**
  *
- * @author Lukáš, Pavel, Simona, Marko, Kateřina
+ * @author Lukáš, Pavel, Simona, Marko, Kateřina zkouška
  */
 public class Start {
 
