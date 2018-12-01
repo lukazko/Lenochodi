@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uzivatelskeRozhrani.OknoHlavni">
+   <children>
+      <MenuBar fx:id="menuBar">
+         <menus>
+            <Menu fx:id="menu" mnemonicParsing="false" text="Menu">
+               <items>
+                  <MenuItem fx:id="vychazkyItem" mnemonicParsing="false" text="Vycházky" />
+                  <MenuItem fx:id="zakazniciItem" mnemonicParsing="false" text="Zákazníci" />
+                  <MenuItem fx:id="objednavkyItem" mnemonicParsing="false" text="Objednávky" />
+                  <MenuItem fx:id="pruvodciItem" mnemonicParsing="false" text="Průvodci" />
+               </items>
+            </Menu>
+            <Menu fx:id="napoveda" mnemonicParsing="false" text="Nápověda">
+               <items>
+                  <MenuItem fx:id="oProgramuItem" mnemonicParsing="false" text="O programu" />
+                  <MenuItem fx:id="napovedaItem" mnemonicParsing="false" text="O programu" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <SplitPane orientation="VERTICAL" prefHeight="398.0" prefWidth="295.0">
+                     <items>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                           <items>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <Button fx:id="vychazkyButton" alignment="BASELINE_CENTER" layoutX="80.0" layoutY="67.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="134.0" text="Vycházky" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <Button fx:id="objednavkyButton" alignment="BASELINE_CENTER" layoutX="80.0" layoutY="67.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="134.0" text="Objednávky" />
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
+                     </items>
+                  </SplitPane>
+                  <SplitPane dividerPositions="0.5" layoutX="303.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="295.0">
+                     <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Button fx:id="zakazniciButton" alignment="BASELINE_CENTER" layoutX="80.0" layoutY="67.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="134.0" text="Zákazníci" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Button fx:id="pruvodciButton" alignment="BASELINE_CENTER" layoutX="80.0" layoutY="67.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="134.0" text="Průvodci" />
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</VBox>

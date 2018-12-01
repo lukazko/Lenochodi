@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="vychazky" prefHeight="429.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uzivatelskeRozhrani.OknoHlavni">
+   <children>
+      <MenuBar fx:id="menuBar">
+         <menus>
+            <Menu fx:id="menu" mnemonicParsing="false" text="Menu">
+               <items>
+                  <MenuItem fx:id="vychazkyItem" mnemonicParsing="false" text="Vycházky" />
+                  <MenuItem fx:id="zakazniciItem" mnemonicParsing="false" text="Zákazníci" />
+                  <MenuItem fx:id="objednavkyItem" mnemonicParsing="false" text="Objednávky" />
+                  <MenuItem fx:id="pruvodciItem" mnemonicParsing="false" text="Průvodci" />
+               </items>
+            </Menu>
+            <Menu fx:id="napoveda" mnemonicParsing="false" text="Nápověda">
+               <items>
+                  <MenuItem fx:id="oProgramuItem" mnemonicParsing="false" text="O programu" />
+                  <MenuItem fx:id="napovedaItem" mnemonicParsing="false" text="O programu" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="362.0">
+         <children>
+            <Label layoutX="14.0" layoutY="21.0" prefHeight="40.0" prefWidth="195.0" text="Vycházky">
+               <font>
+                  <Font size="33.0" />
+               </font></Label>
+            <Button fx:id="zalozitVychazkuButton" layoutX="464.0" layoutY="28.0" mnemonicParsing="false" text="Založit vycházku" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="345.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="detailButton" layoutX="457.0" layoutY="196.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="122.0" text="Detail" />
+            <Label fx:id="vychazkaLabel" layoutX="14.0" layoutY="13.0" prefHeight="40.0" prefWidth="195.0" text="Vycházka 1">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="vychazkaTextArea" layoutX="33.0" layoutY="67.0" prefHeight="120.0" prefWidth="546.0" text="lorem10" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

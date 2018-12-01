@@ -1,5 +1,90 @@
-package ClassModel.uzivatelskeRozhrani;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package uzivatelskeRozhrani;
 
-public class OknoHlavni {
+import java.awt.Event;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
 
+/**
+ * FXML Controller class
+ *
+ * @author barton
+ */
+public class OknoHlavni implements Initializable {
+
+    @FXML
+    private MenuItem zakazniciItem;
+
+    @FXML
+    private Button zakazniciButton;
+
+    @FXML
+    private MenuItem pruvodciItem;
+
+    @FXML
+    private MenuItem objednavkyItem;
+
+    @FXML
+    private Button objednavkyButton;
+
+    @FXML
+    private Button pruvodciButton;
+
+    @FXML
+    private Menu menu;
+
+    @FXML
+    private Button vychazkyButton;
+
+    @FXML
+    private MenuBar menuBar;
+
+    @FXML
+    private Menu napoveda;
+
+    @FXML
+    private MenuItem oProgramuItem;
+
+    @FXML
+    private MenuItem vychazkyItem;
+
+    @FXML
+    private MenuItem napovedaItem;
+
+    
+    @FXML
+    void sracka(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/zdroje/OknoVychazka.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("Now the output is redirected!");
+        }
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }
 }
