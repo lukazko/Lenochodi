@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="429.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uzivatelskeRozhrani.OknoHlavni">
+   <children>
+      <MenuBar fx:id="menuBar">
+         <menus>
+            <Menu fx:id="menu" mnemonicParsing="false" text="Menu">
+               <items>
+                  <MenuItem fx:id="vychazkyItem" mnemonicParsing="false" text="Vycházky" />
+                  <MenuItem fx:id="zakazniciItem" mnemonicParsing="false" text="Zákazníci" />
+                  <MenuItem fx:id="objednavkyItem" mnemonicParsing="false" text="Objednávky" />
+                  <MenuItem fx:id="pruvodciItem" mnemonicParsing="false" text="Průvodci" />
+               </items>
+            </Menu>
+            <Menu fx:id="napoveda" mnemonicParsing="false" text="Nápověda">
+               <items>
+                  <MenuItem fx:id="oProgramuItem" mnemonicParsing="false" text="O programu" />
+                  <MenuItem fx:id="napovedaItem" mnemonicParsing="false" text="Nápověda" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="362.0">
+         <children>
+            <Label layoutX="14.0" layoutY="21.0" prefHeight="40.0" prefWidth="195.0" text="Průvodci">
+               <font>
+                  <Font size="33.0" />
+               </font></Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="345.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="potvrditButton" layoutX="457.0" layoutY="196.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="122.0" text="Potvrdit" />
+            <CheckBox layoutX="14.0" layoutY="20.0" mnemonicParsing="false" text="Jan Novák" />
+            <Label layoutX="504.0" layoutY="14.0" prefHeight="29.0" prefWidth="75.0" text="Jazyk">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ChoiceBox layoutX="429.0" layoutY="49.0" prefWidth="150.0" />
+            <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="Fíla Kopal" />
+            <CheckBox layoutX="14.0" layoutY="86.0" mnemonicParsing="false" text="Jiří Dolejš" />
+            <CheckBox layoutX="14.0" layoutY="120.0" mnemonicParsing="false" text="Stanislav Gross" />
+            <CheckBox layoutX="14.0" layoutY="147.0" mnemonicParsing="false" text="Pavel Bém" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
