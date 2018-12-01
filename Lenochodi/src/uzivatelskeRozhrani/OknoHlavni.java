@@ -5,14 +5,22 @@
  */
 package uzivatelskeRozhrani;
 
+import java.awt.Event;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -21,7 +29,7 @@ import javafx.scene.control.MenuItem;
  */
 public class OknoHlavni implements Initializable {
 
-     @FXML
+    @FXML
     private MenuItem zakazniciItem;
 
     @FXML
@@ -60,9 +68,23 @@ public class OknoHlavni implements Initializable {
     @FXML
     private MenuItem napovedaItem;
 
+    
+    @FXML
+    void sracka(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/zdroje/OknoVychazka.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("Now the output is redirected!");
+        }
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
 }
