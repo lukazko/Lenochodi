@@ -9,20 +9,20 @@
 
 <VBox fx:id="rootPane" prefHeight="429.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uzivatelskeRozhrani.OknoVychazka">
    <children>
-      <MenuBar fx:id="menuBar">
+      <MenuBar fx:id="menuBar1">
          <menus>
-            <Menu fx:id="menu" mnemonicParsing="false" text="Menu">
+            <Menu fx:id="menu1" mnemonicParsing="false" text="Menu">
                <items>
-                  <MenuItem fx:id="vychazkyItem" mnemonicParsing="false" text="Vycházky" />
-                  <MenuItem fx:id="zakazniciItem" mnemonicParsing="false" text="Zákazníci" />
-                  <MenuItem fx:id="objednavkyItem" mnemonicParsing="false" text="Objednávky" />
-                  <MenuItem fx:id="pruvodciItem" mnemonicParsing="false" text="Průvodci" />
+                  <MenuItem fx:id="vychazkyItem1" mnemonicParsing="false" onAction="#loadVychazky" text="Vycházky" />
+                  <MenuItem fx:id="zakazniciItem1" mnemonicParsing="false" onAction="#loadZakaznici" text="Zákazníci" />
+                  <MenuItem fx:id="objednavkyItem1" mnemonicParsing="false" onAction="#loadObjednavky" text="Objednávky" />
+                  <MenuItem fx:id="pruvodciItem1" mnemonicParsing="false" onAction="#loadPruvodci" text="Průvodci" />
                </items>
             </Menu>
-            <Menu fx:id="napoveda" mnemonicParsing="false" text="Nápověda">
+            <Menu fx:id="napoveda1" mnemonicParsing="false" text="Nápověda">
                <items>
-                  <MenuItem fx:id="oProgramuItem" mnemonicParsing="false" text="O programu" />
-                  <MenuItem fx:id="napovedaItem" mnemonicParsing="false" text="Nápověda" />
+                  <MenuItem fx:id="napovedaItem1" mnemonicParsing="false" text="Nápověda" />
+                  <MenuItem fx:id="oProgramuItem1" mnemonicParsing="false" text="O programu" />
                </items>
             </Menu>
          </menus>
