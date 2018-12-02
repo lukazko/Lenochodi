@@ -38,7 +38,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="345.0" prefWidth="600.0">
          <children>
-            <Button fx:id="PotvrditButton" layoutX="189.0" layoutY="258.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="122.0" text="Potvrdit" />
+            <Button fx:id="PotvrditButton" layoutX="189.0" layoutY="258.0" mnemonicParsing="false" onAction="#potvrditVychazku" prefHeight="27.0" prefWidth="122.0" text="Potvrdit" />
             <Label fx:id="vychazkaLabel" layoutX="14.0" layoutY="21.0" prefHeight="25.0" prefWidth="138.0" text="ID:">
                <font>
                   <Font size="17.0" />

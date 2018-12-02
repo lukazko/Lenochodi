@@ -29,10 +29,10 @@ import javafx.stage.Stage;
  */
 public class OknoZakaznik implements Initializable {
 
-        @FXML
+    @FXML
     private MenuItem zakazniciItem;
         
-            @FXML
+    @FXML
     private VBox rootPane;
 
     @FXML
