@@ -6,11 +6,10 @@
 package uzivatelskeRozhrani;
 
 import java.awt.Event;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +20,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -30,7 +30,8 @@ import javafx.stage.Stage;
  * @author barton
  */
 public class OknoHlavni implements Initializable {
-
+    @FXML
+    private VBox rootPane;
 @FXML
     private MenuItem zakazniciItem;
 
@@ -77,6 +78,11 @@ public class OknoHlavni implements Initializable {
     private void loadVychazky(ActionEvent event) throws IOException {
         VBox vbox = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
     }*/
+    
+    @FXML public void loadVychazky (ActionEvent event) throws Exception{
+        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
+	rootPane.getChildren().setAll(pane);	
+}
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

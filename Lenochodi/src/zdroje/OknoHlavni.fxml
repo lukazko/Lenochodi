@@ -7,7 +7,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="400.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uzivatelskeRozhrani.OknoHlavni">
+
+<VBox fx:id="rootPane" prefHeight="400.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uzivatelskeRozhrani.OknoHlavni">
    <children>
       <MenuBar fx:id="menuBar">
          <menus>
@@ -34,7 +35,7 @@
                   <Image url="@praha.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="vychazkyButton" alignment="BASELINE_CENTER" layoutX="72.0" layoutY="96.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="134.0" text="Vycházky" />
+            <Button fx:id="vychazkyButton" alignment="BASELINE_CENTER" layoutX="72.0" layoutY="96.0" mnemonicParsing="false" onAction="#loadVychazky" prefHeight="60.0" prefWidth="134.0" text="Vycházky" />
             <Button fx:id="objednavkyButton" alignment="BASELINE_CENTER" layoutX="297.0" layoutY="96.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="134.0" text="Objednávky" />
             <Button fx:id="zakazniciButton" alignment="BASELINE_CENTER" layoutX="72.0" layoutY="210.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="134.0" text="Zákazníci" />
             <Button fx:id="pruvodciButton" alignment="BASELINE_CENTER" layoutX="297.0" layoutY="210.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="134.0" text="Průvodci" />

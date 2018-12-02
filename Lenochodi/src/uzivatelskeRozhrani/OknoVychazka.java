@@ -19,6 +19,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
 
 /**
  * FXML Controller class
