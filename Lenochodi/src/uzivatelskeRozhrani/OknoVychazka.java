@@ -20,6 +20,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -28,11 +29,14 @@ import javafx.event.ActionEvent;
  */
 public class OknoVychazka implements Initializable {
 
-     @FXML
+    @FXML
     private MenuItem zakazniciItem;
 
     @FXML
     private Label vychazkaLabel;
+
+    @FXML
+    private VBox rootPane;
 
     @FXML
     private MenuItem pruvodciItem;
@@ -66,6 +70,11 @@ public class OknoVychazka implements Initializable {
 
     @FXML
     private Button zalozitVychazkuButton;
+
+    @FXML public void zalozitVychazku (ActionEvent event) throws Exception {
+        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZalozitVychazku.fxml"));
+	rootPane.getChildren().setAll(pane);	
+}
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
