@@ -11,14 +11,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+import logika.Vychazka;
+import logika.Zakaznik;
 
 /**
  * FXML Controller class
@@ -31,10 +37,10 @@ public class OknoZalozitObjednavku implements Initializable {
     private MenuItem pruvodciItem1;
 
     @FXML
-    private Label vychazkaLabel;
+    private TextField stavInput;
 
     @FXML
-    private TextField datumInput;
+    private Label vychazkaLabel;
 
     @FXML
     private TextField idInput;
@@ -46,10 +52,7 @@ public class OknoZalozitObjednavku implements Initializable {
     private MenuBar menuBar1;
 
     @FXML
-    private TextField nazevInput;
-
-    @FXML
-    private TextField mistoInput;
+    private ChoiceBox<Vychazka> vychazkaInput;
 
     @FXML
     private MenuItem objednavkyItem1;
@@ -61,19 +64,22 @@ public class OknoZalozitObjednavku implements Initializable {
     private Label vychazkaLabel2;
 
     @FXML
+    private ChoiceBox<Zakaznik> zakaznikInput;
+
+    @FXML
     private Label vychazkaLabel3;
 
     @FXML
     private MenuItem zakazniciItem1;
 
     @FXML
-    private MenuItem napovedaItem1;
+    private MenuItem napovedaItem;
 
     @FXML
     private Menu napoveda1;
 
     @FXML
-    private MenuItem oProgramuItem1;
+    private MenuItem oProgramuItem;
 
     @FXML
     private Menu menu1;
@@ -136,6 +142,32 @@ public class OknoZalozitObjednavku implements Initializable {
             alert.setContentText("Neočekávaná chyba ve vstupních datech");
             alert.showAndWait();
         }
+    }
+    
+        @FXML
+    public void zobrazInfo(ActionEvent t) {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Vycházky by LenochodiSoft");
+        alert.setHeaderText("JavaFX grafická aplikace pro správu vycházek");
+        alert.setContentText("Vytvořil tým Lenochodi v rámci předmětu 4IT115.\n"
+                + "Aktuální verze 1.0");
+
+        alert.showAndWait();
+    }
+
+    @FXML
+    public void zobrazNapovedu(ActionEvent t) {
+
+        Stage stage = new Stage();
+        stage.setTitle("Nápověda k aplikaci");
+        WebView webview = new WebView();
+        webview.getEngine().load(
+                getClass().getResource("/zdroje/napoveda.html").toExternalForm()
+        );
+        stage.setScene(new Scene(webview, 500, 500));
+        stage.show();
+
     }
 
     @Override

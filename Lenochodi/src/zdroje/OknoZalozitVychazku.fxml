@@ -21,8 +21,8 @@
             </Menu>
             <Menu fx:id="napoveda1" mnemonicParsing="false" text="Nápověda">
                <items>
-                  <MenuItem fx:id="napovedaItem1" mnemonicParsing="false" text="Nápověda" />
-                  <MenuItem fx:id="oProgramuItem1" mnemonicParsing="false" text="O programu" />
+                  <MenuItem fx:id="napovedaItem" mnemonicParsing="false" onAction="#zobrazNapovedu" text="Nápověda" />
+                  <MenuItem fx:id="oProgramuItem" mnemonicParsing="false" onAction="#zobrazInfo" text="O programu" />
                </items>
             </Menu>
          </menus>
@@ -56,7 +56,6 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="datumInput" layoutX="165.0" layoutY="74.0" />
             <Label fx:id="vychazkaLabel3" layoutX="14.0" layoutY="99.0" prefHeight="25.0" prefWidth="138.0" text="Místo:">
                <font>
                   <Font size="17.0" />
@@ -87,6 +86,7 @@
                </font>
             </Label>
             <TextField fx:id="cenaInput" layoutX="165.0" layoutY="204.0" />
+            <DatePicker fx:id="datumInput" layoutX="165.0" layoutY="74.0" />
          </children>
       </AnchorPane>
    </children>
