@@ -11,12 +11,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -92,6 +96,32 @@ public class OknoHlavni implements Initializable {
     public void loadZakaznici(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
         rootPane.getChildren().setAll(pane);
+    }
+
+    @FXML
+    public void zobrazInfo(ActionEvent t) {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Vycházky by LenochodiSoft");
+        alert.setHeaderText("JavaFX grafická aplikace pro správu vycházek");
+        alert.setContentText("Vytvořil tým Lenochodi v rámci předmětu 4IT115.\n"
+                + "Aktuální verze 1.0");
+
+        alert.showAndWait();
+    }
+
+    @FXML
+    public void zobrazNapovedu(ActionEvent t) {
+
+        Stage stage = new Stage();
+        stage.setTitle("Nápověda k aplikaci");
+        WebView webview = new WebView();
+        webview.getEngine().load(
+                getClass().getResource("/zdroje/napoveda.html").toExternalForm()
+        );
+        stage.setScene(new Scene(webview, 500, 500));
+        stage.show();
+
     }
 
     @Override

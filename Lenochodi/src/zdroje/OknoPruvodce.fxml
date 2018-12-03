@@ -21,8 +21,8 @@
             </Menu>
             <Menu fx:id="napoveda1" mnemonicParsing="false" text="Nápověda">
                <items>
-                  <MenuItem fx:id="napovedaItem1" mnemonicParsing="false" text="Nápověda" />
-                  <MenuItem fx:id="oProgramuItem1" mnemonicParsing="false" text="O programu" />
+                  <MenuItem fx:id="napovedaItem" mnemonicParsing="false" onAction="#zobrazNapovedu" text="Nápověda" />
+                  <MenuItem fx:id="oProgramuItem" mnemonicParsing="false" onAction="#zobrazInfo" text="O programu" />
                </items>
             </Menu>
          </menus>
