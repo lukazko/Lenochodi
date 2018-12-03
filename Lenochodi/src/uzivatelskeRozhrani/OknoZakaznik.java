@@ -13,12 +13,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -29,49 +31,46 @@ import javafx.stage.Stage;
  */
 public class OknoZakaznik implements Initializable {
 
-    @FXML
-    private MenuItem zakazniciItem;
-        
-    @FXML
-    private VBox rootPane;
+        @FXML
+    private MenuItem pruvodciItem1;
 
     @FXML
     private Label vychazkaLabel;
 
     @FXML
-    private MenuItem pruvodciItem;
+    private VBox rootPane;
 
     @FXML
-    private MenuItem objednavkyItem;
+    private MenuBar menuBar1;
 
     @FXML
-    private Menu menu;
+    private MenuItem objednavkyItem1;
 
     @FXML
-    private TextArea vychazkaTextArea;
+    private MenuItem zakazniciItem1;
 
     @FXML
-    private MenuBar menuBar;
-
-    @FXML
-    private Menu napoveda;
-
-    @FXML
-    private MenuItem oProgramuItem;
+    private MenuItem napovedaItem1;
 
     @FXML
     private Button detailButton;
 
     @FXML
-    private MenuItem vychazkyItem;
-
-    @FXML
-    private MenuItem napovedaItem;
+    private Menu napoveda1;
 
     @FXML
     private Button zalozitZakaznikaButton;
+
+    @FXML
+    private MenuItem oProgramuItem1;
+
+    @FXML
+    private Menu menu1;
+
+    @FXML
+    private MenuItem vychazkyItem1;
     
-        @FXML public void loadVychazky (ActionEvent event) throws Exception{
+    @FXML public void loadVychazky (ActionEvent event) throws Exception{
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
 	rootPane.getChildren().setAll(pane);	
     }
@@ -91,6 +90,12 @@ public class OknoZakaznik implements Initializable {
 	rootPane.getChildren().setAll(pane);	
     }
     
+        @FXML
+    public void zalozitZakaznika(ActionEvent event) throws Exception {
+        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZalozitZakaznika.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
+       
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

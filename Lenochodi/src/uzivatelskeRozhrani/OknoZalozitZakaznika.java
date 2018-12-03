@@ -13,28 +13,24 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
-import logika.Vychazka;
-import logika.Zakaznik;
 
 /**
  * FXML Controller class
  *
  * @author lukas
  */
-public class OknoZalozitObjednavku implements Initializable {
-
-    @FXML
+public class OknoZalozitZakaznika implements Initializable {
+        @FXML
     private MenuItem pruvodciItem1;
 
     @FXML
-    private TextField stavInput;
+    private TextField telefonInput;
 
     @FXML
     private Label vychazkaLabel;
@@ -43,25 +39,28 @@ public class OknoZalozitObjednavku implements Initializable {
     private TextField idInput;
 
     @FXML
+    private TextField prijmeniInput;
+
+    @FXML
     private VBox rootPane;
 
     @FXML
     private MenuBar menuBar1;
 
     @FXML
-    private ChoiceBox<Vychazka> vychazkaInput;
+    private MenuItem objednavkyItem1;
 
     @FXML
-    private MenuItem objednavkyItem1;
+    private Label vychazkaLabel31;
+
+    @FXML
+    private TextField emailInput;
 
     @FXML
     private Label vychazkaLabel1;
 
     @FXML
     private Label vychazkaLabel2;
-
-    @FXML
-    private ChoiceBox<Zakaznik> zakaznikInput;
 
     @FXML
     private Label vychazkaLabel3;
@@ -71,6 +70,9 @@ public class OknoZalozitObjednavku implements Initializable {
 
     @FXML
     private MenuItem napovedaItem1;
+
+    @FXML
+    private TextField jmenoInput;
 
     @FXML
     private Menu napoveda1;
@@ -87,7 +89,7 @@ public class OknoZalozitObjednavku implements Initializable {
     @FXML
     private MenuItem vychazkyItem1;
 
-    @FXML
+        @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
         rootPane.getChildren().setAll(pane);
@@ -122,15 +124,15 @@ public class OknoZalozitObjednavku implements Initializable {
     }
 
     @FXML
-    public void potvrditObjednavku(ActionEvent event) throws Exception {
+    public void potvrditZakaznika(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Objednávka založena");
+            alert.setTitle("Zákazník založen");
             alert.setHeaderText(null);
-            alert.setContentText("Objednávka byla úspěšně založena");
+            alert.setContentText("Zákazník byl úspěšně založena");
             alert.showAndWait();
-            VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoObjednavka.fxml"));
+            VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
             rootPane.getChildren().setAll(pane);
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -140,10 +142,12 @@ public class OknoZalozitObjednavku implements Initializable {
             alert.showAndWait();
         }
     }
-
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }
-
+    }    
+    
 }
