@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="rootPane" prefHeight="429.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uzivatelskeRozhrani.OknoPruvodce">
+<VBox fx:id="rootPane" prefHeight="429.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uzivatelskeRozhrani.OknoPruvodce">
    <children>
       <MenuBar fx:id="menuBar1">
          <menus>
@@ -33,22 +33,18 @@
                <font>
                   <Font size="33.0" />
                </font></Label>
+            <Button fx:id="zalozitPruvodceButton" layoutX="360.0" layoutY="43.0" mnemonicParsing="false" onAction="#zalozitPruvodce" text="Založit průvodce" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="345.0" prefWidth="600.0">
          <children>
-            <Button fx:id="potvrditButton" layoutX="457.0" layoutY="196.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="122.0" text="Potvrdit" />
-            <CheckBox layoutX="14.0" layoutY="20.0" mnemonicParsing="false" text="Jan Novák" />
-            <Label layoutX="504.0" layoutY="14.0" prefHeight="29.0" prefWidth="75.0" text="Jazyk">
+            <Button fx:id="detailButton" layoutX="339.0" layoutY="121.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="122.0" text="Detail" />
+            <Label fx:id="vychazkaLabel" layoutX="14.0" layoutY="13.0" prefHeight="40.0" prefWidth="195.0" text="Průvodce #1">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <ChoiceBox layoutX="429.0" layoutY="49.0" prefWidth="150.0" />
-            <CheckBox layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="Fíla Kopal" />
-            <CheckBox layoutX="14.0" layoutY="86.0" mnemonicParsing="false" text="Jiří Dolejš" />
-            <CheckBox layoutX="14.0" layoutY="120.0" mnemonicParsing="false" text="Stanislav Gross" />
-            <CheckBox layoutX="14.0" layoutY="147.0" mnemonicParsing="false" text="Pavel Bém" />
+            <TextArea layoutX="33.0" layoutY="67.0" prefHeight="34.0" prefWidth="428.0" text="lorem10" />
          </children>
       </AnchorPane>
    </children>

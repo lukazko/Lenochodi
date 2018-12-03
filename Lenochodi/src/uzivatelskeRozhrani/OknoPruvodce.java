@@ -30,39 +30,45 @@ import javafx.stage.Stage;
 public class OknoPruvodce implements Initializable {
 
     @FXML
-    private MenuBar menuBar;
-    
-        @FXML
+    private MenuItem pruvodciItem1;
+
+    @FXML
+    private Label vychazkaLabel;
+
+    @FXML
     private VBox rootPane;
 
     @FXML
-    private Menu napoveda;
+    private MenuBar menuBar1;
 
     @FXML
-    private MenuItem oProgramuItem;
+    private MenuItem objednavkyItem1;
 
     @FXML
-    private MenuItem zakazniciItem;
+    private MenuItem zakazniciItem1;
 
     @FXML
-    private MenuItem pruvodciItem;
+    private Button zalozitPruvodceButton;
 
     @FXML
-    private Button potvrditButton;
+    private MenuItem napovedaItem1;
 
     @FXML
-    private MenuItem vychazkyItem;
+    private Button detailButton;
 
     @FXML
-    private MenuItem objednavkyItem;
+    private Menu napoveda1;
 
     @FXML
-    private MenuItem napovedaItem;
+    private MenuItem oProgramuItem1;
 
     @FXML
-    private Menu menu;
+    private Menu menu1;
+
+    @FXML
+    private MenuItem vychazkyItem1;
     
-        @FXML public void loadVychazky (ActionEvent event) throws Exception{
+    @FXML public void loadVychazky (ActionEvent event) throws Exception{
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
 	rootPane.getChildren().setAll(pane);	
     }
@@ -80,6 +86,12 @@ public class OknoPruvodce implements Initializable {
     @FXML public void loadZakaznici (ActionEvent event) throws Exception{
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
 	rootPane.getChildren().setAll(pane);	
+    }
+    
+    @FXML
+    public void zalozitPruvodce(ActionEvent event) throws Exception {
+        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZalozitPruvodce.fxml"));
+        rootPane.getChildren().setAll(pane);
     }
     
     @Override

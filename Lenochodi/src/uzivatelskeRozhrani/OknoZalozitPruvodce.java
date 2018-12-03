@@ -8,12 +8,12 @@ package uzivatelskeRozhrani;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -26,46 +26,43 @@ import javafx.scene.layout.VBox;
  *
  * @author lukas
  */
-public class OknoZalozitVychazku implements Initializable {
+public class OknoZalozitPruvodce implements Initializable {
+
+        @FXML
+    private MenuItem pruvodciItem1;
 
     @FXML
-    private VBox rootPane;
+    private TextField telefonInput;
 
     @FXML
     private Label vychazkaLabel;
 
     @FXML
-    private DatePicker datumInput;
+    private TextField idInput;
 
     @FXML
-    private MenuItem pruvodciItem;
+    private TextField prijmeniInput;
+
+    @FXML
+    private VBox rootPane;
 
     @FXML
     private Label vychazkaLabel311;
 
     @FXML
-    private Label vychazkaLabel312;
+    private MenuBar menuBar1;
 
     @FXML
-    private TextField kapacitaInput;
-
-    @FXML
-    private Label vychazkaLabel32;
-
-    @FXML
-    private TextField cenaInput;
+    private MenuItem objednavkyItem1;
 
     @FXML
     private Label vychazkaLabel31;
 
     @FXML
-    private MenuBar menuBar;
+    private TextField emailInput;
 
     @FXML
     private Label vychazkaLabel1;
-
-    @FXML
-    private MenuItem oProgramuItem;
 
     @FXML
     private Label vychazkaLabel2;
@@ -74,45 +71,33 @@ public class OknoZalozitVychazku implements Initializable {
     private Label vychazkaLabel3;
 
     @FXML
-    private TextField jazykInput;
+    private MenuItem zakazniciItem1;
 
     @FXML
-    private TextField casZacatkuInput;
+    private MenuItem napovedaItem1;
 
     @FXML
-    private MenuItem vychazkyItem;
+    private TextField jmenoInput;
 
     @FXML
-    private MenuItem napovedaItem;
+    private Menu napoveda1;
 
     @FXML
-    private MenuItem zakazniciItem;
+    private ChoiceBox<?> jazykyInput;
 
     @FXML
-    private TextField idInput;
+    private MenuItem oProgramuItem1;
 
     @FXML
-    private TextField nazevInput;
-
-    @FXML
-    private MenuItem objednavkyItem;
-
-    @FXML
-    private TextField mistoInput;
-
-    @FXML
-    private Menu menu;
-
-    @FXML
-    private Menu napoveda;
-
-    @FXML
-    private VBox vychazky;
+    private Menu menu1;
 
     @FXML
     private Button PotvrditButton;
 
     @FXML
+    private MenuItem vychazkyItem1;
+    
+        @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
         rootPane.getChildren().setAll(pane);
@@ -147,15 +132,15 @@ public class OknoZalozitVychazku implements Initializable {
     }
 
     @FXML
-    public void potvrditVychazku(ActionEvent event) throws Exception {
+    public void potvrditPruvodce(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Vycházka založena");
+            alert.setTitle("Průvodce založen");
             alert.setHeaderText(null);
-            alert.setContentText("Vycházka byla úspěšně založena");
+            alert.setContentText("Průvdoce byl úspěšně založen");
             alert.showAndWait();
-            VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
+            VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoPrůvodci.fxml"));
             rootPane.getChildren().setAll(pane);
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -165,10 +150,10 @@ public class OknoZalozitVychazku implements Initializable {
             alert.showAndWait();
         }
     }
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }
-
+    }    
+    
 }
