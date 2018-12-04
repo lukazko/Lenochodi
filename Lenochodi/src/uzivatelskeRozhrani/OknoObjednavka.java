@@ -5,6 +5,7 @@
  */
 package uzivatelskeRozhrani;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -19,6 +20,9 @@ import javafx.scene.control.TextArea;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -30,44 +34,38 @@ import javafx.stage.Stage;
  */
 public class OknoObjednavka implements Initializable {
 
-    @FXML
+      @FXML
     private MenuItem pruvodciItem1;
-
-    @FXML
-    private Label vychazkaLabel;
-
-    @FXML
-    private VBox rootPane;
-
-    @FXML
-    private MenuBar menuBar1;
-
-    @FXML
-    private TextArea vychazkaTextArea;
-
-    @FXML
-    private MenuItem objednavkyItem1;
-
-    @FXML
-    private MenuItem zakazniciItem1;
-
-    @FXML
-    private MenuItem napovedaItem;
-
-    @FXML
-    private Button detailButton;
-
-    @FXML
-    private Button zalozitObjednavkuButton;
-
-    @FXML
-    private Menu napoveda1;
 
     @FXML
     private MenuItem oProgramuItem;
 
     @FXML
+    private MenuItem zakazniciItem1;
+
+    @FXML
+    private VBox rootPane;
+
+    @FXML
+    private Button zalozitObjednavkuButton;
+
+    @FXML
+    private MenuBar menuBar1;
+
+    @FXML
+    private Menu napoveda1;
+
+    @FXML
+    private MenuItem napovedaItem;
+
+    @FXML
     private Menu menu1;
+
+    @FXML
+    private MenuItem objednavkyItem1;
+
+    @FXML
+    private ListView<String> objednavkyListView;
 
     @FXML
     private MenuItem vychazkyItem1;
@@ -128,8 +126,19 @@ public class OknoObjednavka implements Initializable {
 
     }
 
+      public void sracka(MouseEvent event) throws IOException {
+        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailObjednavky.fxml"));
+        rootPane.getChildren().setAll(pane);
+
+    }
+     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        objednavkyListView.getItems().addAll("lol","lol1","3","lol","lol1","3","lol","lol1","3","lol","lol1","3","lol","lol1","3");    
+        
     }
+                       
+ 
+    
 }
