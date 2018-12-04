@@ -86,13 +86,16 @@ public class OknoDetailObjednavky implements Initializable {
 
     @FXML
     private MenuItem vychazkyItem1;
-    
+
+    @FXML
+    private Button zpetButton;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }   
-    
-        @FXML
+    }
+
+    @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
         rootPane.getChildren().setAll(pane);
@@ -115,8 +118,8 @@ public class OknoDetailObjednavky implements Initializable {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
         rootPane.getChildren().setAll(pane);
     }
-    
-        @FXML
+
+    @FXML
     public void zobrazInfo(ActionEvent t) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -141,11 +144,11 @@ public class OknoDetailObjednavky implements Initializable {
         stage.show();
 
     }
-    
-     @FXML
+
+    @FXML
     public void editovatObjednavku(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoEditovatDetailObjednavky.fxml"));
         rootPane.getChildren().setAll(pane);
     }
-    
+
 }

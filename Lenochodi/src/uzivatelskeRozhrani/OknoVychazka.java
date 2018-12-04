@@ -5,6 +5,7 @@
  */
 package uzivatelskeRozhrani;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -12,14 +13,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 
@@ -31,46 +32,46 @@ import javafx.scene.web.WebView;
 public class OknoVychazka implements Initializable {
 
     @FXML
-    private MenuItem zakazniciItem;
-
-    @FXML
-    private Label vychazkaLabel;
-
-    @FXML
-    private VBox rootPane;
-
-    @FXML
-    private MenuItem pruvodciItem;
-
-    @FXML
-    private MenuItem objednavkyItem;
-
-    @FXML
-    private Menu menu;
-
-    @FXML
-    private TextArea vychazkaTextArea;
-
-    @FXML
-    private MenuBar menuBar;
-
-    @FXML
-    private Menu napoveda;
+    private MenuItem pruvodciItem1;
 
     @FXML
     private MenuItem oProgramuItem;
 
     @FXML
-    private Button detailButton;
+    private MenuItem zakazniciItem1;
 
     @FXML
-    private MenuItem vychazkyItem;
+    private VBox rootPane;
+
+    @FXML
+    private MenuBar menuBar1;
+
+    @FXML
+    private Menu napoveda1;
 
     @FXML
     private MenuItem napovedaItem;
 
     @FXML
+    private ListView<String> vychazkyListView;
+
+    @FXML
+    private Menu menu1;
+
+    @FXML
+    private MenuItem objednavkyItem1;
+
+    @FXML
+    private MenuItem vychazkyItem1;
+
+    @FXML
     private Button zalozitVychazkuButton;
+    
+        public void detail(MouseEvent event) throws IOException {
+        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailVychazky.fxml"));
+        rootPane.getChildren().setAll(pane);
+
+    }
 
     @FXML public void zalozitVychazku (ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZalozitVychazku.fxml"));
@@ -124,6 +125,6 @@ public class OknoVychazka implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        vychazkyListView.getItems().addAll("Vycházka #1","Vycházka #2", "Vycházka #3"); 
     }
 }

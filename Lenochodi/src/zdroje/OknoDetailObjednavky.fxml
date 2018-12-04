@@ -38,7 +38,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="345.0" prefWidth="600.0">
          <children>
-            <Button fx:id="editovatButton" layoutX="189.0" layoutY="258.0" mnemonicParsing="false" onAction="#editovatObjednavku" prefHeight="27.0" prefWidth="122.0" text="Editovat" />
+            <Button fx:id="editovatButton" layoutX="253.0" layoutY="258.0" mnemonicParsing="false" onAction="#editovatObjednavku" prefHeight="27.0" prefWidth="122.0" text="Editovat" />
             <Label fx:id="vychazkaLabel" layoutX="14.0" layoutY="21.0" prefHeight="25.0" prefWidth="138.0" text="ID:">
                <font>
                   <Font size="17.0" />
@@ -63,6 +63,7 @@
             </Label>
             <TextField fx:id="zakaznikInput1" editable="false" layoutX="165.0" layoutY="72.0" />
             <TextField fx:id="vychazkaInput1" editable="false" layoutX="165.0" layoutY="98.0" />
+            <Button fx:id="zpetButton" layoutX="104.0" layoutY="258.0" mnemonicParsing="false" onAction="#loadObjednavky" prefHeight="27.0" prefWidth="122.0" text="Zpět" />
          </children>
       </AnchorPane>
    </children>

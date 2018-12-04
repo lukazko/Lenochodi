@@ -38,7 +38,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="345.0" prefWidth="600.0">
          <children>
-            <ListView fx:id="objednavkyListView" onMouseClicked="#sracka" prefHeight="293.0" prefWidth="500.0" />
+            <ListView fx:id="objednavkyListView" onMouseClicked="#detail" prefHeight="293.0" prefWidth="500.0" />
          </children>
       </AnchorPane>
    </children>
