@@ -5,21 +5,20 @@
  */
 package uzivatelskeRozhrani;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -29,25 +28,61 @@ import javafx.stage.Stage;
  *
  * @author barton
  */
-public class OknoZakaznik implements Initializable {
+public class OknoDetailVychazky implements Initializable {
 
     @FXML
-    private MenuItem pruvodciItem1;
+    private Label vychazkaLabel;
+
+    @FXML
+    private TextField datumInput;
+
+    @FXML
+    private Label vychazkaLabel311;
+
+    @FXML
+    private MenuBar menuBar1;
+
+    @FXML
+    private Label vychazkaLabel312;
+
+    @FXML
+    private TextField kapacitaInput;
+
+    @FXML
+    private Button editovatButton;
+
+    @FXML
+    private Label vychazkaLabel32;
+
+    @FXML
+    private TextField cenaInput;
+
+    @FXML
+    private Label vychazkaLabel31;
+
+    @FXML
+    private Label vychazkaLabel1;
 
     @FXML
     private MenuItem oProgramuItem;
 
     @FXML
-    private ListView<String> zakazniciListView;
+    private Label vychazkaLabel2;
+
+    @FXML
+    private Label vychazkaLabel3;
+
+    @FXML
+    private TextField jazykInput;
 
     @FXML
     private MenuItem zakazniciItem1;
 
     @FXML
-    private VBox rootPane;
+    private TextField casZacatkuInput;
 
     @FXML
-    private MenuBar menuBar1;
+    private Button zpetButton;
 
     @FXML
     private Menu napoveda1;
@@ -56,50 +91,59 @@ public class OknoZakaznik implements Initializable {
     private MenuItem napovedaItem;
 
     @FXML
-    private Button zalozitZakaznikaButton;
+    private Menu menu1;
 
     @FXML
-    private Menu menu1;
+    private MenuItem pruvodciItem1;
+
+    @FXML
+    private TextField idInput;
+
+    @FXML
+    private VBox rootPane;
+
+    @FXML
+    private TextField nazevInput;
+
+    @FXML
+    private TextField mistoInput;
 
     @FXML
     private MenuItem objednavkyItem1;
 
     @FXML
     private MenuItem vychazkyItem1;
-    
-            public void detail(MouseEvent event) throws IOException {
-        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailZakaznik.fxml"));
-        rootPane.getChildren().setAll(pane);
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
     }
-    
-    @FXML public void loadVychazky (ActionEvent event) throws Exception{
+
+    @FXML
+    public void loadVychazky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
-	rootPane.getChildren().setAll(pane);	
-    }
-        
-    @FXML public void loadObjednavky (ActionEvent event) throws Exception{
-        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoObjednavka.fxml"));
-	rootPane.getChildren().setAll(pane);	
-    }
-            
-    @FXML public void loadPruvodci (ActionEvent event) throws Exception{
-        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoPruvodce.fxml"));
-	rootPane.getChildren().setAll(pane);	
-    }   
-        
-    @FXML public void loadZakaznici (ActionEvent event) throws Exception{
-        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
-	rootPane.getChildren().setAll(pane);	
-    }
-    
-        @FXML
-    public void zalozitZakaznika(ActionEvent event) throws Exception {
-        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZalozitZakaznika.fxml"));
         rootPane.getChildren().setAll(pane);
     }
-    
-        @FXML
+
+    @FXML
+    public void loadObjednavky(ActionEvent event) throws Exception {
+        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoObjednavka.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
+
+    @FXML
+    public void loadPruvodci(ActionEvent event) throws Exception {
+        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoPruvodce.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
+
+    @FXML
+    public void loadZakaznici(ActionEvent event) throws Exception {
+        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
+
+    @FXML
     public void zobrazInfo(ActionEvent t) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -124,9 +168,11 @@ public class OknoZakaznik implements Initializable {
         stage.show();
 
     }
-       
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        zakazniciListView.getItems().addAll("Zakazník #1","Zákazník #2", "zákazník #3"); 
+
+    @FXML
+    public void editovatVychazku(ActionEvent event) throws Exception {
+        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoEditovatDetailVychazky.fxml"));
+        rootPane.getChildren().setAll(pane);
     }
+
 }

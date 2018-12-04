@@ -87,12 +87,15 @@ public class OknoEditovatDetailObjednavky implements Initializable {
     @FXML
     private MenuItem vychazkyItem1;
     
+    @FXML
+    private Button zpetButton;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }   
     
-        @FXML
+    @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
         rootPane.getChildren().setAll(pane);
@@ -113,6 +116,11 @@ public class OknoEditovatDetailObjednavky implements Initializable {
     @FXML
     public void loadZakaznici(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
+    
+    public void zpet(ActionEvent event) throws Exception {
+        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailObjednavky.fxml"));
         rootPane.getChildren().setAll(pane);
     }
     
@@ -142,10 +150,34 @@ public class OknoEditovatDetailObjednavky implements Initializable {
 
     }
     
-     @FXML
+    public static boolean isInteger(TextField t) {
+        int x;
+        try {
+            x = Integer.parseInt(t.getText());
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    @FXML
     public void ulozitObjednavku(ActionEvent event) throws Exception {
-        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailObjednavky.fxml"));
-        rootPane.getChildren().setAll(pane);
+
+        if (isInteger(idInput)) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Objednávka uložena");
+            alert.setHeaderText(null);
+            alert.setContentText("Změny byly úspěšně uloženy");
+            alert.showAndWait();
+            VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailObjednavky.fxml"));
+            rootPane.getChildren().setAll(pane);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Chyba");
+            alert.setHeaderText(null);
+            alert.setContentText("Neočekávaná chyba ve vstupních datech");
+            alert.showAndWait();
+        }
     }
     
 }

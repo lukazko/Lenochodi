@@ -5,6 +5,7 @@
  */
 package uzivatelskeRozhrani;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -14,10 +15,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -29,20 +31,11 @@ import javafx.stage.Stage;
  */
 public class OknoPruvodce implements Initializable {
 
-    @FXML
+  @FXML
     private MenuItem pruvodciItem1;
 
     @FXML
-    private Label vychazkaLabel;
-
-    @FXML
-    private VBox rootPane;
-
-    @FXML
-    private MenuBar menuBar1;
-
-    @FXML
-    private MenuItem objednavkyItem1;
+    private MenuItem oProgramuItem;
 
     @FXML
     private MenuItem zakazniciItem1;
@@ -51,22 +44,34 @@ public class OknoPruvodce implements Initializable {
     private Button zalozitPruvodceButton;
 
     @FXML
-    private MenuItem napovedaItem;
+    private VBox rootPane;
 
     @FXML
-    private Button detailButton;
+    private MenuBar menuBar1;
 
     @FXML
     private Menu napoveda1;
 
     @FXML
-    private MenuItem oProgramuItem;
+    private MenuItem napovedaItem;
+
+    @FXML
+    private ListView<String> pruvodciListView;
 
     @FXML
     private Menu menu1;
 
     @FXML
+    private MenuItem objednavkyItem1;
+
+    @FXML
     private MenuItem vychazkyItem1;
+    
+    public void detail(MouseEvent event) throws IOException {
+        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailPruvodce.fxml"));
+        rootPane.getChildren().setAll(pane);
+
+    }
     
     @FXML public void loadVychazky (ActionEvent event) throws Exception{
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
@@ -122,6 +127,6 @@ public class OknoPruvodce implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        pruvodciListView.getItems().addAll("Průvodce #1","Průvodce #2", "Průvodce #3");    
     }
 }

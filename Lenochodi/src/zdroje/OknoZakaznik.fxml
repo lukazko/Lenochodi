@@ -38,13 +38,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="345.0" prefWidth="600.0">
          <children>
-            <Button fx:id="detailButton" layoutX="339.0" layoutY="121.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="122.0" text="Detail" />
-            <Label fx:id="vychazkaLabel" layoutX="14.0" layoutY="13.0" prefHeight="40.0" prefWidth="195.0" text="Zákazník #1">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <TextArea layoutX="33.0" layoutY="67.0" prefHeight="34.0" prefWidth="428.0" text="lorem10" />
+            <ListView fx:id="zakazniciListView" onMouseClicked="#detail" prefHeight="293.0" prefWidth="500.0" />
          </children>
       </AnchorPane>
    </children>
