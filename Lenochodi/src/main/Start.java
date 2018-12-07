@@ -6,25 +6,18 @@
 package main;
 
 import javafx.application.Application;
-import uzivatelskeRozhrani.OknoHlavni;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
-import logika.Aplikace;
 
 /**
  *
  * @author Lukáš, Pavel, Simona, Marko, Kateřina
  */
 public class Start extends Application {
-
+ 
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/zdroje/OknoHlavni.fxml"));
