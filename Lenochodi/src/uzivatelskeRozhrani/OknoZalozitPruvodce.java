@@ -138,6 +138,7 @@ public class OknoZalozitPruvodce implements Initializable {
     public void potvrditPruvodce(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
+          // Lenochodi.logika.aplikace.zalozPruvodce();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Průvodce založen");
             alert.setHeaderText(null);

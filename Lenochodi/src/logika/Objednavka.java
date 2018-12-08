@@ -40,8 +40,10 @@ public class Objednavka {
 	}
         
         public void setVychazka(Vychazka vychazka) {
+            if (vychazka.getZbyvajiciKapacita() > 0)
+            {
 		this.vychazka = vychazka;
-	}
+	}}
         
         public Vychazka getVychazka() {
 		return vychazka;

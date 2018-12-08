@@ -9,21 +9,24 @@
 
 package logika;
 
-import java.util.HashMap;
 import java.util.Collection;
+import java.util.HashSet;
 
 public class Pruvodce extends Osoba {
 
-	private HashMap jazyky;
+	private HashSet jazyky;
 	private Collection<Vychazka> vychazky;
         
         public Pruvodce (int id, String jmeno, String prijmeni, String email, String telefon) {
             super(id, jmeno, prijmeni, email, telefon);
-            jazyky = new HashMap<>();
+            jazyky = new HashSet<>();
+            jazyky.add("Čeština");
+            jazyky.add("Angličtina");
+            jazyky.add("Slovenština");
         }
         
         public void pridejJazyk(String jazyk) {
-
+            jazyky.add(jazyk);
         }
         
         public void odeberJazyk(String jazyk) {
@@ -31,7 +34,7 @@ public class Pruvodce extends Osoba {
         }
         
 	public boolean najdiJazyk(String jazyk) {
-            return jazyky.containsKey(jazyk);
+            return jazyky.contains(jazyk);
 	}
 
 	public Collection getVychazky() {
