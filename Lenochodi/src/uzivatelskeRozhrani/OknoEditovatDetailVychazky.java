@@ -7,6 +7,7 @@ package uzivatelskeRozhrani;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -23,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import logika.Pruvodce;
 
 /**
  * FXML Controller class
@@ -33,6 +36,9 @@ public class OknoEditovatDetailVychazky implements Initializable {
 
     @FXML
     private Label vychazkaLabel;
+    
+    @FXML
+    private ChoiceBox<Pruvodce> inputPruvodce;
 
     @FXML
     private DatePicker datumInput;
@@ -71,7 +77,7 @@ public class OknoEditovatDetailVychazky implements Initializable {
     private Label vychazkaLabel3;
 
     @FXML
-    private TextField jazykInput;
+    private ChoiceBox<String> jazykyInput;
 
     @FXML
     private MenuItem zakazniciItem1;
@@ -117,7 +123,7 @@ public class OknoEditovatDetailVychazky implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        jazykyInput.setItems(FXCollections.observableArrayList("CZ", "EN", "DE"));
     }   
     
     @FXML

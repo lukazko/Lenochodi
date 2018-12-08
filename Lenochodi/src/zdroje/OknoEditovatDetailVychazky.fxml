@@ -38,8 +38,8 @@
       </AnchorPane>
       <AnchorPane prefHeight="345.0" prefWidth="600.0">
          <children>
-            <Button fx:id="ulozitButton" layoutX="253.0" layoutY="260.0" mnemonicParsing="false" onAction="#ulozitVychazku" prefHeight="27.0" prefWidth="122.0" text="Uložit" />
-            <Button fx:id="zpetButton" layoutX="104.0" layoutY="260.0" mnemonicParsing="false" onAction="#detail" prefHeight="27.0" prefWidth="122.0" text="Zpět" />
+            <Button fx:id="ulozitButton" layoutX="253.0" layoutY="271.0" mnemonicParsing="false" onAction="#ulozitVychazku" prefHeight="27.0" prefWidth="122.0" text="Uložit" />
+            <Button fx:id="zpetButton" layoutX="104.0" layoutY="271.0" mnemonicParsing="false" onAction="#detail" prefHeight="27.0" prefWidth="122.0" text="Zpět" />
             <Label fx:id="vychazkaLabel" layoutX="14.0" layoutY="21.0" prefHeight="25.0" prefWidth="138.0" text="ID:">
                <font>
                   <Font size="17.0" />
@@ -74,7 +74,6 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="jazykInput" layoutX="165.0" layoutY="152.0" />
             <Label fx:id="vychazkaLabel311" layoutX="14.0" layoutY="177.0" prefHeight="25.0" prefWidth="138.0" text="Kapacita:">
                <font>
                   <Font size="17.0" />
@@ -88,6 +87,13 @@
             </Label>
             <TextField fx:id="cenaInput" layoutX="165.0" layoutY="204.0" />
             <DatePicker fx:id="datumInput" layoutX="166.0" layoutY="74.0" />
+            <ChoiceBox fx:id="inputPruvodce" layoutX="165.0" layoutY="230.0" prefWidth="150.0" />
+            <Label fx:id="vychazkaLabel3121" layoutX="14.0" layoutY="229.0" prefHeight="25.0" prefWidth="138.0" text="Průvodce:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="jazykyInput" layoutX="165.0" layoutY="152.0" prefWidth="150.0" />
          </children>
       </AnchorPane>
    </children>

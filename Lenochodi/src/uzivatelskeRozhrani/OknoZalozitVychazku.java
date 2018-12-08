@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -23,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import logika.Pruvodce;
 
 /**
  * FXML Controller class
@@ -33,6 +35,9 @@ public class OknoZalozitVychazku implements Initializable {
 
     @FXML
     private VBox rootPane;
+    
+    @FXML
+    private ChoiceBox<Pruvodce> inputPruvodce;
 
     @FXML
     private Label vychazkaLabel;

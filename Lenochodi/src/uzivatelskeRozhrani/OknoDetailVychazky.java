@@ -32,6 +32,9 @@ public class OknoDetailVychazky implements Initializable {
 
     @FXML
     private Label vychazkaLabel;
+    
+        @FXML
+    private TextField pruvodceInput;
 
     @FXML
     private TextField datumInput;

@@ -57,7 +57,7 @@ public class Aplikace {
         return null;
     }
 
-    public Void getKonkretniRPruvodce() {
+    public Void getKonkretniPruvodce() {
         //Statement KSPruvodce = C.creatStatement();
         //KSPruvodce.execute("SELECT * FROM 'pruvodci' WHERE prjmeni LIKE '% " + prijmeni.getText() + " %' "); --zjistit prijmeni
         //ResultSet KRPruvodce = KSPruvodce.getResultSet(); 
