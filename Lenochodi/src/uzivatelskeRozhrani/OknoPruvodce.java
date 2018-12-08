@@ -128,5 +128,6 @@ public class OknoPruvodce implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pruvodciListView.getItems().addAll("Průvodce #1","Průvodce #2", "Průvodce #3");    
+        //pruvodciListView.getItems().addAll(Lenochodi.logika.aplikace.getSeznamPruvodcu.getString("prijmeni"));
     }
 }

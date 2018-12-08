@@ -16,7 +16,7 @@ public class Vychazka {
 	private Pruvodce pruvodce;
 	private Collection<Objednavka> seznamObjednavek;
 
-        public Vychazka (int id, String nazev, Date datum, Date casZacatek, String mistoZacatek, String jazyk, int kapacita, float cena) {
+        public Vychazka (int id, String nazev, Date datum, Date casZacatek, String mistoZacatek, String jazyk, int kapacita, float cena, Pruvodce pruvodce) {
             this.id = id;
             this.nazev = nazev;
             this.datum = datum;
@@ -25,6 +25,7 @@ public class Vychazka {
             this.jazyk = jazyk;
             this.kapacita = kapacita;
             this.cena = cena;
+            this.pruvodce = pruvodce;
         }
         
         public void setId(int id) {
@@ -36,8 +37,10 @@ public class Vychazka {
 	}
         
 	public void setPruvodce(Pruvodce pruvodce) {
+            if (pruvodce.najdiJazyk(jazyk))
+                {
 		this.pruvodce = pruvodce;
-	}
+	}}
         
         public Pruvodce getPruvodce() {
 		return pruvodce;

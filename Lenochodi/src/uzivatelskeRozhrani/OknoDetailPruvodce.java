@@ -105,6 +105,9 @@ public class OknoDetailPruvodce implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        /*
+        jmenoImput.add(Lenochodi.logika.aplikace.getKonkretniRPruvodce.getString("jmeno"));
+        */
     }
 
     @FXML

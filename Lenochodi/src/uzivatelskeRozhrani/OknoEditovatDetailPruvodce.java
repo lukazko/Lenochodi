@@ -177,6 +177,7 @@ public class OknoEditovatDetailPruvodce implements Initializable {
     public void ulozitPruvodce(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
+            //Lenochodi.logika.aplikace.upravPruvodce();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Průvodce uložen");
             alert.setHeaderText(null);
