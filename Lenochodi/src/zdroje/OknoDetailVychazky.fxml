@@ -38,8 +38,8 @@
       </AnchorPane>
       <AnchorPane prefHeight="345.0" prefWidth="600.0">
          <children>
-            <Button fx:id="editovatButton" layoutX="253.0" layoutY="260.0" mnemonicParsing="false" onAction="#editovatVychazku" prefHeight="27.0" prefWidth="122.0" text="Editovat" />
-            <Button fx:id="zpetButton" layoutX="104.0" layoutY="260.0" mnemonicParsing="false" onAction="#loadVychazky" prefHeight="27.0" prefWidth="122.0" text="Zpět" />
+            <Button fx:id="editovatButton" layoutX="253.0" layoutY="271.0" mnemonicParsing="false" onAction="#editovatVychazku" prefHeight="27.0" prefWidth="122.0" text="Editovat" />
+            <Button fx:id="zpetButton" layoutX="104.0" layoutY="271.0" mnemonicParsing="false" onAction="#loadVychazky" prefHeight="27.0" prefWidth="122.0" text="Zpět" />
             <Label fx:id="vychazkaLabel" layoutX="14.0" layoutY="21.0" prefHeight="25.0" prefWidth="138.0" text="ID:">
                <font>
                   <Font size="17.0" />
@@ -88,6 +88,12 @@
             </Label>
             <TextField fx:id="cenaInput" editable="false" layoutX="165.0" layoutY="204.0" />
             <TextField fx:id="datumInput" editable="false" layoutX="165.0" layoutY="74.0" />
+            <Label fx:id="vychazkaLabel3121" layoutX="14.0" layoutY="231.0" prefHeight="25.0" prefWidth="138.0" text="Průvodce:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="pruvodceInput" editable="false" layoutX="165.0" layoutY="231.0" />
          </children>
       </AnchorPane>
    </children>
