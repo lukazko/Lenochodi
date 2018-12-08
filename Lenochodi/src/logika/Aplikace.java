@@ -1,6 +1,7 @@
 package logika;
 
 import java.util.HashMap;
+import java.sql.*;
 
 public class Aplikace {
 
@@ -40,21 +41,53 @@ public class Aplikace {
          */
         return null;
     }
+
+    public Void upravPruvodce() throws SQLException {
+    Connection con = null;
+    PreparedStatement pstmt = null;
+//    ResultSet rs = null;
+
     
-        public Void upravPruvodce() {
-        /*
-        PreparedStatement pstmt = C.prepareStatement("UPDATE 'pruvodci' SET (id,jmeno,prijmeni,email,telefon,jazyky) VALUE 
-        (?,?,?,?,?,?) WHERE ID = ?")
-         pstmt.setString(1, Lenochodi.uzivatelskeRozhrani.OknoZalozitPruvodce.idInput.getText());
-         pstmt.setString(2, Lenochodi.uzivatelskeRozhrani.OknoZalozitPruvodce.jmenoInput.getText());
-         pstmt.setString(3, Lenochodi.uzivatelskeRozhrani.OknoZalozitPruvodce.prijmeniInput.getText());
-         pstmt.setString(4, Lenochodi.uzivatelskeRozhrani.OknoZalozitPruvodce.emailInput.getText());
-         pstmt.setInt(5, Lenochodi.uzivatelskeRozhrani.OknoZalozitPruvodce.telefonInput.getText());
-         pstmt.setString(6,  Lenochodi.uzivatelskeRozhrani.OknoZalozitPruvodce.jazykyInput.getSelectionModel().toString());
-         pstmt.setString(7, Lenochodi.uzivatelskeRozhrani.OknoZalozitPruvodce.idInput.getText());
-         pstmt.execute();
-         */
-        return null;
+        try {
+        con = Databaze.getConnection();
+        String query = "UPDATE 'pruvodci' SET (id,jmeno,prijmeni,email,telefon,jazyky) VALUE (?,?,?,?,?,?) WHERE ID = ?";
+        pstmt = con.prepareStatement(query);
+       /* pstmt.setString(
+                1, uzivatelskeRozhrani.OknoZalozitPruvodce.idInput.getText());
+        pstmt.setString(
+                2, uzivatelskeRozhrani.OknoZalozitPruvodce.jmenoInput.getText());
+        pstmt.setString(
+                3, uzivatelskeRozhrani.OknoZalozitPruvodce.prijmeniInput.getText());
+        pstmt.setString(
+                4, uzivatelskeRozhrani.OknoZalozitPruvodce.emailInput.getText());
+        pstmt.setInt(
+                5, uzivatelskeRozhrani.OknoZalozitPruvodce.telefonInput.getText());
+        pstmt.setString(
+                6, uzivatelskeRozhrani.OknoZalozitPruvodce.jazykyInput.getSelectionModel().toString());
+        pstmt.setString(
+                7, uzivatelskeRozhrani.OknoZalozitPruvodce.idInput.getText());
+        pstmt.execute();*/
+    }
+    catch (Exception e
+
+    
+        ) {
+			e.printStackTrace();
+    }
+
+    
+        finally {
+			try {
+//          resultSet.close();
+            pstmt.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+return null;
     }
 
     public Void getKonkretniRPruvodce() {
