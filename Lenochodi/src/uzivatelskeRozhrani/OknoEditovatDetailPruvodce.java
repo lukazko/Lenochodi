@@ -36,10 +36,10 @@ public class OknoEditovatDetailPruvodce implements Initializable {
     private MenuItem pruvodciItem1;
 
     @FXML
-    private TextField telefonInput;
+    public TextField telefonInput;
 
     @FXML
-    private TextField prijmeniInput;
+    public TextField prijmeniInput;
 
     @FXML
     private VBox rootPane;
@@ -69,7 +69,7 @@ public class OknoEditovatDetailPruvodce implements Initializable {
     private Label vychazkaLabel31;
 
     @FXML
-    private TextField emailInput;
+    public TextField emailInput;
 
     @FXML
     private Label vychazkaLabel1;
@@ -81,7 +81,7 @@ public class OknoEditovatDetailPruvodce implements Initializable {
     private MenuItem zakazniciItem1;
 
     @FXML
-    private TextField jmenoInput;
+    public TextField jmenoInput;
 
     @FXML
     private Button zpetButton;
@@ -90,7 +90,7 @@ public class OknoEditovatDetailPruvodce implements Initializable {
     private Menu napoveda1;
 
     @FXML
-    private ChoiceBox<String> jazykyInput;
+    public ChoiceBox<String> jazykyInput;
 
     @FXML
     private MenuItem napovedaItem;
@@ -99,7 +99,7 @@ public class OknoEditovatDetailPruvodce implements Initializable {
     private Menu menu1;
 
     @FXML
-    private TextField idInput;
+    public TextField idInput;
 
     @FXML
     private MenuItem vychazkyItem1;
