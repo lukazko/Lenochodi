@@ -67,10 +67,17 @@ public class OknoPruvodce implements Initializable {
     @FXML
     private MenuItem vychazkyItem1;
     
+    public String pruvodce;
+    
     public void detail(MouseEvent event) throws IOException {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailPruvodce.fxml"));
         rootPane.getChildren().setAll(pane);
+        pruvodce = pruvodciListView.getSelectionModel().getSelectedItem();
 
+    }
+    
+    public String getZvolenehoPruvodce() {
+         return pruvodce;
     }
     
     @FXML public void loadVychazky (ActionEvent event) throws Exception{
@@ -128,6 +135,7 @@ public class OknoPruvodce implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         pruvodciListView.getItems().addAll("Průvodce #1","Průvodce #2", "Průvodce #3");    
-        //pruvodciListView.getItems().addAll(Lenochodi.logika.aplikace.getSeznamPruvodcu.getString("prijmeni"));
+       // pruvodciListView.getItems().addAll(logika.Aplikace.class.getEvidencePruvodcu());
     }
 }
+
