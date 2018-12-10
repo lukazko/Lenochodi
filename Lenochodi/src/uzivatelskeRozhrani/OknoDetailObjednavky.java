@@ -22,7 +22,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import logika.Aplikace;
 
 /**
  * FXML Controller class
@@ -90,12 +89,10 @@ public class OknoDetailObjednavky implements Initializable {
 
     @FXML
     private Button zpetButton;
-    
-    Aplikace appka = new Aplikace();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        stavInput.setText(appka.getZkouska());
+        stavInput.setText(logika.Aplikace.appka.getZkouska()); //metoda která naplní hodnoty polí při načtení obrazovky
     }
 
     @FXML
