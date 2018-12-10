@@ -21,6 +21,8 @@ public class Aplikace {
     private Objednavka objednavka;
 
     private Vychazka vychazka;
+    
+    private String zkouska = "zkouška";
 
     public Void zalozVse() {
         evidenceZakazniku = new HashMap<>();
@@ -29,6 +31,10 @@ public class Aplikace {
         evidenceVychazek = new HashMap<>();
 
         return null;
+    }
+    
+    public String getZkouska(){
+     return zkouska;
     }
 
     public Void zalozPruvodce() {
