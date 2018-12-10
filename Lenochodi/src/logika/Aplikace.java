@@ -22,7 +22,9 @@ public class Aplikace {
 
     private Vychazka vychazka;
     
+    //Random proměnná v Aplikaci
     private String zkouska = "zkouška";
+    public static Aplikace appka = new Aplikace(); //btw chybí ti tu konstruktor pro Aplikaci :D
 
     public Void zalozVse() {
         evidenceZakazniku = new HashMap<>();
@@ -33,6 +35,7 @@ public class Aplikace {
         return null;
     }
     
+    //Metoda pro získání proměnné zkouska
     public String getZkouska(){
      return zkouska;
     }
