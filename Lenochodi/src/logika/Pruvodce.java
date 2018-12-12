@@ -20,9 +20,6 @@ public class Pruvodce extends Osoba {
         public Pruvodce (int id, String jmeno, String prijmeni, String email, String telefon) {
             super(id, jmeno, prijmeni, email, telefon);
             jazyky = new HashSet<>();
-            jazyky.add("Čeština");
-            jazyky.add("Angličtina");
-            jazyky.add("Slovenština");
         }
         
         public void pridejJazyk(String jazyk) {
