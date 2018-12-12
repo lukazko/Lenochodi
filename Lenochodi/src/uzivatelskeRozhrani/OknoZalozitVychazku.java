@@ -7,6 +7,7 @@ package uzivatelskeRozhrani;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -82,7 +83,7 @@ public class OknoZalozitVychazku implements Initializable {
     private Label vychazkaLabel3;
 
     @FXML
-    private TextField jazykInput;
+    private ChoiceBox<String> jazykInput;
 
     @FXML
     private TextField casZacatkuInput;
@@ -202,7 +203,7 @@ public class OknoZalozitVychazku implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        jazykInput.setItems(FXCollections.observableArrayList("CZ", "EN", "DE"));
     }
 
 }
