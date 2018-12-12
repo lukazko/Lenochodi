@@ -73,7 +73,6 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="jazykInput" layoutX="165.0" layoutY="152.0" />
             <Label fx:id="vychazkaLabel311" layoutX="14.0" layoutY="177.0" prefHeight="25.0" prefWidth="138.0" text="Kapacita:">
                <font>
                   <Font size="17.0" />
@@ -93,6 +92,7 @@
                </font>
             </Label>
             <ChoiceBox fx:id="inputPruvodce" layoutX="165.0" layoutY="230.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="jazykInput" layoutX="165.0" layoutY="152.0" prefWidth="150.0" />
          </children>
       </AnchorPane>
    </children>
