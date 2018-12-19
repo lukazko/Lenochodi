@@ -23,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import logika.Aplikace;
 
 /**
  * FXML Controller class
@@ -60,6 +61,8 @@ public class OknoZakaznik implements Initializable {
 
     @FXML
     private Menu menu1;
+    
+    private Aplikace aplikace;
 
     @FXML
     private MenuItem objednavkyItem1;
@@ -127,6 +130,7 @@ public class OknoZakaznik implements Initializable {
        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        zakazniciListView.getItems().addAll("Zakazník #1","Zákazník #2", "zákazník #3"); 
+      zakazniciListView.getItems().addAll("Zakazník #1","Zákazník #2", "zákazník #3"); 
+     // zakazniciListView.getItems().addAll(logika.Aplikace.aplikace.getSeznamZakazniku().toString());
     }
 }
