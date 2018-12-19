@@ -92,7 +92,7 @@ public class OknoDetailObjednavky implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        stavInput.setText(logika.Aplikace.appka.getZkouska()); //metoda která naplní hodnoty polí při načtení obrazovky
+        stavInput.setText(logika.Aplikace.aplikace.getZkouska()); //metoda která naplní hodnoty polí při načtení obrazovky
     }
 
     @FXML

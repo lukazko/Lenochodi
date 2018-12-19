@@ -37,7 +37,7 @@ public class Vychazka {
 	}
         
 	public void setPruvodce(Pruvodce pruvodce) {
-            if (pruvodce.najdiJazyk(jazyk))
+            if (pruvodce.getJazyk() == jazyk)
                 {
 		this.pruvodce = pruvodce;
 	}}

@@ -23,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import logika.Aplikace;
 
 /**
  * FXML Controller class
@@ -68,6 +69,8 @@ public class OknoPruvodce implements Initializable {
     private MenuItem vychazkyItem1;
     
     public String pruvodce;
+    
+    private Aplikace aplikace;
     
     public void detail(MouseEvent event) throws IOException {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailPruvodce.fxml"));
@@ -134,8 +137,8 @@ public class OknoPruvodce implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        pruvodciListView.getItems().addAll("Průvodce #1","Průvodce #2", "Průvodce #3");    
-       // pruvodciListView.getItems().addAll(logika.Aplikace.class.getEvidencePruvodcu());
+        pruvodciListView.getItems().addAll("Průvodce #1","Průvodce #2", "Průvodce #3");
+        //pruvodciListView.getItems().addAll(logika.Aplikace.aplikace.getSeznamPruvodcu().toString());
     }
 }
 

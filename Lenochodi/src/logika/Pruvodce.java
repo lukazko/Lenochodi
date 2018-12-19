@@ -10,28 +10,24 @@
 package logika;
 
 import java.util.Collection;
-import java.util.HashSet;
 
 public class Pruvodce extends Osoba {
 
-	private HashSet jazyky;
+	private String jazyk;
 	private Collection<Vychazka> vychazky;
         
-        public Pruvodce (int id, String jmeno, String prijmeni, String email, String telefon) {
+        public Pruvodce (int id, String jmeno, String prijmeni, String email, String telefon, String jazyk) {
             super(id, jmeno, prijmeni, email, telefon);
-            jazyky = new HashSet<>();
+            this.jazyk = jazyk;
         }
         
-        public void pridejJazyk(String jazyk) {
-            jazyky.add(jazyk);
-        }
         
-        public void odeberJazyk(String jazyk) {
-            jazyky.remove(jazyk);
-        }
+        public void setJazyk(String jazyk) {
+		this.jazyk = jazyk;
+	}
         
-	public boolean najdiJazyk(String jazyk) {
-            return jazyky.contains(jazyk);
+        public String getJazyk() {
+		return jazyk;
 	}
 
 	public Collection getVychazky() {
