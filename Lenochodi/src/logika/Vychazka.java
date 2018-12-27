@@ -90,7 +90,7 @@ public class Vychazka {
 		this.cena = cena;
 	}
         
-        public float getCena() {
+        public Float getCena() {
 		return cena;
 	}
 	

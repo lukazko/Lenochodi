@@ -122,7 +122,7 @@ public class Aplikace {
             resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
 
-                Pruvodce pruvodce = new Pruvodce(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6));
+                Pruvodce pruvodce = new Pruvodce(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6));
                 evidencePruvodcu.add(pruvodce);
             }
 
@@ -141,16 +141,16 @@ public class Aplikace {
     }
 
     public Pruvodce getPruvodce(int index) {
-        pruvodce1 = new Pruvodce("0", "Anna", "Nováková", "email", "telefon", "CZ");
-        pruvodce2 = new Pruvodce("1", "Petr", "Čáp", "email_2", "telefon_2", "DE");
+        pruvodce1 = new Pruvodce(0, "Anna", "Nováková", "email", "telefon", "CZ");
+        pruvodce2 = new Pruvodce(1, "Petr", "Čáp", "email_2", "telefon_2", "DE");
         evidencePruvodcu.addAll(pruvodce1, pruvodce2);
         pruvodce = evidencePruvodcu.get(index);
         return pruvodce;
     }
 
     public ArrayList<String> getSeznamPruvodcu() {
-        pruvodce1 = new Pruvodce("0", "Anna", "Nováková", "email", "telefon", "CZ");
-        pruvodce2 = new Pruvodce("1", "Petr", "Čáp", "email_2", "telefon_2", "DE");
+        pruvodce1 = new Pruvodce(0, "Anna", "Nováková", "email", "telefon", "CZ");
+        pruvodce2 = new Pruvodce(1, "Petr", "Čáp", "email_2", "telefon_2", "DE");
         evidencePruvodcu.addAll(pruvodce1, pruvodce2);
         for (Pruvodce pom : evidencePruvodcu) {
             seznamPruvodcu.add(pom.getCeleJmeno());

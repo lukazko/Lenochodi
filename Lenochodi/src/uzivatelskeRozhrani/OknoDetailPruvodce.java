@@ -117,7 +117,7 @@ public class OknoDetailPruvodce implements Initializable {
         //index = oknoPruvodce.getZvolenehoPruvodce();
         index = 1;
         pruvodce = new Pruvodce(aplikace.getPruvodce(index).getId(), aplikace.getPruvodce(index).getJmeno(), aplikace.getPruvodce(index).getPrijmeni(), aplikace.getPruvodce(index).getEmail(), aplikace.getPruvodce(index).getTelefon(), aplikace.getPruvodce(index).getJazyk());
-        idInput1.setText(pruvodce.getId());
+        idInput1.setText(Integer.toString(pruvodce.getId()));
         jmenoInput.setText(pruvodce.getJmeno());
         prijmeniInput.setText(pruvodce.getPrijmeni());
         emailInput.setText(pruvodce.getEmail());
