@@ -15,7 +15,7 @@ public class Zakaznik extends Osoba {
 
 	private Collection<Objednavka> objednavky;
 
-        public Zakaznik (int id, String jmeno, String prijmeni, String email, String telefon) {
+        public Zakaznik (String id, String jmeno, String prijmeni, String email, String telefon) {
             super(id, jmeno, prijmeni, email, telefon);
         }
         

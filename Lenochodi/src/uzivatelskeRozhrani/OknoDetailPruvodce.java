@@ -22,6 +22,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import logika.Aplikace;
+import logika.Pruvodce;
+import uzivatelskeRozhrani.OknoPruvodce;
 
 /**
  * FXML Controller class
@@ -101,13 +104,25 @@ public class OknoDetailPruvodce implements Initializable {
 
     @FXML
     private MenuItem vychazkyItem1;
+    
+    private Aplikace aplikace = new Aplikace();
+    
+    private Pruvodce pruvodce;
+    
+    private OknoPruvodce oknoPruvodce;
+    private Integer index;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        /*
-        jmenoImput.add(Lenochodi.logika.aplikace.getKonkretniRPruvodce.getString("jmeno"));
-        */
+        //index = oknoPruvodce.getZvolenehoPruvodce();
+        index = 1;
+        pruvodce = new Pruvodce(aplikace.getPruvodce(index).getId(), aplikace.getPruvodce(index).getJmeno(), aplikace.getPruvodce(index).getPrijmeni(), aplikace.getPruvodce(index).getEmail(), aplikace.getPruvodce(index).getTelefon(), aplikace.getPruvodce(index).getJazyk());
+        idInput1.setText(pruvodce.getId());
+        jmenoInput.setText(pruvodce.getJmeno());
+        prijmeniInput.setText(pruvodce.getPrijmeni());
+        emailInput.setText(pruvodce.getEmail());
+        telefonInput.setText(pruvodce.getTelefon());
+        jazykyInput.setText(pruvodce.getJazyk());
     }
 
     @FXML

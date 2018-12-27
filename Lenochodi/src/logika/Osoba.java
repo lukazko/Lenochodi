@@ -11,13 +11,13 @@ package logika;
 
 public class Osoba {
 
-	private int id;
+	private String id;
 	private String jmeno;
 	private String prijmeni;
 	private String email;
 	private String telefon;
 
-        public Osoba (int id, String jmeno, String prijmeni, String email, String telefon) {
+        public Osoba (String id, String jmeno, String prijmeni, String email, String telefon) {
 		this.id = id;
 		this.jmeno = jmeno;
                 this.prijmeni = prijmeni;
@@ -25,11 +25,11 @@ public class Osoba {
                 this.telefon = telefon;
         }
         
-        public void setId(int id) {
+        public void setId(String id) {
 		this.id = id;
 	}
         
-        public int getId() {
+        public String getId() {
 		return id;
 	}
         
@@ -50,7 +50,7 @@ public class Osoba {
 	}
         
 	public String getCeleJmeno() {
-		return jmeno + prijmeni;
+		return jmeno + " " + prijmeni;
 	}
         
         public void setEmail(String email) {
