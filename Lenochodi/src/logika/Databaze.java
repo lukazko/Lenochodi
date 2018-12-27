@@ -11,10 +11,10 @@ import java.sql.*;
  * @author Simona
  */
 public class Databaze {
-    private static String url = "jdbc:mysql://localhost:3306/lenochodi";    
+    private static String url = "jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7271745?useUnicode=yes&characterEncoding=UTF-8";    
     private static String driverName = "com.mysql.jdbc.Driver";   
-    private static String username = "root";   
-    private static String password = "lenochodi69";
+    private static String username = "sql7271745";   
+    private static String password = "149hkIfzAR";
     private static Connection con;
 //    private static String urlstring;
 
