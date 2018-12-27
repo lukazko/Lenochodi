@@ -8,6 +8,8 @@ package uzivatelskeRozhrani;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import logika.Aplikace;
+import logika.Pruvodce;
 
 /**
  * FXML Controller class
@@ -32,7 +35,7 @@ import logika.Aplikace;
  */
 public class OknoPruvodce implements Initializable {
 
-  @FXML
+    @FXML
     private MenuItem pruvodciItem1;
 
     @FXML
@@ -67,49 +70,54 @@ public class OknoPruvodce implements Initializable {
 
     @FXML
     private MenuItem vychazkyItem1;
-    
-    public String pruvodce;
-    
-    private Aplikace aplikace;
-    
+
+    public Integer index;
+
+    private Aplikace aplikace = new Aplikace();
+
+    private ObservableList<Pruvodce> evidencePruvodcu = FXCollections.observableArrayList();
+
     public void detail(MouseEvent event) throws IOException {
+        index = pruvodciListView.getSelectionModel().getSelectedIndex();
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailPruvodce.fxml"));
         rootPane.getChildren().setAll(pane);
-        pruvodce = pruvodciListView.getSelectionModel().getSelectedItem();
+    }
 
+    public Integer getZvolenehoPruvodce() {
+        return index;
     }
-    
-    public String getZvolenehoPruvodce() {
-         return pruvodce;
-    }
-    
-    @FXML public void loadVychazky (ActionEvent event) throws Exception{
+
+    @FXML
+    public void loadVychazky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
-	rootPane.getChildren().setAll(pane);	
+        rootPane.getChildren().setAll(pane);
     }
-        
-    @FXML public void loadObjednavky (ActionEvent event) throws Exception{
+
+    @FXML
+    public void loadObjednavky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoObjednavka.fxml"));
-	rootPane.getChildren().setAll(pane);	
+        rootPane.getChildren().setAll(pane);
     }
-            
-    @FXML public void loadPruvodci (ActionEvent event) throws Exception{
+
+    @FXML
+    public void loadPruvodci(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoPruvodce.fxml"));
-	rootPane.getChildren().setAll(pane);	
-    }   
-        
-    @FXML public void loadZakaznici (ActionEvent event) throws Exception{
-        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
-	rootPane.getChildren().setAll(pane);	
+        rootPane.getChildren().setAll(pane);
     }
-    
+
+    @FXML
+    public void loadZakaznici(ActionEvent event) throws Exception {
+        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
+
     @FXML
     public void zalozitPruvodce(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZalozitPruvodce.fxml"));
         rootPane.getChildren().setAll(pane);
     }
-    
-        @FXML
+
+    @FXML
     public void zobrazInfo(ActionEvent t) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -134,11 +142,15 @@ public class OknoPruvodce implements Initializable {
         stage.show();
 
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        pruvodciListView.getItems().addAll("Průvodce #1","Průvodce #2", "Průvodce #3");
-        //pruvodciListView.getItems().addAll(logika.Aplikace.aplikace.getSeznamPruvodcu().toString());
+        pruvodciListView.getItems().addAll(aplikace.getSeznamPruvodcu());
+        //pruvodciListView.getItems().addAll("Průvodce #1","Průvodce #2", "Průvodce #3");
+        /*try {
+            pruvodciListView.getItems().addAll(aplikace.getSeznamPruvodcu());
+        } catch (SQLException ex) {
+            Logger.getLogger(OknoPruvodce.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
     }
 }
-

@@ -16,7 +16,7 @@ public class Pruvodce extends Osoba {
 	private String jazyk;
 	private Collection<Vychazka> vychazky;
         
-        public Pruvodce (int id, String jmeno, String prijmeni, String email, String telefon, String jazyk) {
+        public Pruvodce (String id, String jmeno, String prijmeni, String email, String telefon, String jazyk) {
             super(id, jmeno, prijmeni, email, telefon);
             this.jazyk = jazyk;
         }

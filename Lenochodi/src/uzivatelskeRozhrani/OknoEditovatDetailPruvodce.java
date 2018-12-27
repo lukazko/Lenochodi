@@ -24,6 +24,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import logika.Aplikace;
+import logika.Pruvodce;
 
 /**
  * FXML Controller class
@@ -104,9 +106,22 @@ public class OknoEditovatDetailPruvodce implements Initializable {
     @FXML
     private MenuItem vychazkyItem1;
     
+    private Aplikace aplikace = new Aplikace();
+    
+    private Pruvodce pruvodce;
+    
+    private Integer index = 1;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        pruvodce = new Pruvodce(aplikace.getPruvodce(index).getId(), aplikace.getPruvodce(index).getJmeno(), aplikace.getPruvodce(index).getPrijmeni(), aplikace.getPruvodce(index).getEmail(), aplikace.getPruvodce(index).getTelefon(), aplikace.getPruvodce(index).getJazyk());
+        idInput.setText(pruvodce.getId());
+        jmenoInput.setText(pruvodce.getJmeno());
+        prijmeniInput.setText(pruvodce.getPrijmeni());
+        emailInput.setText(pruvodce.getEmail());
+        telefonInput.setText(pruvodce.getTelefon());
         jazykyInput.setItems(FXCollections.observableArrayList("CZ", "EN", "DE"));
+        jazykyInput.setValue(pruvodce.getJazyk());
     }   
     
     @FXML
@@ -176,6 +191,7 @@ public class OknoEditovatDetailPruvodce implements Initializable {
 
     @FXML
     public void ulozitPruvodce(ActionEvent event) throws Exception {
+        aplikace.upravPruvodce(idInput.getText(), jmenoInput.getText(), prijmeniInput.getText(), emailInput.getText(), telefonInput.getText(), jazykyInput.getValue());
 
         if (isInteger(idInput)) {
             //Lenochodi.logika.aplikace.upravPruvodce();
