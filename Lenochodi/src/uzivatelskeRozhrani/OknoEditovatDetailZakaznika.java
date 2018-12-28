@@ -6,7 +6,10 @@
 package uzivatelskeRozhrani;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -22,6 +25,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import logika.Aplikace;
+import logika.Zakaznik;
 
 /**
  * FXML Controller class
@@ -96,9 +101,26 @@ public class OknoEditovatDetailZakaznika implements Initializable {
     @FXML
     private MenuItem vychazkyItem1;
     
+    private Aplikace aplikace = new Aplikace();
+    
+    private Zakaznik zakaznik;
+    
+    private Integer index;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //index = oknoPruvodce.getZvolenehoPruvodce();
+        index = 0;
+        try {
+            zakaznik = new Zakaznik(aplikace.getZakaznika(index).getId(), aplikace.getZakaznika(index).getJmeno(), aplikace.getZakaznika(index).getPrijmeni(), aplikace.getZakaznika(index).getEmail(), aplikace.getZakaznika(index).getTelefon());
+        } catch (SQLException ex) {
+            Logger.getLogger(OknoDetailPruvodce.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        idInput.setText(Integer.toString(zakaznik.getId()));
+        jmenoInput.setText(zakaznik.getJmeno());
+        prijmeniInput.setText(zakaznik.getPrijmeni());
+        emailInput.setText(zakaznik.getEmail());
+        telefonInput.setText(zakaznik.getTelefon());
     }   
     
     @FXML

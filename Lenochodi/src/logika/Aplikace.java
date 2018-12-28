@@ -2,7 +2,6 @@ package logika;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -22,11 +21,11 @@ public class Aplikace {
 
     private ArrayList<String> seznamPruvodcu;
 
-    private HashSet<String> seznamZakazniku;
+    private ArrayList<String> seznamZakazniku;
 
-    private HashSet<String> seznamVychazek;
+    private ArrayList<String> seznamVychazek;
 
-    private HashSet<String> seznamObjednavek;
+    private ArrayList<String> seznamObjednavek;
 
     private Zakaznik zak1;
 
@@ -55,10 +54,10 @@ public class Aplikace {
         evidencePruvodcu = FXCollections.observableArrayList();
         evidenceVychazek = FXCollections.observableArrayList();
         evidenceZakazniku = FXCollections.observableArrayList();
-        seznamObjednavek = new HashSet<>();
+        seznamObjednavek = new ArrayList<>();
         seznamPruvodcu = new ArrayList<>();
-        seznamVychazek = new HashSet<>();
-        seznamZakazniku = new HashSet<>();
+        seznamVychazek = new ArrayList<>();
+        seznamZakazniku = new ArrayList<>();
 
     }
 
@@ -140,10 +139,8 @@ public class Aplikace {
         return evidencePruvodcu;
     }
 
-    public Pruvodce getPruvodce(int index) {
-        pruvodce1 = new Pruvodce(0, "Anna", "Nováková", "email", "telefon", "CZ");
-        pruvodce2 = new Pruvodce(1, "Petr", "Čáp", "email_2", "telefon_2", "DE");
-        evidencePruvodcu.addAll(pruvodce1, pruvodce2);
+    public Pruvodce getPruvodce(int index) throws SQLException {
+        evidencePruvodcu = getEvidencePruvodcu();
         pruvodce = evidencePruvodcu.get(index);
         return pruvodce;
     }
@@ -155,27 +152,82 @@ public class Aplikace {
         evidencePruvodcu = getEvidencePruvodcu();
         for (Pruvodce pom : evidencePruvodcu) {
             seznamPruvodcu.add(pom.getCeleJmeno());
-
         }
         return seznamPruvodcu;
     }
 
-    /* public HashSet<String> getSeznamZakazniku() {
-        seznamZakazniku = new HashSet<>();
-        zak1 = new Zakaznik(0, "Anna", "Nováková", "email", "telefon");
-        zak2 = new Zakaznik(1, "Petr", "Čáp", "email_2", "telefon_2");
-        evidenceZakazniku.add(zak1);
-        evidenceZakazniku.add(zak2);
-        /*try {
-            evidenceZakazniku = getEvidencePruvodcu();
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public ObservableList<Zakaznik> getEvidenceZakazniku() throws SQLException {
+        Connection connection = null;
+        ResultSet resultSet = null;
+        Statement statement = null;
+        try {
+            String query = "SELECT * FROM `zakaznici`";
+            connection = databaze.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+
+                Zakaznik zakaznik = new Zakaznik(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5));
+                evidenceZakazniku.add(zakaznik);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                resultSet.close();
+                statement.close();
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
-        for (Map.Entry<Integer, Zakaznik> entry : evidenceZakazniku.entrySet()) {
-            Integer key = entry.getKey();
-            Zakaznik value = entry.getValue();
-            seznamPruvodcu.add(value.getCeleJmeno());
+        return evidenceZakazniku;
+    }
+
+    public Zakaznik getZakaznika(int index) throws SQLException {
+        evidenceZakazniku = getEvidenceZakazniku();
+        zakaznik = evidenceZakazniku.get(index);
+        return zakaznik;
+    }
+
+    public ArrayList<String> getSeznamZakazniku() throws SQLException {
+        /*pruvodce1 = new Pruvodce(0, "Anna", "Nováková", "email", "telefon", "CZ");
+        pruvodce2 = new Pruvodce(1, "Petr", "Čáp", "email_2", "telefon_2", "DE");
+        evidencePruvodcu.addAll(pruvodce1, pruvodce2);*/
+        evidenceZakazniku = getEvidenceZakazniku();
+        for (Zakaznik pom : evidenceZakazniku) {
+            seznamZakazniku.add(pom.getCeleJmeno());
         }
         return seznamZakazniku;
-    }*/
+    }
+
+    public ObservableList<Vychazka> getEvidenceVychazek() throws SQLException {
+        Connection connection = null;
+        ResultSet resultSet = null;
+        Statement statement = null;
+        try {
+            String query = "SELECT * FROM `vychazky`";
+            connection = databaze.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+
+                // Vychazka vychazka = new Vychazka(resultSet.getInt(1), resultSet.getString(2), resultSet.getDate(3), resultSet.getDate(4), resultSet.getString(5), resultSet.getString(6), resultSet.getInt(7), resultSet.getFloat(8), resultSet.getString(9));
+                evidenceVychazek.add(vychazka);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                resultSet.close();
+                statement.close();
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return evidenceVychazek;
+    }
 }
