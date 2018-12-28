@@ -150,12 +150,6 @@ public class OknoPruvodce implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             pruvodciListView.getItems().addAll(aplikace.getSeznamPruvodcu());
-            //pruvodciListView.getItems().addAll("Průvodce #1","Průvodce #2", "Průvodce #3");
-            /*try {
-            pruvodciListView.getItems().addAll(aplikace.getSeznamPruvodcu());
-            } catch (SQLException ex) {
-            Logger.getLogger(OknoPruvodce.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
         } catch (SQLException ex) {
             Logger.getLogger(OknoPruvodce.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -6,7 +6,10 @@
 package uzivatelskeRozhrani;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -114,7 +117,11 @@ public class OknoEditovatDetailPruvodce implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        pruvodce = new Pruvodce(aplikace.getPruvodce(index).getId(), aplikace.getPruvodce(index).getJmeno(), aplikace.getPruvodce(index).getPrijmeni(), aplikace.getPruvodce(index).getEmail(), aplikace.getPruvodce(index).getTelefon(), aplikace.getPruvodce(index).getJazyk());
+        try {
+            pruvodce = new Pruvodce(aplikace.getPruvodce(index).getId(), aplikace.getPruvodce(index).getJmeno(), aplikace.getPruvodce(index).getPrijmeni(), aplikace.getPruvodce(index).getEmail(), aplikace.getPruvodce(index).getTelefon(), aplikace.getPruvodce(index).getJazyk());
+        } catch (SQLException ex) {
+            Logger.getLogger(OknoEditovatDetailPruvodce.class.getName()).log(Level.SEVERE, null, ex);
+        }
         idInput.setText(Integer.toString(pruvodce.getId()));
         jmenoInput.setText(pruvodce.getJmeno());
         prijmeniInput.setText(pruvodce.getPrijmeni());

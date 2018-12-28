@@ -7,7 +7,10 @@ package uzivatelskeRozhrani;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -62,7 +65,7 @@ public class OknoZakaznik implements Initializable {
     @FXML
     private Menu menu1;
     
-    private Aplikace aplikace;
+    private Aplikace aplikace = new Aplikace();
 
     @FXML
     private MenuItem objednavkyItem1;
@@ -130,7 +133,10 @@ public class OknoZakaznik implements Initializable {
        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      zakazniciListView.getItems().addAll("Zakazník #1","Zákazník #2", "zákazník #3"); 
-     // zakazniciListView.getItems().addAll(logika.Aplikace.aplikace.getSeznamZakazniku().toString());
+      try {
+            zakazniciListView.getItems().addAll(aplikace.getSeznamZakazniku());
+        } catch (SQLException ex) {
+            Logger.getLogger(OknoPruvodce.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
