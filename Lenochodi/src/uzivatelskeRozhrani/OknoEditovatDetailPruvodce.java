@@ -198,17 +198,15 @@ public class OknoEditovatDetailPruvodce implements Initializable {
 
     @FXML
     public void ulozitPruvodce(ActionEvent event) throws Exception {
-        aplikace.upravPruvodce(idInput.getText(), jmenoInput.getText(), prijmeniInput.getText(), emailInput.getText(), telefonInput.getText(), jazykyInput.getValue());
-
         if (isInteger(idInput)) {
-            //Lenochodi.logika.aplikace.upravPruvodce();
+            aplikace.upravPruvodce(idInput.getText(), jmenoInput.getText(), prijmeniInput.getText(), emailInput.getText(), telefonInput.getText(), jazykyInput.getValue());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Průvodce uložen");
             alert.setHeaderText(null);
             alert.setContentText("Změny byly úspěšně uloženy");
             alert.showAndWait();
-            VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailPruvodce.fxml"));
-            rootPane.getChildren().setAll(pane);
+            //VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailPruvodce.fxml"));
+            //rootPane.getChildren().setAll(pane);
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Chyba");

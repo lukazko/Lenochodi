@@ -24,6 +24,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import logika.Aplikace;
+import logika.Pruvodce;
 
 /**
  * FXML Controller class
@@ -101,6 +103,10 @@ public class OknoZalozitPruvodce implements Initializable {
     @FXML
     private MenuItem vychazkyItem1;
     
+    private Aplikace aplikace = new Aplikace();
+    
+    private Pruvodce pruvodce;
+    
         @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
@@ -139,14 +145,14 @@ public class OknoZalozitPruvodce implements Initializable {
     public void potvrditPruvodce(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
-          // Lenochodi.logika.aplikace.zalozPruvodce();
+            aplikace.zalozPruvodce(idInput.getText(), jmenoInput.getText(), prijmeniInput.getText(), emailInput.getText(), telefonInput.getText(), jazykyInput.getValue());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Průvodce založen");
             alert.setHeaderText(null);
             alert.setContentText("Průvdoce byl úspěšně založen");
             alert.showAndWait();
-            VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoPrůvodci.fxml"));
-            rootPane.getChildren().setAll(pane);
+           // VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoPrůvodci.fxml"));
+          //  rootPane.getChildren().setAll(pane);
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Chyba");
