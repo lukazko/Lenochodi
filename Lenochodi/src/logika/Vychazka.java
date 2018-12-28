@@ -12,11 +12,12 @@ public class Vychazka {
 	private String mistoZacatek;
 	private String jazyk;
 	private int kapacita;
-	private Float cena;
+	private int cena;
 	private Pruvodce pruvodce;
+        private String pruvodceJmeno;
 	private Collection<Objednavka> seznamObjednavek;
 
-        public Vychazka (int id, String nazev, Date datum, Date casZacatek, String mistoZacatek, String jazyk, int kapacita, float cena, Pruvodce pruvodce) {
+        public Vychazka (int id, String nazev, Date datum, Date casZacatek, String mistoZacatek, String jazyk, int kapacita, int cena, String pruvodceJmeno) {
             this.id = id;
             this.nazev = nazev;
             this.datum = datum;
@@ -25,7 +26,7 @@ public class Vychazka {
             this.jazyk = jazyk;
             this.kapacita = kapacita;
             this.cena = cena;
-            this.pruvodce = pruvodce;
+            this.pruvodceJmeno = pruvodceJmeno;
         }
         
         public void setId(int id) {
@@ -44,6 +45,10 @@ public class Vychazka {
         
         public Pruvodce getPruvodce() {
 		return pruvodce;
+	}
+        
+        public String getPruvodceJmeno() {
+		return pruvodceJmeno;
 	}
         
         public void setNazev(String nazev) {
@@ -86,11 +91,11 @@ public class Vychazka {
 		return jazyk;
 	}
         
-        public void setCena(float cena) {
+        public void setCena(int cena) {
 		this.cena = cena;
 	}
         
-        public Float getCena() {
+        public int getCena() {
 		return cena;
 	}
 	

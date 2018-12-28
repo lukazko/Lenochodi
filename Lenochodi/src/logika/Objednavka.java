@@ -15,12 +15,14 @@ public class Objednavka {
 	private String stav;
 	private Vychazka vychazka;
 	private Zakaznik zakaznik;
+        private String vychazkaString;
+        private String zakaznikString;
 
-	public Objednavka (int id, Vychazka vychazka, Zakaznik zakaznik) {
+	public Objednavka (int id, String vychazkaString, String zakaznikString, String stav) {
 		this.id = id;
-		this.vychazka = vychazka;
-                this.zakaznik = zakaznik;
-                stav = "nezaplaceno";
+		this.vychazkaString = vychazkaString;
+                this.zakaznikString = zakaznikString;
+                this.stav = stav;
         }
         
         public void setId(int id) {
@@ -29,7 +31,19 @@ public class Objednavka {
         
         public int getId() {
 		return id;
-	}       
+	}
+        
+        public String getVychazkaString() {
+		return vychazkaString;
+	}
+        
+        public String getZakaznikString() {
+		return zakaznikString;
+	}
+        
+        public String getPopis() {
+		return Integer.toString(id) + " " + vychazkaString + " " + zakaznikString;
+	}  
         
         public void setStav(String stav) {
 		this.stav = stav;

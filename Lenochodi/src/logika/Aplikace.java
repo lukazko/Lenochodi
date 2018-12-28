@@ -27,16 +27,9 @@ public class Aplikace {
 
     private ArrayList<String> seznamObjednavek;
 
-    private Zakaznik zak1;
-
-    private Zakaznik zak2;
-
     private Zakaznik zakaznik;
 
     private Pruvodce pruvodce;
-
-    private Pruvodce pruvodce1;
-    private Pruvodce pruvodce2;
 
     private Objednavka objednavka;
 
@@ -68,7 +61,6 @@ public class Aplikace {
 
     public void zalozPruvodce(String id, String jmeno, String prijmeni, String email, String telefon, String jazyk) throws SQLException {
         Connection connection = null;
-        ResultSet resultSet = null;
         Statement statement = null;
         try {
             connection = databaze.getConnection();
@@ -80,7 +72,6 @@ public class Aplikace {
             ex.printStackTrace();
         } finally {
             try {
-                resultSet.close();
                 statement.close();
                 connection.close();
             } catch (SQLException ex) {
@@ -92,15 +83,17 @@ public class Aplikace {
     public void upravPruvodce(String id, String jmeno, String prijmeni, String email, String telefon, String jazyk) throws SQLException {
         Connection connection = null;
         Statement statement = null;
+        int id2;
+        id2 = Integer.valueOf(id);
 
         try {
             connection = databaze.getConnection();
             String query = "UPDATE `pruvodci` SET (`id`,`jmeno`,`prijmeni`,`email`,`telefon`, `jazyk`) VALUES ('"
-                    + id + "', '" + jmeno + "', '" + prijmeni + "', '" + email + "', '" + telefon + "', '" + jazyk + "') WHERE id = \"" + id + "\"";
+                    + id + "', '" + jmeno + "', '" + prijmeni + "', '" + email + "', '" + telefon + "', '" + jazyk + "') WHERE `id` = \"" + id + "\"";
             statement.executeUpdate(query);
         } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {
+        }  finally {
             try {
                 statement.close();
                 connection.close();
@@ -146,9 +139,6 @@ public class Aplikace {
     }
 
     public ArrayList<String> getSeznamPruvodcu() throws SQLException {
-        /*pruvodce1 = new Pruvodce(0, "Anna", "Nováková", "email", "telefon", "CZ");
-        pruvodce2 = new Pruvodce(1, "Petr", "Čáp", "email_2", "telefon_2", "DE");
-        evidencePruvodcu.addAll(pruvodce1, pruvodce2);*/
         evidencePruvodcu = getEvidencePruvodcu();
         for (Pruvodce pom : evidencePruvodcu) {
             seznamPruvodcu.add(pom.getCeleJmeno());
@@ -185,6 +175,48 @@ public class Aplikace {
         return evidenceZakazniku;
     }
 
+    public void zalozZakaznika(String id, String jmeno, String prijmeni, String email, String telefon) throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            connection = databaze.getConnection();
+            statement = connection.createStatement();
+            String query = "INSERT INTO `zakaznici` (`id`,`jmeno`,`prijmeni`,`email`,`telefon`) VALUES ('"
+                    + id + "', '" + jmeno + "', '" + prijmeni + "', '" + email + "', '" + telefon + "')";
+            statement.executeUpdate(query);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                statement.close();
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public void upravZakaznika(String id, String jmeno, String prijmeni, String email, String telefon) throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+
+        try {
+            connection = databaze.getConnection();
+            String query = "UPDATE `zakaznici` SET (`id`,`jmeno`,`prijmeni`,`email`,`telefon`) VALUES ('"
+                    + id + "', '" + jmeno + "', '" + prijmeni + "', '" + email + "', '" + telefon + "') WHERE `id` = \"" + id + "\"";
+            statement.executeUpdate(query);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                statement.close();
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
     public Zakaznik getZakaznika(int index) throws SQLException {
         evidenceZakazniku = getEvidenceZakazniku();
         zakaznik = evidenceZakazniku.get(index);
@@ -192,9 +224,6 @@ public class Aplikace {
     }
 
     public ArrayList<String> getSeznamZakazniku() throws SQLException {
-        /*pruvodce1 = new Pruvodce(0, "Anna", "Nováková", "email", "telefon", "CZ");
-        pruvodce2 = new Pruvodce(1, "Petr", "Čáp", "email_2", "telefon_2", "DE");
-        evidencePruvodcu.addAll(pruvodce1, pruvodce2);*/
         evidenceZakazniku = getEvidenceZakazniku();
         for (Zakaznik pom : evidenceZakazniku) {
             seznamZakazniku.add(pom.getCeleJmeno());
@@ -213,7 +242,7 @@ public class Aplikace {
             resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
 
-                // Vychazka vychazka = new Vychazka(resultSet.getInt(1), resultSet.getString(2), resultSet.getDate(3), resultSet.getDate(4), resultSet.getString(5), resultSet.getString(6), resultSet.getInt(7), resultSet.getFloat(8), resultSet.getString(9));
+                 Vychazka vychazka = new Vychazka(resultSet.getInt(1), resultSet.getString(2), resultSet.getDate(3), resultSet.getDate(4), resultSet.getString(5), resultSet.getString(6), resultSet.getInt(7), resultSet.getInt(8), resultSet.getString(9));
                 evidenceVychazek.add(vychazka);
             }
 
@@ -229,5 +258,146 @@ public class Aplikace {
             }
         }
         return evidenceVychazek;
+    }
+
+    public void zalozVychazku(String id, String nazev, Date datum, Date casZacatek, String mistoZacatek, String jazyk, int kapacita, int cena, Pruvodce pruvodce) throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            connection = databaze.getConnection();
+            statement = connection.createStatement();
+            String query = "INSERT INTO `vychazky` (`id`,`nazev`,`datum`,`casZacatek`,`mistoZacatek`,`jazyk`,`kapacita`,`cena`,`pruvodce`) VALUES ('"
+                    + id + "', '" + nazev + "', '" + datum + "', '" + casZacatek + "', '" + mistoZacatek + "', '" + jazyk + "', '" + kapacita + "', '" + cena + "', '" + pruvodce + "')";
+            statement.executeUpdate(query);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                statement.close();
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public void upravVychazku(String id, String nazev, Date datum, Date casZacatek, String mistoZacatek, String jazyk, int kapacita, int cena, Pruvodce pruvodce) throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+
+        try {
+            connection = databaze.getConnection();
+            String query = "UPDATE `vychazky` SET (`id`,`nazev`,`datum`,`casZacatek`,`mistoZacatek`,`jazyk`,`kapacita`,`cena`,`pruvodce`) VALUES ('"
+                    + id + "', '" + nazev + "', '" + datum + "', '" + casZacatek + "', '" + mistoZacatek + "', '" + jazyk + "', '" + kapacita + "', '" + cena + "', '" + pruvodce + "') WHERE `id` = \"" + id + "\"";
+            statement.executeUpdate(query);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                statement.close();
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public Vychazka getVychazku(int index) throws SQLException {
+        evidenceVychazek = getEvidenceVychazek();
+        vychazka = evidenceVychazek.get(index);
+        return vychazka;
+    }
+
+    public ArrayList<String> getSeznamVychazek() throws SQLException {
+        evidenceVychazek = getEvidenceVychazek();
+        for (Vychazka pom : evidenceVychazek) {
+            seznamVychazek.add(pom.getNazev());
+        }
+        return seznamZakazniku;
+    }
+
+    public ObservableList<Objednavka> getEvidenceObjednavek() throws SQLException {
+        Connection connection = null;
+        ResultSet resultSet = null;
+        Statement statement = null;
+        try {
+            String query = "SELECT * FROM `objednavky`";
+            connection = databaze.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+
+                  Objednavka objednavka = new Objednavka(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4));
+                evidenceObjednavek.add(objednavka);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                resultSet.close();
+                statement.close();
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return evidenceObjednavek;
+    }
+
+    public void zalozObjednavku(String id, String vychazka, String zakaznik, String stav) throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            connection = databaze.getConnection();
+            statement = connection.createStatement();
+            String query = "INSERT INTO `objednavky` (`id`,`vychazka`,`zakaznik`,`stav`) VALUES ('"
+                    + id + "', '" + vychazka + "', '" + zakaznik + "', '" + stav + "')";
+            statement.executeUpdate(query);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                statement.close();
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public void upravObjednavku(String id, String vychazka, String zakaznik, String stav) throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+
+        try {
+            connection = databaze.getConnection();
+            String query = "UPDATE `objednavky` SET (`id`,`vychazka`,`zakaznik`,`stav`) VALUES ('"
+                    + id + "', '" + vychazka + "', '" + zakaznik + "', '" + stav + "') WHERE `id` = \"" + id + "\"";
+            statement.executeUpdate(query);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                statement.close();
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public Objednavka getObjednavku(int index) throws SQLException {
+        evidenceObjednavek = getEvidenceObjednavek();
+        objednavka = evidenceObjednavek.get(index);
+        return objednavka;
+    }
+
+    public ArrayList<String> getSeznamObjednavek() throws SQLException {
+        evidenceObjednavek = getEvidenceObjednavek();
+        for (Objednavka pom : evidenceObjednavek) {
+            seznamObjednavek.add(pom.getPopis());
+        }
+        return seznamObjednavek;
     }
 }
