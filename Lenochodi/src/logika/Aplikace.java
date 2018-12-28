@@ -148,10 +148,11 @@ public class Aplikace {
         return pruvodce;
     }
 
-    public ArrayList<String> getSeznamPruvodcu() {
-        pruvodce1 = new Pruvodce(0, "Anna", "Nováková", "email", "telefon", "CZ");
+    public ArrayList<String> getSeznamPruvodcu() throws SQLException {
+        /*pruvodce1 = new Pruvodce(0, "Anna", "Nováková", "email", "telefon", "CZ");
         pruvodce2 = new Pruvodce(1, "Petr", "Čáp", "email_2", "telefon_2", "DE");
-        evidencePruvodcu.addAll(pruvodce1, pruvodce2);
+        evidencePruvodcu.addAll(pruvodce1, pruvodce2);*/
+        evidencePruvodcu = getEvidencePruvodcu();
         for (Pruvodce pom : evidencePruvodcu) {
             seznamPruvodcu.add(pom.getCeleJmeno());
 

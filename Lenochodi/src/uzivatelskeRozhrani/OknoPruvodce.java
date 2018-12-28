@@ -7,7 +7,10 @@ package uzivatelskeRozhrani;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -145,12 +148,16 @@ public class OknoPruvodce implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        pruvodciListView.getItems().addAll(aplikace.getSeznamPruvodcu());
-        //pruvodciListView.getItems().addAll("Průvodce #1","Průvodce #2", "Průvodce #3");
-        /*try {
+        try {
             pruvodciListView.getItems().addAll(aplikace.getSeznamPruvodcu());
+            //pruvodciListView.getItems().addAll("Průvodce #1","Průvodce #2", "Průvodce #3");
+            /*try {
+            pruvodciListView.getItems().addAll(aplikace.getSeznamPruvodcu());
+            } catch (SQLException ex) {
+            Logger.getLogger(OknoPruvodce.class.getName()).log(Level.SEVERE, null, ex);
+            }*/
         } catch (SQLException ex) {
             Logger.getLogger(OknoPruvodce.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
     }
 }
