@@ -31,7 +31,7 @@ import logika.Aplikace;
 /**
  * FXML Controller class
  *
- * @author barton
+ * @author barton, Simona
  */
 public class OknoZakaznik implements Initializable {
 

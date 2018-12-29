@@ -6,7 +6,10 @@
 package uzivatelskeRozhrani;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -22,11 +25,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import logika.Aplikace;
+import logika.Vychazka;
 
 /**
  * FXML Controller class
  *
- * @author barton
+ * @author barton, Simona
  */
 public class OknoDetailVychazky implements Initializable {
 
@@ -116,10 +121,31 @@ public class OknoDetailVychazky implements Initializable {
 
     @FXML
     private MenuItem vychazkyItem1;
+    
+    private Aplikace aplikace = new Aplikace();
+    
+    private Vychazka vychazka;
+    
+    private Integer index;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //index = oknoPruvodce.getZvolenehoPruvodce();
+        index = 0;
+        try {
+            vychazka = new Vychazka(aplikace.getVychazku(index).getId(), aplikace.getVychazku(index).getNazev(), aplikace.getVychazku(index).getDatum(), aplikace.getVychazku(index).getCasZacatek(), aplikace.getVychazku(index).getMistoZacatek(), aplikace.getVychazku(index).getJazyk(), aplikace.getVychazku(index).getKapacita(), aplikace.getVychazku(index).getCena(), aplikace.getVychazku(index).getPruvodceJmeno());
+        } catch (SQLException ex) {
+            Logger.getLogger(OknoDetailPruvodce.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        idInput.setText(Integer.toString(vychazka.getId()));
+        nazevInput.setText(vychazka.getNazev());
+        datumInput.setText(vychazka.getDatum().toString());
+        casZacatkuInput.setText(vychazka.getCasZacatek().toString());
+        mistoInput.setText(vychazka.getMistoZacatek());
+        jazykInput.setText(vychazka.getJazyk());
+        kapacitaInput.setText(Integer.toString(vychazka.getKapacita()));
+        cenaInput.setText(Integer.toString(vychazka.getCena()));
+        pruvodceInput.setText(vychazka.getPruvodceJmeno());
     }
 
     @FXML

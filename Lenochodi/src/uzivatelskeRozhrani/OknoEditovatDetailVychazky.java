@@ -6,7 +6,10 @@
 package uzivatelskeRozhrani;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -25,12 +28,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import logika.Pruvodce;
+import logika.Aplikace;
+import logika.Vychazka;
 
 /**
  * FXML Controller class
  *
- * @author barton
+ * @author barton, Simona
  */
 public class OknoEditovatDetailVychazky implements Initializable {
 
@@ -38,7 +42,7 @@ public class OknoEditovatDetailVychazky implements Initializable {
     private Label vychazkaLabel;
     
     @FXML
-    private ChoiceBox<Pruvodce> inputPruvodce;
+    private ChoiceBox<String> inputPruvodce;
 
     @FXML
     private DatePicker datumInput;
@@ -121,9 +125,36 @@ public class OknoEditovatDetailVychazky implements Initializable {
     @FXML
     private MenuItem vychazkyItem1;
     
+    private Aplikace aplikace = new Aplikace();
+    
+    private Vychazka vychazka;
+    
+    private Integer index;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         jazykyInput.setItems(FXCollections.observableArrayList("CZ", "EN", "DE"));
+        try {
+            inputPruvodce.setItems(aplikace.getObservableListPruvodcu());
+        } catch (SQLException ex) {
+            Logger.getLogger(OknoEditovatDetailVychazky.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //index = oknoPruvodce.getZvolenehoPruvodce();
+        index = 0;
+        try {
+            vychazka = new Vychazka(aplikace.getVychazku(index).getId(), aplikace.getVychazku(index).getNazev(), aplikace.getVychazku(index).getDatum(), aplikace.getVychazku(index).getCasZacatek(), aplikace.getVychazku(index).getMistoZacatek(), aplikace.getVychazku(index).getJazyk(), aplikace.getVychazku(index).getKapacita(), aplikace.getVychazku(index).getCena(), aplikace.getVychazku(index).getPruvodceJmeno());
+        } catch (SQLException ex) {
+            Logger.getLogger(OknoDetailPruvodce.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        idInput.setText(Integer.toString(vychazka.getId()));
+        nazevInput.setText(vychazka.getNazev());
+        datumInput.setAccessibleText(vychazka.getDatum().toString());
+        casZacatkuInput.setText(vychazka.getCasZacatek().toString());
+        mistoInput.setText(vychazka.getMistoZacatek());
+        jazykyInput.setValue(vychazka.getJazyk());
+        kapacitaInput.setText(Integer.toString(vychazka.getKapacita()));
+        cenaInput.setText(Integer.toString(vychazka.getCena()));
+        inputPruvodce.setValue(vychazka.getPruvodceJmeno());
     }   
     
     @FXML

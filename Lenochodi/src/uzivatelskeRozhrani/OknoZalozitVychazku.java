@@ -6,7 +6,10 @@
 package uzivatelskeRozhrani;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -25,12 +28,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import logika.Pruvodce;
+import logika.Aplikace;
+import logika.Vychazka;
 
 /**
  * FXML Controller class
  *
- * @author lukas
+ * @author lukas, Simona
  */
 public class OknoZalozitVychazku implements Initializable {
 
@@ -38,7 +42,7 @@ public class OknoZalozitVychazku implements Initializable {
     private VBox rootPane;
     
     @FXML
-    private ChoiceBox<Pruvodce> inputPruvodce;
+    private ChoiceBox<String> inputPruvodce;
 
     @FXML
     private Label vychazkaLabel;
@@ -120,6 +124,13 @@ public class OknoZalozitVychazku implements Initializable {
 
     @FXML
     private Button PotvrditButton;
+    
+    private Aplikace aplikace = new Aplikace();
+
+    private Vychazka vychazka;
+
+    private Integer index;
+
 
     @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
@@ -204,6 +215,11 @@ public class OknoZalozitVychazku implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         jazykInput.setItems(FXCollections.observableArrayList("CZ", "EN", "DE"));
+        try {
+            inputPruvodce.setItems(aplikace.getObservableListPruvodcu());
+        } catch (SQLException ex) {
+            Logger.getLogger(OknoZalozitVychazku.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

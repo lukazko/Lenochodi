@@ -7,7 +7,10 @@ package uzivatelskeRozhrani;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,11 +26,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
+import logika.Aplikace;
 
 /**
  * FXML Controller class
  *
- * @author barton
+ * @author barton, Simona
  */
 public class OknoVychazka implements Initializable {
 
@@ -66,6 +70,8 @@ public class OknoVychazka implements Initializable {
 
     @FXML
     private Button zalozitVychazkuButton;
+    
+    private Aplikace aplikace = new Aplikace();
     
         public void detail(MouseEvent event) throws IOException {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailVychazky.fxml"));
@@ -125,6 +131,10 @@ public class OknoVychazka implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        vychazkyListView.getItems().addAll("Vycházka #1","Vycházka #2", "Vycházka #3"); 
+        try {
+            vychazkyListView.getItems().addAll(aplikace.getSeznamVychazek());
+        } catch (SQLException ex) {
+            Logger.getLogger(OknoPruvodce.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

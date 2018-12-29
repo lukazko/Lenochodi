@@ -7,7 +7,10 @@ package uzivatelskeRozhrani;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,11 +26,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import logika.Aplikace;
 
 /**
  * FXML Controller class
  *
- * @author barton
+ * @author barton, Simona
  */
 public class OknoObjednavka implements Initializable {
 
@@ -66,6 +70,8 @@ public class OknoObjednavka implements Initializable {
 
     @FXML
     private MenuItem vychazkyItem1;
+    
+    private Aplikace aplikace = new Aplikace();
 
     @FXML
     public void zalozitObjednavku(ActionEvent event) throws Exception {
@@ -131,11 +137,13 @@ public class OknoObjednavka implements Initializable {
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        objednavkyListView.getItems().addAll("Objednávka #1","Objednávka #2", "Objednávka #3");    
+        try {
+            objednavkyListView.getItems().addAll(aplikace.getSeznamObjednavek());
+        } catch (SQLException ex) {
+            Logger.getLogger(OknoPruvodce.class.getName()).log(Level.SEVERE, null, ex);
+        }  
         
-    }
-                       
+    }                       
  
     
 }
