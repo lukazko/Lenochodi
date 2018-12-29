@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author barton
+ * @author barton, Simona
  */
 public class OknoHlavni implements Initializable {
 

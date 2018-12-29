@@ -30,7 +30,7 @@ import logika.Pruvodce;
 /**
  * FXML Controller class
  *
- * @author lukas
+ * @author lukas, Simona
  */
 public class OknoZalozitPruvodce implements Initializable {
 

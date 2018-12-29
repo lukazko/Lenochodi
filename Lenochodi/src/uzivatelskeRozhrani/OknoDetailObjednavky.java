@@ -6,7 +6,10 @@
 package uzivatelskeRozhrani;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -22,11 +25,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import logika.Aplikace;
+import logika.Objednavka;
 
 /**
  * FXML Controller class
  *
- * @author barton
+ * @author barton, Simona
  */
 public class OknoDetailObjednavky implements Initializable {
 
@@ -89,10 +94,26 @@ public class OknoDetailObjednavky implements Initializable {
 
     @FXML
     private Button zpetButton;
+    
+    private Aplikace aplikace = new Aplikace();
+    
+    private Objednavka objednavka;
+    
+    private Integer index;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        stavInput.setText(logika.Aplikace.aplikace.getZkouska()); //metoda která naplní hodnoty polí při načtení obrazovky
+        //index = oknoPruvodce.getZvolenehoPruvodce();
+        index = 0;
+        try {
+            objednavka = new Objednavka(aplikace.getObjednavku(index).getId(), aplikace.getObjednavku(index).getVychazkaString(), aplikace.getObjednavku(index).getZakaznikString(), aplikace.getObjednavku(index).getStav());
+        } catch (SQLException ex) {
+            Logger.getLogger(OknoDetailPruvodce.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        idInput.setText(Integer.toString(objednavka.getId()));
+        vychazkaInput1.setText(objednavka.getVychazkaString());
+        zakaznikInput1.setText(objednavka.getZakaznikString());
+        stavInput.setText(objednavka.getStav());
     }
 
     @FXML

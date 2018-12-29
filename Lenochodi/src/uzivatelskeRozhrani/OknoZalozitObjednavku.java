@@ -6,7 +6,10 @@
 package uzivatelskeRozhrani;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,13 +26,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import logika.Vychazka;
-import logika.Zakaznik;
+import logika.Aplikace;
+import logika.Objednavka;
 
 /**
  * FXML Controller class
  *
- * @author lukas
+ * @author lukas, Simona
  */
 public class OknoZalozitObjednavku implements Initializable {
 
@@ -52,7 +55,7 @@ public class OknoZalozitObjednavku implements Initializable {
     private MenuBar menuBar1;
 
     @FXML
-    private ChoiceBox<Vychazka> vychazkaInput;
+    private ChoiceBox<String> vychazkaInput;
 
     @FXML
     private MenuItem objednavkyItem1;
@@ -64,7 +67,7 @@ public class OknoZalozitObjednavku implements Initializable {
     private Label vychazkaLabel2;
 
     @FXML
-    private ChoiceBox<Zakaznik> zakaznikInput;
+    private ChoiceBox<String> zakaznikInput;
 
     @FXML
     private Label vychazkaLabel3;
@@ -89,6 +92,13 @@ public class OknoZalozitObjednavku implements Initializable {
 
     @FXML
     private MenuItem vychazkyItem1;
+    
+    private Aplikace aplikace = new Aplikace();
+
+    private Objednavka objednavka;
+
+    private Integer index;
+
 
     @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
@@ -172,7 +182,12 @@ public class OknoZalozitObjednavku implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            vychazkaInput.setItems(aplikace.getObservableListVychazek());
+            zakaznikInput.setItems(aplikace.getObservableListZakazniku());
+        } catch (SQLException ex) {
+            Logger.getLogger(OknoZalozitObjednavku.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

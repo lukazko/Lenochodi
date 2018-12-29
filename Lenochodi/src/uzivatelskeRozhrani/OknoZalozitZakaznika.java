@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author lukas
+ * @author lukas, Simona
  */
 public class OknoZalozitZakaznika implements Initializable {
         @FXML

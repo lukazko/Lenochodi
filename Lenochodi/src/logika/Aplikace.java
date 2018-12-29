@@ -19,6 +19,12 @@ public class Aplikace {
 
     private ObservableList<Vychazka> evidenceVychazek;
 
+    private ObservableList<String> listPruvodcu;
+
+    private ObservableList<String> listZakazniku;
+
+    private ObservableList<String> listVychazek;
+
     private ArrayList<String> seznamPruvodcu;
 
     private ArrayList<String> seznamZakazniku;
@@ -37,16 +43,15 @@ public class Aplikace {
 
     Databaze databaze = new Databaze();
 
-    //Random proměnná v Aplikaci
-    private String zkouska = "zkouška";
-    public static Aplikace aplikace = new Aplikace(); //btw chybí ti tu konstruktor pro Aplikaci :D
-
     public Aplikace() {
 
         evidenceObjednavek = FXCollections.observableArrayList();
         evidencePruvodcu = FXCollections.observableArrayList();
         evidenceVychazek = FXCollections.observableArrayList();
         evidenceZakazniku = FXCollections.observableArrayList();
+        listPruvodcu = FXCollections.observableArrayList();
+        listZakazniku = FXCollections.observableArrayList();
+        listVychazek = FXCollections.observableArrayList();
         seznamObjednavek = new ArrayList<>();
         seznamPruvodcu = new ArrayList<>();
         seznamVychazek = new ArrayList<>();
@@ -54,10 +59,6 @@ public class Aplikace {
 
     }
 
-    //Metoda pro získání proměnné zkouska
-    public String getZkouska() {
-        return zkouska;
-    }
 
     public void zalozPruvodce(String id, String jmeno, String prijmeni, String email, String telefon, String jazyk) throws SQLException {
         Connection connection = null;
@@ -93,7 +94,7 @@ public class Aplikace {
             statement.executeUpdate(query);
         } catch (Exception ex) {
             ex.printStackTrace();
-        }  finally {
+        } finally {
             try {
                 statement.close();
                 connection.close();
@@ -144,6 +145,14 @@ public class Aplikace {
             seznamPruvodcu.add(pom.getCeleJmeno());
         }
         return seznamPruvodcu;
+    }
+
+    public ObservableList<String> getObservableListPruvodcu() throws SQLException {
+        evidencePruvodcu = getEvidencePruvodcu();
+        for (Pruvodce pom : evidencePruvodcu) {
+            listPruvodcu.add(pom.getCeleJmeno());
+        }
+        return listPruvodcu;
     }
 
     public ObservableList<Zakaznik> getEvidenceZakazniku() throws SQLException {
@@ -231,6 +240,14 @@ public class Aplikace {
         return seznamZakazniku;
     }
 
+    public ObservableList<String> getObservableListZakazniku() throws SQLException {
+        evidenceZakazniku = getEvidenceZakazniku();
+        for (Zakaznik pom : evidenceZakazniku) {
+            listZakazniku.add(pom.getCeleJmeno());
+        }
+        return listZakazniku;
+    }
+
     public ObservableList<Vychazka> getEvidenceVychazek() throws SQLException {
         Connection connection = null;
         ResultSet resultSet = null;
@@ -242,7 +259,7 @@ public class Aplikace {
             resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
 
-                 Vychazka vychazka = new Vychazka(resultSet.getInt(1), resultSet.getString(2), resultSet.getDate(3), resultSet.getDate(4), resultSet.getString(5), resultSet.getString(6), resultSet.getInt(7), resultSet.getInt(8), resultSet.getString(9));
+                Vychazka vychazka = new Vychazka(resultSet.getInt(1), resultSet.getString(2), resultSet.getDate(3), resultSet.getDate(4), resultSet.getString(5), resultSet.getString(6), resultSet.getInt(7), resultSet.getInt(8), resultSet.getString(9));
                 evidenceVychazek.add(vychazka);
             }
 
@@ -315,6 +332,14 @@ public class Aplikace {
         }
         return seznamZakazniku;
     }
+    
+        public ObservableList<String> getObservableListVychazek() throws SQLException {
+        evidenceVychazek = getEvidenceVychazek();
+        for (Vychazka pom : evidenceVychazek) {
+            listVychazek.add(pom.getNazev());
+        }
+        return listVychazek;
+    }
 
     public ObservableList<Objednavka> getEvidenceObjednavek() throws SQLException {
         Connection connection = null;
@@ -327,7 +352,7 @@ public class Aplikace {
             resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
 
-                  Objednavka objednavka = new Objednavka(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4));
+                Objednavka objednavka = new Objednavka(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4));
                 evidenceObjednavek.add(objednavka);
             }
 

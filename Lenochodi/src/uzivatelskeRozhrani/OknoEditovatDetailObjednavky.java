@@ -6,7 +6,10 @@
 package uzivatelskeRozhrani;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -22,11 +25,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import logika.Aplikace;
+import logika.Objednavka;
 
 /**
  * FXML Controller class
  *
- * @author barton
+ * @author barton, Simona
  */
 public class OknoEditovatDetailObjednavky implements Initializable {
 
@@ -86,15 +91,31 @@ public class OknoEditovatDetailObjednavky implements Initializable {
 
     @FXML
     private MenuItem vychazkyItem1;
-    
+
     @FXML
     private Button zpetButton;
-    
+
+    private Aplikace aplikace = new Aplikace();
+
+    private Objednavka objednavka;
+
+    private Integer index;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }   
-    
+        //index = oknoPruvodce.getZvolenehoPruvodce();
+        index = 0;
+        try {
+            objednavka = new Objednavka(aplikace.getObjednavku(index).getId(), aplikace.getObjednavku(index).getVychazkaString(), aplikace.getObjednavku(index).getZakaznikString(), aplikace.getObjednavku(index).getStav());
+        } catch (SQLException ex) {
+            Logger.getLogger(OknoDetailPruvodce.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        idInput.setText(Integer.toString(objednavka.getId()));
+        vychazkaInput1.setText(objednavka.getVychazkaString());
+        zakaznikInput1.setText(objednavka.getZakaznikString());
+        stavInput.setText(objednavka.getStav());
+    }
+
     @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
@@ -118,13 +139,13 @@ public class OknoEditovatDetailObjednavky implements Initializable {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
         rootPane.getChildren().setAll(pane);
     }
-    
+
     public void zpet(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailObjednavky.fxml"));
         rootPane.getChildren().setAll(pane);
     }
-    
-        @FXML
+
+    @FXML
     public void zobrazInfo(ActionEvent t) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -149,7 +170,7 @@ public class OknoEditovatDetailObjednavky implements Initializable {
         stage.show();
 
     }
-    
+
     public static boolean isInteger(TextField t) {
         int x;
         try {
@@ -179,5 +200,5 @@ public class OknoEditovatDetailObjednavky implements Initializable {
             alert.showAndWait();
         }
     }
-    
+
 }

@@ -32,7 +32,7 @@ import uzivatelskeRozhrani.OknoPruvodce;
 /**
  * FXML Controller class
  *
- * @author barton
+ * @author barton, Simona
  */
 public class OknoDetailPruvodce implements Initializable {
 
