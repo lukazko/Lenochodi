@@ -97,8 +97,6 @@ public class OknoZalozitObjednavku implements Initializable {
 
     private Objednavka objednavka;
 
-    private Integer index;
-
 
     @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
@@ -138,6 +136,7 @@ public class OknoZalozitObjednavku implements Initializable {
     public void potvrditObjednavku(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
+            aplikace.zalozObjednavku(idInput.getText(), vychazkaInput.getValue(), zakaznikInput.getValue(), stavInput.getText());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Objednávka založena");
             alert.setHeaderText(null);

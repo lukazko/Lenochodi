@@ -1,6 +1,9 @@
 package logika;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -258,8 +261,10 @@ public class Aplikace {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
-
-                Vychazka vychazka = new Vychazka(resultSet.getInt(1), resultSet.getString(2), resultSet.getDate(3), resultSet.getDate(4), resultSet.getString(5), resultSet.getString(6), resultSet.getInt(7), resultSet.getInt(8), resultSet.getString(9));
+                
+                DateFormat pozadovanyFormat = new SimpleDateFormat("dd.MM.yyyy");
+		String datum = pozadovanyFormat.format(resultSet.getDate(3)).toString();
+                Vychazka vychazka = new Vychazka(resultSet.getInt(1), resultSet.getString(2), datum, resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getInt(7), resultSet.getInt(8), resultSet.getString(9));
                 evidenceVychazek.add(vychazka);
             }
 
@@ -277,14 +282,20 @@ public class Aplikace {
         return evidenceVychazek;
     }
 
-    public void zalozVychazku(String id, String nazev, Date datum, Date casZacatek, String mistoZacatek, String jazyk, int kapacita, int cena, Pruvodce pruvodce) throws SQLException {
+    public void zalozVychazku(String id, String nazev, String datum, String casZacatek, String mistoZacatek, String jazyk, String kapacita, String cena, String pruvodce) throws SQLException {
         Connection connection = null;
         Statement statement = null;
         try {
             connection = databaze.getConnection();
             statement = connection.createStatement();
+            // změna string parametru času do java date, aby se mohl preformatovat pro sql
+            DateFormat pozadovanyFormat = new SimpleDateFormat("dd.MM.yyyy");
+            Date datumUpdated = pozadovanyFormat.parse(datum);
+
+            // sql DATE ma tento format -> YYYY-MM-DD
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String query = "INSERT INTO `vychazky` (`id`,`nazev`,`datum`,`casZacatek`,`mistoZacatek`,`jazyk`,`kapacita`,`cena`,`pruvodce`) VALUES ('"
-                    + id + "', '" + nazev + "', '" + datum + "', '" + casZacatek + "', '" + mistoZacatek + "', '" + jazyk + "', '" + kapacita + "', '" + cena + "', '" + pruvodce + "')";
+                    + id + "', '" + nazev + "', '" + dateFormat.format(datumUpdated) + "', '" + casZacatek + "', '" + mistoZacatek + "', '" + jazyk + "', '" + kapacita + "', '" + cena + "', '" + pruvodce + "')";
             statement.executeUpdate(query);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -298,14 +309,20 @@ public class Aplikace {
         }
     }
 
-    public void upravVychazku(String id, String nazev, Date datum, Date casZacatek, String mistoZacatek, String jazyk, int kapacita, int cena, Pruvodce pruvodce) throws SQLException {
+    public void upravVychazku(String id, String nazev, String datum, String casZacatek, String mistoZacatek, String jazyk, String kapacita, String cena, String pruvodce) throws SQLException {
         Connection connection = null;
         Statement statement = null;
 
         try {
             connection = databaze.getConnection();
+            // změna string parametru času do java date, aby se mohl preformatovat pro sql
+            DateFormat pozadovanyFormat = new SimpleDateFormat("dd.MM. yyyy");
+            Date datumUpdated = pozadovanyFormat.parse(datum);
+
+            // sql DATE ma tento format -> YYYY-MM-DD
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String query = "UPDATE `vychazky` SET (`id`,`nazev`,`datum`,`casZacatek`,`mistoZacatek`,`jazyk`,`kapacita`,`cena`,`pruvodce`) VALUES ('"
-                    + id + "', '" + nazev + "', '" + datum + "', '" + casZacatek + "', '" + mistoZacatek + "', '" + jazyk + "', '" + kapacita + "', '" + cena + "', '" + pruvodce + "') WHERE `id` = \"" + id + "\"";
+                    + id + "', '" + nazev + "', '" + dateFormat.format(datumUpdated) + "', '" + casZacatek + "', '" + mistoZacatek + "', '" + jazyk + "', '" + kapacita + "', '" + cena + "', '" + pruvodce + "') WHERE `id` = \"" + id + "\"";
             statement.executeUpdate(query);
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -42,7 +42,7 @@ public class Objednavka {
 	}
         
         public String getPopis() {
-		return Integer.toString(id) + " " + vychazkaString + " " + zakaznikString;
+		return Integer.toString(id) + " " + vychazkaString + ", " + zakaznikString;
 	}  
         
         public void setStav(String stav) {

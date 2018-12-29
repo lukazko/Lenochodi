@@ -22,6 +22,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import logika.Aplikace;
+import logika.Objednavka;
 
 /**
  * FXML Controller class
@@ -91,6 +93,10 @@ public class OknoZalozitZakaznika implements Initializable {
 
     @FXML
     private MenuItem vychazkyItem1;
+    
+    private Aplikace aplikace = new Aplikace();
+    
+    private Objednavka objednavka;
 
         @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
@@ -130,6 +136,7 @@ public class OknoZalozitZakaznika implements Initializable {
     public void potvrditZakaznika(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
+            aplikace.zalozZakaznika(idInput.getText(), jmenoInput.getText(), prijmeniInput.getText(), emailInput.getText(), telefonInput.getText());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Zákazník založen");
             alert.setHeaderText(null);

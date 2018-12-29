@@ -1,14 +1,13 @@
 package logika;
 
-import java.util.Date;
 import java.util.Collection;
 
 public class Vychazka {
 
 	private int id;
 	private String nazev;
-	private Date datum;
-	private Date casZacatek;
+	private String datum;
+	private String casZacatek;
 	private String mistoZacatek;
 	private String jazyk;
 	private int kapacita;
@@ -17,7 +16,7 @@ public class Vychazka {
         private String pruvodceJmeno;
 	private Collection<Objednavka> seznamObjednavek;
 
-        public Vychazka (int id, String nazev, Date datum, Date casZacatek, String mistoZacatek, String jazyk, int kapacita, int cena, String pruvodceJmeno) {
+        public Vychazka (int id, String nazev, String datum, String casZacatek, String mistoZacatek, String jazyk, int kapacita, int cena, String pruvodceJmeno) {
             this.id = id;
             this.nazev = nazev;
             this.datum = datum;
@@ -59,19 +58,19 @@ public class Vychazka {
 		return nazev;
 	}
         
-        public void setDatum(Date datum) {
+        public void setDatum(String datum) {
 		this.datum = datum;
 	}
         
-        public Date getDatum() {
+        public String getDatum() {
 		return datum;
 	}
         
-        public void setCasZacatek(Date casZacatek) {
+        public void setCasZacatek(String casZacatek) {
 		this.casZacatek = casZacatek;
 	}
         
-        public Date getCasZacatek() {
+        public String getCasZacatek() {
 		return casZacatek;
 	}
         

@@ -129,8 +129,6 @@ public class OknoZalozitVychazku implements Initializable {
 
     private Vychazka vychazka;
 
-    private Integer index;
-
 
     @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
@@ -170,6 +168,7 @@ public class OknoZalozitVychazku implements Initializable {
     public void potvrditVychazku(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
+            aplikace.zalozVychazku(idInput.getText(), nazevInput.getText(), datumInput.getAccessibleText(), casZacatkuInput.getText(), mistoInput.getText(), jazykInput.getValue(), kapacitaInput.getText(), cenaInput.getText(), inputPruvodce.getValue());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Vycházka založena");
             alert.setHeaderText(null);
