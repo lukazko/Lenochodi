@@ -151,8 +151,8 @@ public class OknoZalozitPruvodce implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Průvdoce byl úspěšně založen");
             alert.showAndWait();
-           // VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoPrůvodci.fxml"));
-          //  rootPane.getChildren().setAll(pane);
+            VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoPruvodce.fxml"));
+            rootPane.getChildren().setAll(pane);
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Chyba");
