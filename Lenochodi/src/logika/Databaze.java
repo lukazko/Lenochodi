@@ -9,6 +9,9 @@ import java.sql.*;
 /**
  *
  * @author Simona
+ * 
+ * Třída sloužící k navázání spojení s databází.
+ * 
  */
 public class Databaze {
     private static String url = "jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7271745?useUnicode=yes&characterEncoding=UTF-8";    
