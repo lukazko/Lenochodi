@@ -58,7 +58,7 @@ public class OknoEditovatDetailObjednavky implements Initializable {
     private Button ulozitButton;
 
     @FXML
-    private ChoiceBox zakaznikInput1;
+    private ChoiceBox<String> zakaznikInput1;
 
     @FXML
     private MenuItem objednavkyItem1;
@@ -85,7 +85,7 @@ public class OknoEditovatDetailObjednavky implements Initializable {
     private MenuItem napovedaItem;
 
     @FXML
-    private ChoiceBox vychazkaInput1;
+    private ChoiceBox<String> vychazkaInput1;
 
     @FXML
     private Menu menu1;
@@ -113,9 +113,14 @@ public class OknoEditovatDetailObjednavky implements Initializable {
         }
         idInput.setText(Integer.toString(objednavka.getId()));
         idInput.setEditable(false);
-        //do inputů hodit seznamy vycházek a zákazníků z databáze
-        //vychazkaInput1.setText(objednavka.getVychazkaString());
-        //zakaznikInput1.setText(objednavka.getZakaznikString());
+        try {
+            vychazkaInput1.setItems(aplikace.getObservableListVychazek());
+            zakaznikInput1.setItems(aplikace.getObservableListZakazniku());
+        } catch (SQLException ex) {
+            Logger.getLogger(OknoZalozitObjednavku.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        vychazkaInput1.setValue(objednavka.getVychazkaString());
+        zakaznikInput1.setValue(objednavka.getZakaznikString());
         stavInput.setText(objednavka.getStav());
     }
 
@@ -195,7 +200,7 @@ public class OknoEditovatDetailObjednavky implements Initializable {
                 alert.setContentText("Neočekávaná chyba ve vstupních datech");
                 alert.showAndWait();
             } else {
-                aplikace.upravObjednavku(idInput.getText(), vychazkaInput1.getValue().toString(), zakaznikInput1.getValue().toString(), stavInput.getText());
+                aplikace.upravObjednavku(idInput.getText(), vychazkaInput1.getValue(), zakaznikInput1.getValue(), stavInput.getText());
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Objednávka uložena");
                 alert.setHeaderText(null);

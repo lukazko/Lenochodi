@@ -92,7 +92,6 @@ public class Aplikace {
             statement = connection.createStatement();
             String query = "UPDATE `pruvodci` SET `id` = '" + id + "', `jmeno` = '" + jmeno + "', `prijmeni` = '" + prijmeni
 					+ "', `email` = '" + email + "', `telefon` = '" + telefon + "', `jazyk` = '" + jazyk + "' WHERE `pruvodci`.`id` = " + id;
-            //String query = "UPDATE `pruvodce` SET `jmeno`= \"" + jmeno + "\",`prijmeni`= \"" + prijmeni + "\",`email`= \"" + email + "\",`telefon`= \"" + telefon + "\",`jazyk`= \"" + jazyk + "\" WHERE `pruvodci`.`id` = \"" + id + "\"";
             statement.executeUpdate(query);
         } catch (Exception ex) {
             ex.printStackTrace();
