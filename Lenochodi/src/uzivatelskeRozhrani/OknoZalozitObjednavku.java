@@ -134,7 +134,7 @@ public class OknoZalozitObjednavku implements Initializable {
     @FXML
     public void potvrditObjednavku(ActionEvent event) throws Exception {
 
-        if (isInteger(idInput)) {
+        if (isInteger(idInput) && aplikace.getZbylaKapacita(vychazkaInput.getValue()) > 0) {
             if (idInput.getText().trim().equals("") || stavInput.getText().trim().equals("") || vychazkaInput.getValue().trim().equals("") || zakaznikInput.getValue().trim().equals("")) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Chyba");

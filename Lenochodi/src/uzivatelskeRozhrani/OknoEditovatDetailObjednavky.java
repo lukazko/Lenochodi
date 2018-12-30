@@ -179,20 +179,10 @@ public class OknoEditovatDetailObjednavky implements Initializable {
 
     }
 
-    public static boolean isInteger(TextField t) {
-        int x;
-        try {
-            x = Integer.parseInt(t.getText());
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
     @FXML
     public void ulozitObjednavku(ActionEvent event) throws Exception {
-
-        if (isInteger(idInput)) {
+        
+        if (aplikace.getZbylaKapacita(vychazkaInput1.getValue()) > 0) {
             if (stavInput.getText().trim().equals("")) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Chyba");
