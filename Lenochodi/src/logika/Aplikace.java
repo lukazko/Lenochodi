@@ -84,8 +84,6 @@ public class Aplikace {
     public void upravPruvodce(String id, String jmeno, String prijmeni, String email, String telefon, String jazyk) throws SQLException {
         Connection connection = null;
         Statement statement = null;
-        int id2;
-        id2 = Integer.valueOf(id);
 
         try {
             connection = databaze.getConnection();
