@@ -50,6 +50,7 @@ public class Aplikace {
     private Vychazka vychazka;
 
     Databaze databaze = new Databaze();
+    public static int pomIndex;
 
     /**
      * Konstruktor třídy aplikace.
@@ -665,5 +666,23 @@ public class Aplikace {
             }
         }
         return kapacita;
+    }
+    
+    /**
+     * Metoda slouží pro získání indexu zvolené položky pro potřeby získání detailních údajů.
+     *
+     * @param index
+     */
+    public void getIndex(int index){
+    pomIndex = index;
+    }
+    
+    /**
+     * Metoda vrací index zvolené položky.
+     *
+     * @return int
+     */
+    public int getPomIndex(){
+    return pomIndex;
     }
 }

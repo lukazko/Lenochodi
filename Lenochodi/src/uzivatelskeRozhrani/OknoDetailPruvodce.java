@@ -27,7 +27,6 @@ import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import logika.Aplikace;
 import logika.Pruvodce;
-import uzivatelskeRozhrani.OknoPruvodce;
 
 /**
  * FXML Controller class
@@ -107,18 +106,16 @@ public class OknoDetailPruvodce implements Initializable {
 
     @FXML
     private MenuItem vychazkyItem1;
-    
+
     private Aplikace aplikace = new Aplikace();
-    
+
     private Pruvodce pruvodce;
-    
-    private OknoPruvodce oknoPruvodce;
+
     private Integer index;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //index = oknoPruvodce.getZvolenehoPruvodce();
-        index = 1;
+        index = aplikace.getPomIndex();
         try {
             pruvodce = new Pruvodce(aplikace.getPruvodce(index).getId(), aplikace.getPruvodce(index).getJmeno(), aplikace.getPruvodce(index).getPrijmeni(), aplikace.getPruvodce(index).getEmail(), aplikace.getPruvodce(index).getTelefon(), aplikace.getPruvodce(index).getJazyk());
         } catch (SQLException ex) {

@@ -72,6 +72,8 @@ public class OknoObjednavka implements Initializable {
     private MenuItem vychazkyItem1;
     
     private Aplikace aplikace = new Aplikace();
+    
+    public int index;
 
     @FXML
     public void zalozitObjednavku(ActionEvent event) throws Exception {
@@ -130,6 +132,8 @@ public class OknoObjednavka implements Initializable {
     }
 
     public void detail(MouseEvent event) throws IOException {
+        index = objednavkyListView.getSelectionModel().getSelectedIndex();
+        aplikace.getIndex(index);
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailObjednavky.fxml"));
         rootPane.getChildren().setAll(pane);
 

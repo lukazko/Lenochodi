@@ -104,8 +104,7 @@ public class OknoEditovatDetailObjednavky implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //index = oknoPruvodce.getZvolenehoPruvodce();
-        index = 0;
+        index = aplikace.getPomIndex();
         try {
             objednavka = new Objednavka(aplikace.getObjednavku(index).getId(), aplikace.getObjednavku(index).getVychazkaString(), aplikace.getObjednavku(index).getZakaznikString(), aplikace.getObjednavku(index).getStav());
         } catch (SQLException ex) {
