@@ -639,4 +639,31 @@ public class Aplikace {
         }
         return seznamObjednavek;
     }
+
+    /**
+     * Metoda slouží pro získání zbylé kapacity u vycházky.
+     *
+     * @param nazev
+     * @return int
+     * @throws SQLException
+     */
+    public int getZbylaKapacita(String nazev) throws SQLException {
+        evidenceObjednavek = getEvidenceObjednavek();
+        evidenceVychazek = getEvidenceVychazek();
+        int id = 0;
+        for (Vychazka vychazkaPom : evidenceVychazek) {
+            if (vychazkaPom.getNazev() == nazev) {
+                id = vychazkaPom.getId();
+                break;
+            }
+        }
+        vychazka = evidenceVychazek.get(id-1);
+        int kapacita = vychazka.getKapacita();
+        for (Objednavka objednavkaPom : evidenceObjednavek) {
+            if (objednavkaPom.getVychazkaString() == nazev) {
+                kapacita--;
+            }
+        }
+        return kapacita;
+    }
 }
