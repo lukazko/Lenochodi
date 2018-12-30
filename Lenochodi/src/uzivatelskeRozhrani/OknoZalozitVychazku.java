@@ -40,7 +40,7 @@ public class OknoZalozitVychazku implements Initializable {
 
     @FXML
     private VBox rootPane;
-    
+
     @FXML
     private ChoiceBox<String> inputPruvodce;
 
@@ -124,11 +124,10 @@ public class OknoZalozitVychazku implements Initializable {
 
     @FXML
     private Button PotvrditButton;
-    
+
     private Aplikace aplikace = new Aplikace();
 
     private Vychazka vychazka;
-
 
     @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
@@ -168,14 +167,22 @@ public class OknoZalozitVychazku implements Initializable {
     public void potvrditVychazku(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
-            aplikace.zalozVychazku(idInput.getText(), nazevInput.getText(), datumInput.getValue().toString(), casZacatkuInput.getText(), mistoInput.getText(), jazykInput.getValue(), kapacitaInput.getText(), cenaInput.getText(), inputPruvodce.getValue());
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Vycházka založena");
-            alert.setHeaderText(null);
-            alert.setContentText("Vycházka byla úspěšně založena");
-            alert.showAndWait();
-            VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
-            rootPane.getChildren().setAll(pane);
+            if (idInput.getText().trim().equals("") || nazevInput.getText().trim().equals("") || datumInput.getValue().toString().trim().equals("") || casZacatkuInput.getText().trim().equals("") || mistoInput.getText().trim().equals("") || kapacitaInput.getText().trim().equals("") || cenaInput.getText().trim().equals("") || jazykInput.getValue().toString().trim().equals("") || inputPruvodce.getValue().toString().trim().equals("")) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Chyba");
+                alert.setHeaderText(null);
+                alert.setContentText("Neočekávaná chyba ve vstupních datech");
+                alert.showAndWait();
+            } else {
+                aplikace.zalozVychazku(idInput.getText(), nazevInput.getText(), datumInput.getValue().toString(), casZacatkuInput.getText(), mistoInput.getText(), jazykInput.getValue(), kapacitaInput.getText(), cenaInput.getText(), inputPruvodce.getValue());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Vycházka založena");
+                alert.setHeaderText(null);
+                alert.setContentText("Vycházka byla úspěšně založena");
+                alert.showAndWait();
+                VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
+                rootPane.getChildren().setAll(pane);
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Chyba");
@@ -184,8 +191,8 @@ public class OknoZalozitVychazku implements Initializable {
             alert.showAndWait();
         }
     }
-    
-        @FXML
+
+    @FXML
     public void zobrazInfo(ActionEvent t) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

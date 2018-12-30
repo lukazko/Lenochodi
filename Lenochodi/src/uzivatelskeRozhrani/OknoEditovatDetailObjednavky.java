@@ -58,7 +58,7 @@ public class OknoEditovatDetailObjednavky implements Initializable {
     private Button ulozitButton;
 
     @FXML
-    private TextField zakaznikInput1;
+    private ChoiceBox zakaznikInput1;
 
     @FXML
     private MenuItem objednavkyItem1;
@@ -188,14 +188,22 @@ public class OknoEditovatDetailObjednavky implements Initializable {
     public void ulozitObjednavku(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
-            //aplikace.upravObjednavku(idInput.getText(), vychazkaInput1.getText(), zakaznikInput1.getText(), stavInput.getText());
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Objednávka uložena");
-            alert.setHeaderText(null);
-            alert.setContentText("Změny byly úspěšně uloženy");
-            alert.showAndWait();
-            VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailObjednavky.fxml"));
-            rootPane.getChildren().setAll(pane);
+            if (stavInput.getText().trim().equals("")) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Chyba");
+                alert.setHeaderText(null);
+                alert.setContentText("Neočekávaná chyba ve vstupních datech");
+                alert.showAndWait();
+            } else {
+                aplikace.upravObjednavku(idInput.getText(), vychazkaInput1.getValue().toString(), zakaznikInput1.getValue().toString(), stavInput.getText());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Objednávka uložena");
+                alert.setHeaderText(null);
+                alert.setContentText("Změny byly úspěšně uloženy");
+                alert.showAndWait();
+                VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailObjednavky.fxml"));
+                rootPane.getChildren().setAll(pane);
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Chyba");

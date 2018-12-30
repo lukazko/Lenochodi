@@ -92,11 +92,10 @@ public class OknoZalozitObjednavku implements Initializable {
 
     @FXML
     private MenuItem vychazkyItem1;
-    
+
     private Aplikace aplikace = new Aplikace();
 
     private Objednavka objednavka;
-
 
     @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
@@ -136,14 +135,22 @@ public class OknoZalozitObjednavku implements Initializable {
     public void potvrditObjednavku(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
-            aplikace.zalozObjednavku(idInput.getText(), vychazkaInput.getValue(), zakaznikInput.getValue(), stavInput.getText());
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Objednávka založena");
-            alert.setHeaderText(null);
-            alert.setContentText("Objednávka byla úspěšně založena");
-            alert.showAndWait();
-            VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoObjednavka.fxml"));
-            rootPane.getChildren().setAll(pane);
+            if (idInput.getText().trim().equals("") || stavInput.getText().trim().equals("") || vychazkaInput.getValue().trim().equals("") || zakaznikInput.getValue().trim().equals("")) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Chyba");
+                alert.setHeaderText(null);
+                alert.setContentText("Neočekávaná chyba ve vstupních datech");
+                alert.showAndWait();
+            } else {
+                aplikace.zalozObjednavku(idInput.getText(), vychazkaInput.getValue(), zakaznikInput.getValue(), stavInput.getText());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Objednávka založena");
+                alert.setHeaderText(null);
+                alert.setContentText("Objednávka byla úspěšně založena");
+                alert.showAndWait();
+                VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoObjednavka.fxml"));
+                rootPane.getChildren().setAll(pane);
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Chyba");
@@ -152,8 +159,8 @@ public class OknoZalozitObjednavku implements Initializable {
             alert.showAndWait();
         }
     }
-    
-        @FXML
+
+    @FXML
     public void zobrazInfo(ActionEvent t) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

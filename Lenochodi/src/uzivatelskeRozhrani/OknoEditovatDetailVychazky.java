@@ -40,7 +40,7 @@ public class OknoEditovatDetailVychazky implements Initializable {
 
     @FXML
     private Label vychazkaLabel;
-    
+
     @FXML
     private ChoiceBox<String> inputPruvodce;
 
@@ -124,13 +124,13 @@ public class OknoEditovatDetailVychazky implements Initializable {
 
     @FXML
     private MenuItem vychazkyItem1;
-    
+
     private Aplikace aplikace = new Aplikace();
-    
+
     private Vychazka vychazka;
-    
+
     private Integer index;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         jazykyInput.setItems(FXCollections.observableArrayList("CZ", "EN", "DE"));
@@ -156,8 +156,8 @@ public class OknoEditovatDetailVychazky implements Initializable {
         kapacitaInput.setText(Integer.toString(vychazka.getKapacita()));
         cenaInput.setText(Integer.toString(vychazka.getCena()));
         inputPruvodce.setValue(vychazka.getPruvodceJmeno());
-    }   
-    
+    }
+
     @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
@@ -181,13 +181,13 @@ public class OknoEditovatDetailVychazky implements Initializable {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
         rootPane.getChildren().setAll(pane);
     }
-    
+
     public void detail(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailVychazky.fxml"));
         rootPane.getChildren().setAll(pane);
     }
-    
-        @FXML
+
+    @FXML
     public void zobrazInfo(ActionEvent t) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -212,7 +212,7 @@ public class OknoEditovatDetailVychazky implements Initializable {
         stage.show();
 
     }
-    
+
     public static boolean isInteger(TextField t) {
         int x;
         try {
@@ -227,14 +227,22 @@ public class OknoEditovatDetailVychazky implements Initializable {
     public void ulozitVychazku(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
-            aplikace.upravVychazku(idInput.getText(), nazevInput.getText(), datumInput.getValue().toString(), casZacatkuInput.getText(), mistoInput.getText(), jazykyInput.getValue(), kapacitaInput.getText(), cenaInput.getText(), inputPruvodce.getValue());
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Průvodce uložen");
-            alert.setHeaderText(null);
-            alert.setContentText("Změny byly úspěšně uloženy");
-            alert.showAndWait();
-            VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailVychazky.fxml"));
-            rootPane.getChildren().setAll(pane);
+            if (nazevInput.getText().trim().equals("") || datumInput.getValue().toString().trim().equals("") || casZacatkuInput.getText().trim().equals("") || mistoInput.getText().trim().equals("") || kapacitaInput.getText().trim().equals("") || cenaInput.getText().trim().equals("")) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Chyba");
+                alert.setHeaderText(null);
+                alert.setContentText("Neočekávaná chyba ve vstupních datech");
+                alert.showAndWait();
+            } else {
+                aplikace.upravVychazku(idInput.getText(), nazevInput.getText(), datumInput.getValue().toString(), casZacatkuInput.getText(), mistoInput.getText(), jazykyInput.getValue(), kapacitaInput.getText(), cenaInput.getText(), inputPruvodce.getValue());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Průvodce uložen");
+                alert.setHeaderText(null);
+                alert.setContentText("Změny byly úspěšně uloženy");
+                alert.showAndWait();
+                VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailVychazky.fxml"));
+                rootPane.getChildren().setAll(pane);
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Chyba");
@@ -243,5 +251,5 @@ public class OknoEditovatDetailVychazky implements Initializable {
             alert.showAndWait();
         }
     }
-    
+
 }

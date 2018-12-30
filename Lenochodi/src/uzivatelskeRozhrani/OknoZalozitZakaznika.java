@@ -31,7 +31,8 @@ import logika.Objednavka;
  * @author lukas, Simona
  */
 public class OknoZalozitZakaznika implements Initializable {
-        @FXML
+
+    @FXML
     private MenuItem pruvodciItem1;
 
     @FXML
@@ -93,12 +94,12 @@ public class OknoZalozitZakaznika implements Initializable {
 
     @FXML
     private MenuItem vychazkyItem1;
-    
+
     private Aplikace aplikace = new Aplikace();
-    
+
     private Objednavka objednavka;
 
-        @FXML
+    @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
         rootPane.getChildren().setAll(pane);
@@ -136,14 +137,22 @@ public class OknoZalozitZakaznika implements Initializable {
     public void potvrditZakaznika(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
-            aplikace.zalozZakaznika(idInput.getText(), jmenoInput.getText(), prijmeniInput.getText(), emailInput.getText(), telefonInput.getText());
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Zákazník založen");
-            alert.setHeaderText(null);
-            alert.setContentText("Zákazník byl úspěšně založena");
-            alert.showAndWait();
-            VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
-            rootPane.getChildren().setAll(pane);
+            if (idInput.getText().trim().equals("") || jmenoInput.getText().trim().equals("") || prijmeniInput.getText().trim().equals("") || emailInput.getText().trim().equals("") || telefonInput.getText().trim().equals("")) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Chyba");
+                alert.setHeaderText(null);
+                alert.setContentText("Neočekávaná chyba ve vstupních datech");
+                alert.showAndWait();
+            } else {
+                aplikace.zalozZakaznika(idInput.getText(), jmenoInput.getText(), prijmeniInput.getText(), emailInput.getText(), telefonInput.getText());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Zákazník založen");
+                alert.setHeaderText(null);
+                alert.setContentText("Zákazník byl úspěšně založena");
+                alert.showAndWait();
+                VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
+                rootPane.getChildren().setAll(pane);
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Chyba");
@@ -152,8 +161,8 @@ public class OknoZalozitZakaznika implements Initializable {
             alert.showAndWait();
         }
     }
-    
-        @FXML
+
+    @FXML
     public void zobrazInfo(ActionEvent t) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -178,12 +187,13 @@ public class OknoZalozitZakaznika implements Initializable {
         stage.show();
 
     }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
 }
