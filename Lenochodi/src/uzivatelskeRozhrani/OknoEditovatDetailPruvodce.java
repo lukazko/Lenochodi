@@ -108,13 +108,13 @@ public class OknoEditovatDetailPruvodce implements Initializable {
 
     @FXML
     private MenuItem vychazkyItem1;
-    
+
     private Aplikace aplikace = new Aplikace();
-    
+
     private Pruvodce pruvodce;
-    
+
     private Integer index = 1;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
@@ -130,8 +130,8 @@ public class OknoEditovatDetailPruvodce implements Initializable {
         telefonInput.setText(pruvodce.getTelefon());
         jazykyInput.setItems(FXCollections.observableArrayList("CZ", "EN", "DE"));
         jazykyInput.setValue(pruvodce.getJazyk());
-    }   
-    
+    }
+
     @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
@@ -155,13 +155,13 @@ public class OknoEditovatDetailPruvodce implements Initializable {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
         rootPane.getChildren().setAll(pane);
     }
-    
+
     public void detail(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailPruvodce.fxml"));
         rootPane.getChildren().setAll(pane);
     }
-    
-        @FXML
+
+    @FXML
     public void zobrazInfo(ActionEvent t) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -186,7 +186,7 @@ public class OknoEditovatDetailPruvodce implements Initializable {
         stage.show();
 
     }
-    
+
     public static boolean isInteger(TextField t) {
         int x;
         try {
@@ -200,14 +200,23 @@ public class OknoEditovatDetailPruvodce implements Initializable {
     @FXML
     public void ulozitPruvodce(ActionEvent event) throws Exception {
         if (isInteger(idInput)) {
-            aplikace.upravPruvodce(idInput.getText(), jmenoInput.getText(), prijmeniInput.getText(), emailInput.getText(), telefonInput.getText(), jazykyInput.getValue());
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Průvodce uložen");
-            alert.setHeaderText(null);
-            alert.setContentText("Změny byly úspěšně uloženy");
-            alert.showAndWait();
-            VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailPruvodce.fxml"));
-            rootPane.getChildren().setAll(pane);
+            if (jmenoInput.getText().trim().equals("") || prijmeniInput.getText().trim().equals("") || telefonInput.getText().trim().equals("") || emailInput.getText().trim().equals("")) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Chyba");
+                alert.setHeaderText(null);
+                alert.setContentText("Neočekávaná chyba ve vstupních datech");
+                alert.showAndWait();
+            } else {
+                aplikace.upravPruvodce(idInput.getText(), jmenoInput.getText(), prijmeniInput.getText(), emailInput.getText(), telefonInput.getText(), jazykyInput.getValue());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Průvodce uložen");
+                alert.setHeaderText(null);
+                alert.setContentText("Změny byly úspěšně uloženy");
+                alert.showAndWait();
+                VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailPruvodce.fxml"));
+                rootPane.getChildren().setAll(pane);
+
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Chyba");
@@ -216,5 +225,5 @@ public class OknoEditovatDetailPruvodce implements Initializable {
             alert.showAndWait();
         }
     }
-    
+
 }

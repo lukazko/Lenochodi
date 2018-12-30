@@ -17,9 +17,9 @@ import javafx.stage.Stage;
  * @author Lukáš, Pavel, Simona, Marko, Kateřina
  */
 public class Start extends Application {
- 
+    
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) throws Exception {       
         Parent root = FXMLLoader.load(getClass().getResource("/zdroje/OknoHlavni.fxml"));
         Scene scene = new Scene(root);
 
@@ -27,7 +27,7 @@ public class Start extends Application {
         stage.setTitle("Vycházky by LenochodiSoft");
         stage.show();
     }
-
+ 
     /**
      * @param args the command line arguments
      */

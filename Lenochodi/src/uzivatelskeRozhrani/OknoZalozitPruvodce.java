@@ -34,7 +34,7 @@ import logika.Pruvodce;
  */
 public class OknoZalozitPruvodce implements Initializable {
 
-        @FXML
+    @FXML
     private MenuItem pruvodciItem1;
 
     @FXML
@@ -102,12 +102,12 @@ public class OknoZalozitPruvodce implements Initializable {
 
     @FXML
     private MenuItem vychazkyItem1;
-    
+
     private Aplikace aplikace = new Aplikace();
-    
+
     private Pruvodce pruvodce;
-    
-        @FXML
+
+    @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
         rootPane.getChildren().setAll(pane);
@@ -145,14 +145,22 @@ public class OknoZalozitPruvodce implements Initializable {
     public void potvrditPruvodce(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
-            aplikace.zalozPruvodce(idInput.getText(), jmenoInput.getText(), prijmeniInput.getText(), emailInput.getText(), telefonInput.getText(), jazykyInput.getValue());
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Průvodce založen");
-            alert.setHeaderText(null);
-            alert.setContentText("Průvdoce byl úspěšně založen");
-            alert.showAndWait();
-            VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoPruvodce.fxml"));
-            rootPane.getChildren().setAll(pane);
+            if (idInput.getText().trim().equals("") || jmenoInput.getText().trim().equals("") || prijmeniInput.getText().trim().equals("") || telefonInput.getText().trim().equals("") || emailInput.getText().trim().equals("") || jazykyInput.getValue().toString().trim().equals("")) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Chyba");
+                alert.setHeaderText(null);
+                alert.setContentText("Neočekávaná chyba ve vstupních datech");
+                alert.showAndWait();
+            } else {
+                aplikace.zalozPruvodce(idInput.getText(), jmenoInput.getText(), prijmeniInput.getText(), emailInput.getText(), telefonInput.getText(), jazykyInput.getValue());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Průvodce založen");
+                alert.setHeaderText(null);
+                alert.setContentText("Průvdoce byl úspěšně založen");
+                alert.showAndWait();
+                VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoPruvodce.fxml"));
+                rootPane.getChildren().setAll(pane);
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Chyba");
@@ -161,8 +169,8 @@ public class OknoZalozitPruvodce implements Initializable {
             alert.showAndWait();
         }
     }
-    
-        @FXML
+
+    @FXML
     public void zobrazInfo(ActionEvent t) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -187,10 +195,10 @@ public class OknoZalozitPruvodce implements Initializable {
         stage.show();
 
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         jazykyInput.setItems(FXCollections.observableArrayList("CZ", "EN", "DE"));
-    }    
-    
+    }
+
 }
