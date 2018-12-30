@@ -74,20 +74,19 @@ public class OknoPruvodce implements Initializable {
     @FXML
     private MenuItem vychazkyItem1;
 
-    public Integer index;
+    public int index;
 
     private Aplikace aplikace = new Aplikace();
+
+    private OknoDetailPruvodce oknoDetailPruvodce;
 
     private ObservableList<Pruvodce> evidencePruvodcu = FXCollections.observableArrayList();
 
     public void detail(MouseEvent event) throws IOException {
         index = pruvodciListView.getSelectionModel().getSelectedIndex();
+        aplikace.getIndex(index);
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailPruvodce.fxml"));
         rootPane.getChildren().setAll(pane);
-    }
-
-    public Integer getZvolenehoPruvodce() {
-        return index;
     }
 
     @FXML

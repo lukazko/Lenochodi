@@ -64,7 +64,7 @@ public class OknoZakaznik implements Initializable {
 
     @FXML
     private Menu menu1;
-    
+
     private Aplikace aplikace = new Aplikace();
 
     @FXML
@@ -73,39 +73,47 @@ public class OknoZakaznik implements Initializable {
     @FXML
     private MenuItem vychazkyItem1;
     
-            public void detail(MouseEvent event) throws IOException {
+    public int index;
+
+    public void detail(MouseEvent event) throws IOException {
+        index = zakazniciListView.getSelectionModel().getSelectedIndex();
+        aplikace.getIndex(index);
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailZakaznik.fxml"));
         rootPane.getChildren().setAll(pane);
 
     }
-    
-    @FXML public void loadVychazky (ActionEvent event) throws Exception{
+
+    @FXML
+    public void loadVychazky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
-	rootPane.getChildren().setAll(pane);	
+        rootPane.getChildren().setAll(pane);
     }
-        
-    @FXML public void loadObjednavky (ActionEvent event) throws Exception{
+
+    @FXML
+    public void loadObjednavky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoObjednavka.fxml"));
-	rootPane.getChildren().setAll(pane);	
+        rootPane.getChildren().setAll(pane);
     }
-            
-    @FXML public void loadPruvodci (ActionEvent event) throws Exception{
+
+    @FXML
+    public void loadPruvodci(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoPruvodce.fxml"));
-	rootPane.getChildren().setAll(pane);	
-    }   
-        
-    @FXML public void loadZakaznici (ActionEvent event) throws Exception{
-        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
-	rootPane.getChildren().setAll(pane);	
+        rootPane.getChildren().setAll(pane);
     }
-    
-        @FXML
+
+    @FXML
+    public void loadZakaznici(ActionEvent event) throws Exception {
+        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
+
+    @FXML
     public void zalozitZakaznika(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZalozitZakaznika.fxml"));
         rootPane.getChildren().setAll(pane);
     }
-    
-        @FXML
+
+    @FXML
     public void zobrazInfo(ActionEvent t) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -130,10 +138,10 @@ public class OknoZakaznik implements Initializable {
         stage.show();
 
     }
-       
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      try {
+        try {
             zakazniciListView.getItems().addAll(aplikace.getSeznamZakazniku());
         } catch (SQLException ex) {
             Logger.getLogger(OknoPruvodce.class.getName()).log(Level.SEVERE, null, ex);

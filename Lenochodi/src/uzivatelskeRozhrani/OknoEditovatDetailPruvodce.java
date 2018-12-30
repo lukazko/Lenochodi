@@ -113,10 +113,11 @@ public class OknoEditovatDetailPruvodce implements Initializable {
 
     private Pruvodce pruvodce;
 
-    private Integer index = 1;
+    private Integer index;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        index = aplikace.getPomIndex();
         try {
             pruvodce = new Pruvodce(aplikace.getPruvodce(index).getId(), aplikace.getPruvodce(index).getJmeno(), aplikace.getPruvodce(index).getPrijmeni(), aplikace.getPruvodce(index).getEmail(), aplikace.getPruvodce(index).getTelefon(), aplikace.getPruvodce(index).getJazyk());
         } catch (SQLException ex) {
