@@ -17,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -84,7 +85,7 @@ public class OknoEditovatDetailObjednavky implements Initializable {
     private MenuItem napovedaItem;
 
     @FXML
-    private TextField vychazkaInput1;
+    private ChoiceBox vychazkaInput1;
 
     @FXML
     private Menu menu1;
@@ -112,8 +113,9 @@ public class OknoEditovatDetailObjednavky implements Initializable {
         }
         idInput.setText(Integer.toString(objednavka.getId()));
         idInput.setEditable(false);
-        vychazkaInput1.setText(objednavka.getVychazkaString());
-        zakaznikInput1.setText(objednavka.getZakaznikString());
+        //do inputů hodit seznamy vycházek a zákazníků z databáze
+        //vychazkaInput1.setText(objednavka.getVychazkaString());
+        //zakaznikInput1.setText(objednavka.getZakaznikString());
         stavInput.setText(objednavka.getStav());
     }
 
@@ -186,7 +188,7 @@ public class OknoEditovatDetailObjednavky implements Initializable {
     public void ulozitObjednavku(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
-            aplikace.upravObjednavku(idInput.getText(), vychazkaInput1.getText(), zakaznikInput1.getText(), stavInput.getText());
+            //aplikace.upravObjednavku(idInput.getText(), vychazkaInput1.getText(), zakaznikInput1.getText(), stavInput.getText());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Objednávka uložena");
             alert.setHeaderText(null);
