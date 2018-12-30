@@ -403,7 +403,7 @@ public class Aplikace {
             connection = databaze.getConnection();
             statement = connection.createStatement();
             String query = "UPDATE `objednavky` SET `id` = '" + id + "', `vychazka` = '" + vychazka + "', `zakaznik` = '" + zakaznik
-					+ "' `stav` = '" + stav + "' WHERE `objednavky`.`id` = " + id;
+					+ "', `stav` = '" + stav + "' WHERE `objednavky`.`id` = " + id;
             statement.executeUpdate(query);
         } catch (Exception ex) {
             ex.printStackTrace();
