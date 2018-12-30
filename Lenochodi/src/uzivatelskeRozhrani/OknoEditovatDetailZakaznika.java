@@ -117,6 +117,7 @@ public class OknoEditovatDetailZakaznika implements Initializable {
             Logger.getLogger(OknoDetailPruvodce.class.getName()).log(Level.SEVERE, null, ex);
         }
         idInput.setText(Integer.toString(zakaznik.getId()));
+        idInput.setEditable(false);
         jmenoInput.setText(zakaznik.getJmeno());
         prijmeniInput.setText(zakaznik.getPrijmeni());
         emailInput.setText(zakaznik.getEmail());
@@ -192,6 +193,7 @@ public class OknoEditovatDetailZakaznika implements Initializable {
     public void ulozitZakaznika(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
+            aplikace.upravZakaznika(idInput.getText(), jmenoInput.getText(), prijmeniInput.getText(), emailInput.getText(), telefonInput.getText());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Zákazník uložen");
             alert.setHeaderText(null);

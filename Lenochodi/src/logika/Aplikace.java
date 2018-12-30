@@ -1,9 +1,6 @@
 package logika;
 
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -92,8 +89,10 @@ public class Aplikace {
 
         try {
             connection = databaze.getConnection();
-            String query = "UPDATE `pruvodci` SET (`id`,`jmeno`,`prijmeni`,`email`,`telefon`, `jazyk`) VALUES ('"
-                    + id + "', '" + jmeno + "', '" + prijmeni + "', '" + email + "', '" + telefon + "', '" + jazyk + "') WHERE `id` = \"" + id + "\"";
+            statement = connection.createStatement();
+            String query = "UPDATE `pruvodci` SET `id` = '" + id + "', `jmeno` = '" + jmeno + "', `prijmeni` = '" + prijmeni
+					+ "', `email` = '" + email + "', `telefon` = '" + telefon + "', `jazyk` = '" + jazyk + "' WHERE `pruvodci`.`id` = " + id;
+            //String query = "UPDATE `pruvodce` SET `jmeno`= \"" + jmeno + "\",`prijmeni`= \"" + prijmeni + "\",`email`= \"" + email + "\",`telefon`= \"" + telefon + "\",`jazyk`= \"" + jazyk + "\" WHERE `pruvodci`.`id` = \"" + id + "\"";
             statement.executeUpdate(query);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -214,8 +213,9 @@ public class Aplikace {
 
         try {
             connection = databaze.getConnection();
-            String query = "UPDATE `zakaznici` SET (`id`,`jmeno`,`prijmeni`,`email`,`telefon`) VALUES ('"
-                    + id + "', '" + jmeno + "', '" + prijmeni + "', '" + email + "', '" + telefon + "') WHERE `id` = \"" + id + "\"";
+            statement = connection.createStatement();
+            String query = "UPDATE `zakaznici` SET `id` = '" + id + "', `jmeno` = '" + jmeno + "', `prijmeni` = '" + prijmeni
+					+ "', `email` = '" + email + "', `telefon` = '" + telefon + "' WHERE `zakaznici`.`id` = " + id;
             statement.executeUpdate(query);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -262,9 +262,7 @@ public class Aplikace {
             resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 
-                DateFormat pozadovanyFormat = new SimpleDateFormat("dd.MM.yyyy");
-		String datum = pozadovanyFormat.format(resultSet.getDate(3)).toString();
-                Vychazka vychazka = new Vychazka(resultSet.getInt(1), resultSet.getString(2), datum, resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getInt(7), resultSet.getInt(8), resultSet.getString(9));
+                Vychazka vychazka = new Vychazka(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getInt(7), resultSet.getInt(8), resultSet.getString(9));
                 evidenceVychazek.add(vychazka);
             }
 
@@ -288,14 +286,8 @@ public class Aplikace {
         try {
             connection = databaze.getConnection();
             statement = connection.createStatement();
-            // změna string parametru času do java date, aby se mohl preformatovat pro sql
-            DateFormat pozadovanyFormat = new SimpleDateFormat("dd.MM.yyyy");
-            Date datumUpdated = pozadovanyFormat.parse(datum);
-
-            // sql DATE ma tento format -> YYYY-MM-DD
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String query = "INSERT INTO `vychazky` (`id`,`nazev`,`datum`,`casZacatek`,`mistoZacatek`,`jazyk`,`kapacita`,`cena`,`pruvodce`) VALUES ('"
-                    + id + "', '" + nazev + "', '" + dateFormat.format(datumUpdated) + "', '" + casZacatek + "', '" + mistoZacatek + "', '" + jazyk + "', '" + kapacita + "', '" + cena + "', '" + pruvodce + "')";
+                    + id + "', '" + nazev + "', '" + datum + "', '" + casZacatek + "', '" + mistoZacatek + "', '" + jazyk + "', '" + kapacita + "', '" + cena + "', '" + pruvodce + "')";
             statement.executeUpdate(query);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -315,14 +307,10 @@ public class Aplikace {
 
         try {
             connection = databaze.getConnection();
-            // změna string parametru času do java date, aby se mohl preformatovat pro sql
-            DateFormat pozadovanyFormat = new SimpleDateFormat("dd.MM. yyyy");
-            Date datumUpdated = pozadovanyFormat.parse(datum);
-
-            // sql DATE ma tento format -> YYYY-MM-DD
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String query = "UPDATE `vychazky` SET (`id`,`nazev`,`datum`,`casZacatek`,`mistoZacatek`,`jazyk`,`kapacita`,`cena`,`pruvodce`) VALUES ('"
-                    + id + "', '" + nazev + "', '" + dateFormat.format(datumUpdated) + "', '" + casZacatek + "', '" + mistoZacatek + "', '" + jazyk + "', '" + kapacita + "', '" + cena + "', '" + pruvodce + "') WHERE `id` = \"" + id + "\"";
+            statement = connection.createStatement();
+            String query = "UPDATE `vychazky` SET `id` = '" + id + "', `nazev` = '" + nazev + "', `datum` = '" + datum
+					+ "', `casZacatek` = '" + casZacatek + "', `mistoZacatek` = '" + mistoZacatek + "', `jazyk` = '" + jazyk 
+                                        + "', `kapacita` = '" + kapacita + "', `cena` = '" + cena + "', `pruvodce` = '" + pruvodce + "' WHERE `vychazky`.`id` = " + id;
             statement.executeUpdate(query);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -347,7 +335,7 @@ public class Aplikace {
         for (Vychazka pom : evidenceVychazek) {
             seznamVychazek.add(pom.getNazev());
         }
-        return seznamZakazniku;
+        return seznamVychazek;
     }
     
         public ObservableList<String> getObservableListVychazek() throws SQLException {
@@ -414,8 +402,9 @@ public class Aplikace {
 
         try {
             connection = databaze.getConnection();
-            String query = "UPDATE `objednavky` SET (`id`,`vychazka`,`zakaznik`,`stav`) VALUES ('"
-                    + id + "', '" + vychazka + "', '" + zakaznik + "', '" + stav + "') WHERE `id` = \"" + id + "\"";
+            statement = connection.createStatement();
+            String query = "UPDATE `objednavky` SET `id` = '" + id + "', `vychazka` = '" + vychazka + "', `zakaznik` = '" + zakaznik
+					+ "' `stav` = '" + stav + "' WHERE `objednavky`.`id` = " + id;
             statement.executeUpdate(query);
         } catch (Exception ex) {
             ex.printStackTrace();

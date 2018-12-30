@@ -147,9 +147,10 @@ public class OknoEditovatDetailVychazky implements Initializable {
             Logger.getLogger(OknoDetailPruvodce.class.getName()).log(Level.SEVERE, null, ex);
         }
         idInput.setText(Integer.toString(vychazka.getId()));
+        idInput.setEditable(false);
         nazevInput.setText(vychazka.getNazev());
-        datumInput.setAccessibleText(vychazka.getDatum().toString());
-        casZacatkuInput.setText(vychazka.getCasZacatek().toString());
+        //datumInput.setValue(vychazka.getDatum());
+        casZacatkuInput.setText(vychazka.getCasZacatek());
         mistoInput.setText(vychazka.getMistoZacatek());
         jazykyInput.setValue(vychazka.getJazyk());
         kapacitaInput.setText(Integer.toString(vychazka.getKapacita()));
@@ -226,6 +227,7 @@ public class OknoEditovatDetailVychazky implements Initializable {
     public void ulozitVychazku(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
+            aplikace.upravVychazku(idInput.getText(), nazevInput.getText(), datumInput.getValue().toString(), casZacatkuInput.getText(), mistoInput.getText(), jazykyInput.getValue(), kapacitaInput.getText(), cenaInput.getText(), inputPruvodce.getValue());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Průvodce uložen");
             alert.setHeaderText(null);
