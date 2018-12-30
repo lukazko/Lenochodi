@@ -123,6 +123,7 @@ public class OknoEditovatDetailPruvodce implements Initializable {
             Logger.getLogger(OknoEditovatDetailPruvodce.class.getName()).log(Level.SEVERE, null, ex);
         }
         idInput.setText(Integer.toString(pruvodce.getId()));
+        idInput.setEditable(false);
         jmenoInput.setText(pruvodce.getJmeno());
         prijmeniInput.setText(pruvodce.getPrijmeni());
         emailInput.setText(pruvodce.getEmail());
@@ -205,8 +206,8 @@ public class OknoEditovatDetailPruvodce implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Změny byly úspěšně uloženy");
             alert.showAndWait();
-            //VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailPruvodce.fxml"));
-            //rootPane.getChildren().setAll(pane);
+            VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailPruvodce.fxml"));
+            rootPane.getChildren().setAll(pane);
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Chyba");

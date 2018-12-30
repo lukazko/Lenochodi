@@ -139,8 +139,8 @@ public class OknoDetailVychazky implements Initializable {
         }
         idInput.setText(Integer.toString(vychazka.getId()));
         nazevInput.setText(vychazka.getNazev());
-        datumInput.setText(vychazka.getDatum().toString());
-        casZacatkuInput.setText(vychazka.getCasZacatek().toString());
+        datumInput.setText(vychazka.getDatum());
+        casZacatkuInput.setText(vychazka.getCasZacatek());
         mistoInput.setText(vychazka.getMistoZacatek());
         jazykInput.setText(vychazka.getJazyk());
         kapacitaInput.setText(Integer.toString(vychazka.getKapacita()));

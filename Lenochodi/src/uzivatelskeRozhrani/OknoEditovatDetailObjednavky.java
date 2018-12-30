@@ -111,6 +111,7 @@ public class OknoEditovatDetailObjednavky implements Initializable {
             Logger.getLogger(OknoDetailPruvodce.class.getName()).log(Level.SEVERE, null, ex);
         }
         idInput.setText(Integer.toString(objednavka.getId()));
+        idInput.setEditable(false);
         vychazkaInput1.setText(objednavka.getVychazkaString());
         zakaznikInput1.setText(objednavka.getZakaznikString());
         stavInput.setText(objednavka.getStav());
@@ -185,6 +186,7 @@ public class OknoEditovatDetailObjednavky implements Initializable {
     public void ulozitObjednavku(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
+            aplikace.upravObjednavku(idInput.getText(), vychazkaInput1.getText(), zakaznikInput1.getText(), stavInput.getText());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Objednávka uložena");
             alert.setHeaderText(null);
