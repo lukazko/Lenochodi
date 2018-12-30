@@ -73,7 +73,11 @@ public class OknoVychazka implements Initializable {
     
     private Aplikace aplikace = new Aplikace();
     
+    public int index;
+    
         public void detail(MouseEvent event) throws IOException {
+        index = vychazkyListView.getSelectionModel().getSelectedIndex();
+        aplikace.getIndex(index);
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailVychazky.fxml"));
         rootPane.getChildren().setAll(pane);
 

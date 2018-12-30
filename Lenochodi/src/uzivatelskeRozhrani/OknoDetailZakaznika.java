@@ -109,8 +109,7 @@ public class OknoDetailZakaznika implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //index = oknoPruvodce.getZvolenehoPruvodce();
-        index = 0;
+        index = aplikace.getPomIndex();
         try {
             zakaznik = new Zakaznik(aplikace.getZakaznika(index).getId(), aplikace.getZakaznika(index).getJmeno(), aplikace.getZakaznika(index).getPrijmeni(), aplikace.getZakaznika(index).getEmail(), aplikace.getZakaznika(index).getTelefon());
         } catch (SQLException ex) {

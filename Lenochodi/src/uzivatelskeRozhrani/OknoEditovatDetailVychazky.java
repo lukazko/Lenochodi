@@ -139,8 +139,7 @@ public class OknoEditovatDetailVychazky implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(OknoEditovatDetailVychazky.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //index = oknoPruvodce.getZvolenehoPruvodce();
-        index = 0;
+        index = aplikace.getPomIndex();
         try {
             vychazka = new Vychazka(aplikace.getVychazku(index).getId(), aplikace.getVychazku(index).getNazev(), aplikace.getVychazku(index).getDatum(), aplikace.getVychazku(index).getCasZacatek(), aplikace.getVychazku(index).getMistoZacatek(), aplikace.getVychazku(index).getJazyk(), aplikace.getVychazku(index).getKapacita(), aplikace.getVychazku(index).getCena(), aplikace.getVychazku(index).getPruvodceJmeno());
         } catch (SQLException ex) {
