@@ -8,6 +8,14 @@ import javafx.collections.ObservableList;
 /**
  *
  * @author Simona
+ * @created ZS 2018/2019
+ *
+ * Třída, která využívá komunikace s databází. Metody této třídy slouží k
+ * manipulaci s daty v databázi a v aplikaci. Jsou zde předpřipravené metody pro
+ * dotazy SELECT, INSERT a UPDATE pro jednotlivé tabulky. V komentáři u metody
+ * je jako příklad popsána situace, kde danou metodu použijeme. Výsledky dotazů
+ * SELECT jsou ukládány do ObservableList.
+ *
  */
 public class Aplikace {
 
@@ -43,6 +51,9 @@ public class Aplikace {
 
     Databaze databaze = new Databaze();
 
+    /**
+     * Konstruktor třídy aplikace.
+     */
     public Aplikace() {
 
         evidenceObjednavek = FXCollections.observableArrayList();
@@ -59,50 +70,12 @@ public class Aplikace {
 
     }
 
-
-    public void zalozPruvodce(String id, String jmeno, String prijmeni, String email, String telefon, String jazyk) throws SQLException {
-        Connection connection = null;
-        Statement statement = null;
-        try {
-            connection = databaze.getConnection();
-            statement = connection.createStatement();
-            String query = "INSERT INTO `pruvodci` (`id`,`jmeno`,`prijmeni`,`email`,`telefon`, `jazyk`) VALUES ('"
-                    + id + "', '" + jmeno + "', '" + prijmeni + "', '" + email + "', '" + telefon + "', '" + jazyk + "')";
-            statement.executeUpdate(query);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            try {
-                statement.close();
-                connection.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
-
-    public void upravPruvodce(String id, String jmeno, String prijmeni, String email, String telefon, String jazyk) throws SQLException {
-        Connection connection = null;
-        Statement statement = null;
-
-        try {
-            connection = databaze.getConnection();
-            statement = connection.createStatement();
-            String query = "UPDATE `pruvodci` SET `id` = '" + id + "', `jmeno` = '" + jmeno + "', `prijmeni` = '" + prijmeni
-					+ "', `email` = '" + email + "', `telefon` = '" + telefon + "', `jazyk` = '" + jazyk + "' WHERE `pruvodci`.`id` = " + id;
-            statement.executeUpdate(query);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            try {
-                statement.close();
-                connection.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
-
+    /**
+     * Metoda vrací seznam průvodců, kteří jsou v DB.
+     *
+     * @return ObservableList<Pruvodce>
+     * @throws SQLException
+     */
     public ObservableList<Pruvodce> getEvidencePruvodcu() throws SQLException {
         Connection connection = null;
         ResultSet resultSet = null;
@@ -132,12 +105,94 @@ public class Aplikace {
         return evidencePruvodcu;
     }
 
+    /**
+     * Metoda pro vložení nového průvodce do DB, volá se v založení průvodce při
+     * stisknutí tlačítka pro uložení.
+     *
+     * @param id
+     * @param jmeno
+     * @param prijmeni
+     * @param email
+     * @param telefon
+     * @param jazyk
+     * @throws SQLException
+     */
+    public void zalozPruvodce(String id, String jmeno, String prijmeni, String email, String telefon, String jazyk) throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            connection = databaze.getConnection();
+            statement = connection.createStatement();
+            String query = "INSERT INTO `pruvodci` (`id`,`jmeno`,`prijmeni`,`email`,`telefon`, `jazyk`) VALUES ('"
+                    + id + "', '" + jmeno + "', '" + prijmeni + "', '" + email + "', '" + telefon + "', '" + jazyk + "')";
+            statement.executeUpdate(query);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                statement.close();
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Metoda pro úpravu průvodce, volá se v editaci průvodce při stisknutí
+     * tlačítka pro uložení. ID upravit nelze.
+     *
+     * @param id
+     * @param jmeno
+     * @param prijmeni
+     * @param email
+     * @param telefon
+     * @param jazyk
+     * @throws SQLException
+     */
+    public void upravPruvodce(String id, String jmeno, String prijmeni, String email, String telefon, String jazyk) throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+
+        try {
+            connection = databaze.getConnection();
+            statement = connection.createStatement();
+            String query = "UPDATE `pruvodci` SET `id` = '" + id + "', `jmeno` = '" + jmeno + "', `prijmeni` = '" + prijmeni
+                    + "', `email` = '" + email + "', `telefon` = '" + telefon + "', `jazyk` = '" + jazyk + "' WHERE `pruvodci`.`id` = " + id;
+            statement.executeUpdate(query);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                statement.close();
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Metoda slouží pro získání údajů o konkrétním průvodci. Metoda se využíva
+     * pro výpis v detailu a editaci průvodce.
+     *
+     * @param index
+     * @return Pruvodce
+     * @throws SQLException
+     */
     public Pruvodce getPruvodce(int index) throws SQLException {
         evidencePruvodcu = getEvidencePruvodcu();
         pruvodce = evidencePruvodcu.get(index);
         return pruvodce;
     }
 
+    /**
+     * Metoda slouží pro získání seznamu průvodců z DB. Metoda se využíva pro
+     * výpis v přehledu průvodců.
+     *
+     * @return ArrayList<String>
+     * @throws SQLException
+     */
     public ArrayList<String> getSeznamPruvodcu() throws SQLException {
         evidencePruvodcu = getEvidencePruvodcu();
         for (Pruvodce pom : evidencePruvodcu) {
@@ -146,6 +201,13 @@ public class Aplikace {
         return seznamPruvodcu;
     }
 
+    /**
+     * Metoda slouží pro získání seznamu průvodců z DB. Metoda se využíva pro
+     * výpis v checkBoxech.
+     *
+     * @return ObservableList<String>
+     * @throws SQLException
+     */
     public ObservableList<String> getObservableListPruvodcu() throws SQLException {
         evidencePruvodcu = getEvidencePruvodcu();
         for (Pruvodce pom : evidencePruvodcu) {
@@ -154,6 +216,12 @@ public class Aplikace {
         return listPruvodcu;
     }
 
+    /**
+     * Metoda vrací seznam zákazníků, kteří jsou v DB.
+     *
+     * @return ObservableList<Zakaznik>
+     * @throws SQLException
+     */
     public ObservableList<Zakaznik> getEvidenceZakazniku() throws SQLException {
         Connection connection = null;
         ResultSet resultSet = null;
@@ -183,6 +251,17 @@ public class Aplikace {
         return evidenceZakazniku;
     }
 
+    /**
+     * Metoda pro vložení nového zákazníka do DB, volá se v založení zákazníka
+     * při stisknutí tlačítka pro uložení.
+     *
+     * @param id
+     * @param jmeno
+     * @param prijmeni
+     * @param email
+     * @param telefon
+     * @throws SQLException
+     */
     public void zalozZakaznika(String id, String jmeno, String prijmeni, String email, String telefon) throws SQLException {
         Connection connection = null;
         Statement statement = null;
@@ -204,6 +283,17 @@ public class Aplikace {
         }
     }
 
+    /**
+     * Metoda pro úpravu zákazníka, volá se v editaci zákazníka při stisknutí
+     * tlačítka pro uložení. ID upravit nelze.
+     *
+     * @param id
+     * @param jmeno
+     * @param prijmeni
+     * @param email
+     * @param telefon
+     * @throws SQLException
+     */
     public void upravZakaznika(String id, String jmeno, String prijmeni, String email, String telefon) throws SQLException {
         Connection connection = null;
         Statement statement = null;
@@ -212,7 +302,7 @@ public class Aplikace {
             connection = databaze.getConnection();
             statement = connection.createStatement();
             String query = "UPDATE `zakaznici` SET `id` = '" + id + "', `jmeno` = '" + jmeno + "', `prijmeni` = '" + prijmeni
-					+ "', `email` = '" + email + "', `telefon` = '" + telefon + "' WHERE `zakaznici`.`id` = " + id;
+                    + "', `email` = '" + email + "', `telefon` = '" + telefon + "' WHERE `zakaznici`.`id` = " + id;
             statement.executeUpdate(query);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -226,12 +316,27 @@ public class Aplikace {
         }
     }
 
+    /**
+     * Metoda slouží pro získání údajů o konkrétním zákazníkovi. Metoda se
+     * využíva pro výpis v detailu a editaci zakaznika.
+     *
+     * @param index
+     * @return Zakaznik
+     * @throws SQLException
+     */
     public Zakaznik getZakaznika(int index) throws SQLException {
         evidenceZakazniku = getEvidenceZakazniku();
         zakaznik = evidenceZakazniku.get(index);
         return zakaznik;
     }
 
+    /**
+     * Metoda slouží pro získání seznamu zákazníků z DB. Metoda se využíva pro
+     * výpis v přehledu zákazníků.
+     *
+     * @return ArrayList<String>
+     * @throws SQLException
+     */
     public ArrayList<String> getSeznamZakazniku() throws SQLException {
         evidenceZakazniku = getEvidenceZakazniku();
         for (Zakaznik pom : evidenceZakazniku) {
@@ -240,6 +345,13 @@ public class Aplikace {
         return seznamZakazniku;
     }
 
+    /**
+     * Metoda slouží pro získání seznamu zákazníků z DB. Metoda se využíva pro
+     * výpis v checkBoxech.
+     *
+     * @return ObservableList<String>
+     * @throws SQLException
+     */
     public ObservableList<String> getObservableListZakazniku() throws SQLException {
         evidenceZakazniku = getEvidenceZakazniku();
         for (Zakaznik pom : evidenceZakazniku) {
@@ -248,6 +360,12 @@ public class Aplikace {
         return listZakazniku;
     }
 
+    /**
+     * Metoda vrací seznam vycházek, které jsou v DB.
+     *
+     * @return ObservableList<Vychazka>
+     * @throws SQLException
+     */
     public ObservableList<Vychazka> getEvidenceVychazek() throws SQLException {
         Connection connection = null;
         ResultSet resultSet = null;
@@ -258,7 +376,7 @@ public class Aplikace {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
-                
+
                 Vychazka vychazka = new Vychazka(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getInt(7), resultSet.getInt(8), resultSet.getString(9));
                 evidenceVychazek.add(vychazka);
             }
@@ -277,6 +395,21 @@ public class Aplikace {
         return evidenceVychazek;
     }
 
+    /**
+     * Metoda pro vložení nové vycházky do DB, volá se v založení vycházky při
+     * stisknutí tlačítka pro uložení.
+     *
+     * @param id
+     * @param nazev
+     * @param datum
+     * @param casZacatek
+     * @param mistoZacatek
+     * @param jazyk
+     * @param kapacita
+     * @param cena
+     * @param pruvodce
+     * @throws SQLException
+     */
     public void zalozVychazku(String id, String nazev, String datum, String casZacatek, String mistoZacatek, String jazyk, String kapacita, String cena, String pruvodce) throws SQLException {
         Connection connection = null;
         Statement statement = null;
@@ -298,6 +431,21 @@ public class Aplikace {
         }
     }
 
+    /**
+     * Metoda pro úpravu vycházky, volá se v editaci vycházky při stisknutí
+     * tlačítka pro uložení. ID upravit nelze.
+     *
+     * @param id
+     * @param nazev
+     * @param datum
+     * @param casZacatek
+     * @param mistoZacatek
+     * @param jazyk
+     * @param kapacita
+     * @param cena
+     * @param pruvodce
+     * @throws SQLException
+     */
     public void upravVychazku(String id, String nazev, String datum, String casZacatek, String mistoZacatek, String jazyk, String kapacita, String cena, String pruvodce) throws SQLException {
         Connection connection = null;
         Statement statement = null;
@@ -306,8 +454,8 @@ public class Aplikace {
             connection = databaze.getConnection();
             statement = connection.createStatement();
             String query = "UPDATE `vychazky` SET `id` = '" + id + "', `nazev` = '" + nazev + "', `datum` = '" + datum
-					+ "', `casZacatek` = '" + casZacatek + "', `mistoZacatek` = '" + mistoZacatek + "', `jazyk` = '" + jazyk 
-                                        + "', `kapacita` = '" + kapacita + "', `cena` = '" + cena + "', `pruvodce` = '" + pruvodce + "' WHERE `vychazky`.`id` = " + id;
+                    + "', `casZacatek` = '" + casZacatek + "', `mistoZacatek` = '" + mistoZacatek + "', `jazyk` = '" + jazyk
+                    + "', `kapacita` = '" + kapacita + "', `cena` = '" + cena + "', `pruvodce` = '" + pruvodce + "' WHERE `vychazky`.`id` = " + id;
             statement.executeUpdate(query);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -321,12 +469,27 @@ public class Aplikace {
         }
     }
 
+    /**
+     * Metoda slouží pro získání údajů o konkrétní vycházce. Metoda se využíva
+     * pro výpis v detailu a editaci vycházky.
+     *
+     * @param index
+     * @return Vychazka
+     * @throws SQLException
+     */
     public Vychazka getVychazku(int index) throws SQLException {
         evidenceVychazek = getEvidenceVychazek();
         vychazka = evidenceVychazek.get(index);
         return vychazka;
     }
 
+    /**
+     * Metoda slouží pro získání seznamu vycházek z DB. Metoda se využíva pro
+     * výpis v přehledu vycházek.
+     *
+     * @return ArrayList<String>
+     * @throws SQLException
+     */
     public ArrayList<String> getSeznamVychazek() throws SQLException {
         evidenceVychazek = getEvidenceVychazek();
         for (Vychazka pom : evidenceVychazek) {
@@ -334,8 +497,15 @@ public class Aplikace {
         }
         return seznamVychazek;
     }
-    
-        public ObservableList<String> getObservableListVychazek() throws SQLException {
+
+    /**
+     * Metoda slouží pro získání seznamu vycházek z DB. Metoda se využíva pro
+     * výpis v checkBoxech.
+     *
+     * @return ObservableList<String>
+     * @throws SQLException
+     */
+    public ObservableList<String> getObservableListVychazek() throws SQLException {
         evidenceVychazek = getEvidenceVychazek();
         for (Vychazka pom : evidenceVychazek) {
             listVychazek.add(pom.getNazev());
@@ -343,6 +513,12 @@ public class Aplikace {
         return listVychazek;
     }
 
+    /**
+     * Metoda vrací seznam objednávek, které jsou v DB.
+     *
+     * @return ObservableList<Objednavka>
+     * @throws SQLException
+     */
     public ObservableList<Objednavka> getEvidenceObjednavek() throws SQLException {
         Connection connection = null;
         ResultSet resultSet = null;
@@ -372,6 +548,16 @@ public class Aplikace {
         return evidenceObjednavek;
     }
 
+    /**
+     * Metoda pro vložení nové objednávky do DB, volá se v založení objednávky
+     * při stisknutí tlačítka pro uložení.
+     *
+     * @param id
+     * @param vychazka
+     * @param zakaznik
+     * @param stav
+     * @throws SQLException
+     */
     public void zalozObjednavku(String id, String vychazka, String zakaznik, String stav) throws SQLException {
         Connection connection = null;
         Statement statement = null;
@@ -393,6 +579,16 @@ public class Aplikace {
         }
     }
 
+    /**
+     * Metoda pro úpravu objednávky, volá se v editaci objednávky při stisknutí
+     * tlačítka pro uložení. ID upravit nelze.
+     *
+     * @param id
+     * @param vychazka
+     * @param zakaznik
+     * @param stav
+     * @throws SQLException
+     */
     public void upravObjednavku(String id, String vychazka, String zakaznik, String stav) throws SQLException {
         Connection connection = null;
         Statement statement = null;
@@ -401,7 +597,7 @@ public class Aplikace {
             connection = databaze.getConnection();
             statement = connection.createStatement();
             String query = "UPDATE `objednavky` SET `id` = '" + id + "', `vychazka` = '" + vychazka + "', `zakaznik` = '" + zakaznik
-					+ "', `stav` = '" + stav + "' WHERE `objednavky`.`id` = " + id;
+                    + "', `stav` = '" + stav + "' WHERE `objednavky`.`id` = " + id;
             statement.executeUpdate(query);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -415,12 +611,27 @@ public class Aplikace {
         }
     }
 
+    /**
+     * Metoda slouží pro získání údajů o konkrétní objednávce. Metoda se využíva
+     * pro výpis v detailu a editaci objednávky.
+     *
+     * @param index
+     * @return Objednavka
+     * @throws SQLException
+     */
     public Objednavka getObjednavku(int index) throws SQLException {
         evidenceObjednavek = getEvidenceObjednavek();
         objednavka = evidenceObjednavek.get(index);
         return objednavka;
     }
 
+    /**
+     * Metoda slouží pro získání seznamu objednávek z DB. Metoda se využíva pro
+     * výpis v přehledu objednávek.
+     *
+     * @return ArrayList<String>
+     * @throws SQLException
+     */
     public ArrayList<String> getSeznamObjednavek() throws SQLException {
         evidenceObjednavek = getEvidenceObjednavek();
         for (Objednavka pom : evidenceObjednavek) {
