@@ -84,8 +84,6 @@ public class Aplikace {
     public void upravPruvodce(String id, String jmeno, String prijmeni, String email, String telefon, String jazyk) throws SQLException {
         Connection connection = null;
         Statement statement = null;
-        int id2;
-        id2 = Integer.valueOf(id);
 
         try {
             connection = databaze.getConnection();
@@ -403,7 +401,7 @@ public class Aplikace {
             connection = databaze.getConnection();
             statement = connection.createStatement();
             String query = "UPDATE `objednavky` SET `id` = '" + id + "', `vychazka` = '" + vychazka + "', `zakaznik` = '" + zakaznik
-					+ "' `stav` = '" + stav + "' WHERE `objednavky`.`id` = " + id;
+					+ "', `stav` = '" + stav + "' WHERE `objednavky`.`id` = " + id;
             statement.executeUpdate(query);
         } catch (Exception ex) {
             ex.printStackTrace();
