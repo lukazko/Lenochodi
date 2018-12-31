@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package uzivatelskeRozhrani;
 
 import java.net.URL;
@@ -31,9 +26,12 @@ import logika.Aplikace;
 import logika.Pruvodce;
 
 /**
- * FXML Controller class
+ * OknoEditovatDetailPrůvodce
  *
- * @author barton, Simona
+ * Třída, která slouží jako FXML controller pro okno s editací průvodce.
+ *
+ * @author Lukáš, Pavel, Simona
+ * @created ZS 2018/2019
  */
 public class OknoEditovatDetailPruvodce implements Initializable {
 
@@ -115,6 +113,10 @@ public class OknoEditovatDetailPruvodce implements Initializable {
 
     private Integer index;
 
+    /**
+     * Metoda naplňující grafické prvky daty z databáze při vytvoření scény.
+     *
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         index = aplikace.getPomIndex();
@@ -133,35 +135,72 @@ public class OknoEditovatDetailPruvodce implements Initializable {
         jazykyInput.setValue(pruvodce.getJazyk());
     }
 
+    /**
+     * Metoda, která po zavolání vykreslí scénu s výpisem všech vycházek.
+     *
+     * @param ActionEvent event
+     * @throws Exception
+     */
     @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     * Metoda, která po zavolání vykreslí scénu s výpisem všech objednávek.
+     *
+     * @param ActionEvent event
+     * @throws Exception
+     */
     @FXML
     public void loadObjednavky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoObjednavka.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     * Metoda, která po zavolání vykreslí scénu s výpisem všech průvodců.
+     *
+     * @param ActionEvent event
+     * @throws Exception
+     */
     @FXML
     public void loadPruvodci(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoPruvodce.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     * Metoda, která po zavolání vykreslí scénu s výpisem všech zákazníků.
+     *
+     * @param ActionEvent event
+     * @throws Exception
+     */
     @FXML
     public void loadZakaznici(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     * Metoda, která po zavolání vrátí uživatele o krok zpět, tedy na detail
+     * zvoleného průvodce.
+     *
+     * @param ActionEvent event
+     * @throws Exception
+     */
     public void detail(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailPruvodce.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     * Metoda při kliknutí na příslušnou položku zobrazí modální okno s
+     * informacemi o programu.
+     *
+     * @param ActionEvent t
+     */
     @FXML
     public void zobrazInfo(ActionEvent t) {
 
@@ -174,6 +213,12 @@ public class OknoEditovatDetailPruvodce implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Metoda při kliknutí na příslušnou položku zobrazí nové okno s html
+     * nápovědou.
+     *
+     * @param ActionEvent t
+     */
     @FXML
     public void zobrazNapovedu(ActionEvent t) {
 
@@ -188,6 +233,11 @@ public class OknoEditovatDetailPruvodce implements Initializable {
 
     }
 
+    /**
+     * Metoda kontroluje, zda je hodnota v příslušeném poli typu integer.
+     *
+     * @param TextField t
+     */
     public static boolean isInteger(TextField t) {
         int x;
         try {
@@ -198,6 +248,14 @@ public class OknoEditovatDetailPruvodce implements Initializable {
         }
     }
 
+    /**
+     * Metoda voláná před ukládáním dat do databáze. Kontroluje vstupy, zda
+     * splňují podmínky pro uložení, zobrazuje modální okna s informacemi o
+     * průběhu ukládání.
+     *
+     * @param ActionEvent event
+     * @throws Exception
+     */
     @FXML
     public void ulozitPruvodce(ActionEvent event) throws Exception {
         if (isInteger(idInput)) {
