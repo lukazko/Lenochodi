@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package uzivatelskeRozhrani;
 
 import java.io.IOException;
@@ -29,13 +24,17 @@ import javafx.stage.Stage;
 import logika.Aplikace;
 
 /**
- * FXML Controller class
+ * OknoObjednavka
  *
- * @author barton, Simona
+ * Třída, která slouží jako FXML controller pro okno se zobrazením seznamu všech
+ * objednávek.
+ *
+ * @author Lukáš, Pavel, Simona
+ * @created ZS 2018/2019
  */
 public class OknoObjednavka implements Initializable {
 
-      @FXML
+    @FXML
     private MenuItem pruvodciItem1;
 
     @FXML
@@ -70,42 +69,79 @@ public class OknoObjednavka implements Initializable {
 
     @FXML
     private MenuItem vychazkyItem1;
-    
+
     private Aplikace aplikace = new Aplikace();
-    
+
     public int index;
 
+    /**
+     * Metoda, která při kliknutí na příšlušné tlačítko nastaví scénu pro
+     * založení nové objednávky.
+     *
+     * @param event událost při které se má metoda provést
+     * @throws Exception
+     */
     @FXML
     public void zalozitObjednavku(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZalozitObjednavku.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     * Metoda, která po zavolání vykreslí scénu s výpisem všech vycházek.
+     *
+     * @param event událost při které se má metoda provést
+     * @throws Exception
+     */
     @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     * Metoda, která po zavolání vykreslí scénu s výpisem všech objednávek.
+     *
+     * @param event událost při které se má metoda provést
+     * @throws Exception
+     */
     @FXML
     public void loadObjednavky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoObjednavka.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     * Metoda, která po zavolání vykreslí scénu s výpisem všech průvodců.
+     *
+     * @param event událost při které se má metoda provést
+     * @throws Exception
+     */
     @FXML
     public void loadPruvodci(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoPruvodce.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     * Metoda, která po zavolání vykreslí scénu s výpisem všech zákazníků.
+     *
+     * @param event událost při které se má metoda provést
+     * @throws Exception
+     */
     @FXML
     public void loadZakaznici(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
         rootPane.getChildren().setAll(pane);
     }
-    
-        @FXML
+
+    /**
+     * Metoda při kliknutí na příslušnou položku zobrazí modální okno s
+     * informacemi o programu.
+     *
+     * @param t událost při které se má metoda provést
+     */
+    @FXML
     public void zobrazInfo(ActionEvent t) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -117,6 +153,12 @@ public class OknoObjednavka implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Metoda při kliknutí na příslušnou položku zobrazí nové okno s html
+     * nápovědou.
+     *
+     * @param t událost při které se má metoda provést
+     */
     @FXML
     public void zobrazNapovedu(ActionEvent t) {
 
@@ -131,6 +173,13 @@ public class OknoObjednavka implements Initializable {
 
     }
 
+    /**
+     * Metoda, která při kliknutí na položku seznamu vypíše detail příslušné
+     * objednávky
+     *
+     * @param event událost při které se má metoda provést
+     * @throws IOException
+     */
     public void detail(MouseEvent event) throws IOException {
         index = objednavkyListView.getSelectionModel().getSelectedIndex();
         aplikace.getIndex(index);
@@ -138,16 +187,20 @@ public class OknoObjednavka implements Initializable {
         rootPane.getChildren().setAll(pane);
 
     }
-     
+
+    /**
+     * Metoda naplňující grafické prvky daty z databáze při vytvoření scény.
+     *
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
             objednavkyListView.getItems().addAll(aplikace.getSeznamObjednavek());
         } catch (SQLException ex) {
             Logger.getLogger(OknoPruvodce.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-        
-    }                       
- 
-    
+        }
+
+    }
 }

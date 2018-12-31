@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package uzivatelskeRozhrani;
 
 import java.io.IOException;
@@ -29,9 +24,13 @@ import javafx.scene.web.WebView;
 import logika.Aplikace;
 
 /**
- * FXML Controller class
+ * OknoVychazka
  *
- * @author barton, Simona
+ * Třída, která slouží jako FXML controller pro okno se zobrazením seznamu všech
+ * vycházek.
+ *
+ * @author Lukáš, Pavel, Simona
+ * @created ZS 2018/2019
  */
 public class OknoVychazka implements Initializable {
 
@@ -70,12 +69,19 @@ public class OknoVychazka implements Initializable {
 
     @FXML
     private Button zalozitVychazkuButton;
-    
+
     private Aplikace aplikace = new Aplikace();
-    
+
     public int index;
-    
-        public void detail(MouseEvent event) throws IOException {
+
+    /**
+     * Metoda, která při kliknutí na položku seznamu vypíše detail příslušné
+     * vycházky
+     *
+     * @param event událost při které se má metoda provést
+     * @throws IOException
+     */
+    public void detail(MouseEvent event) throws IOException {
         index = vychazkyListView.getSelectionModel().getSelectedIndex();
         aplikace.getIndex(index);
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailVychazky.fxml"));
@@ -83,31 +89,74 @@ public class OknoVychazka implements Initializable {
 
     }
 
-    @FXML public void zalozitVychazku (ActionEvent event) throws Exception {
+    /**
+     * Metoda, která při kliknutí na příšlušné tlačítko nastaví scénu pro
+     * založení nové vycházky.
+     *
+     * @param event událost při které se má metoda provést
+     * @throws Exception
+     */
+    @FXML
+    public void zalozitVychazku(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZalozitVychazku.fxml"));
-	rootPane.getChildren().setAll(pane);	
-}
-        @FXML public void loadVychazky (ActionEvent event) throws Exception{
+        rootPane.getChildren().setAll(pane);
+    }
+
+    /**
+     * Metoda, která po zavolání vykreslí scénu s výpisem všech vycházek.
+     *
+     * @param event událost při které se má metoda provést
+     * @throws Exception
+     */
+    @FXML
+    public void loadVychazky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
-	rootPane.getChildren().setAll(pane);	
+        rootPane.getChildren().setAll(pane);
     }
-        
-        @FXML public void loadObjednavky (ActionEvent event) throws Exception{
+
+    /**
+     * Metoda, která po zavolání vykreslí scénu s výpisem všech objednávek.
+     *
+     * @param event událost při které se má metoda provést
+     * @throws Exception
+     */
+    @FXML
+    public void loadObjednavky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoObjednavka.fxml"));
-	rootPane.getChildren().setAll(pane);	
+        rootPane.getChildren().setAll(pane);
     }
-            
-    @FXML public void loadPruvodci (ActionEvent event) throws Exception{
+
+    /**
+     * Metoda, která po zavolání vykreslí scénu s výpisem všech průvodců.
+     *
+     * @param event událost při které se má metoda provést
+     * @throws Exception
+     */
+    @FXML
+    public void loadPruvodci(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoPruvodce.fxml"));
-	rootPane.getChildren().setAll(pane);	
-    }   
-        
-    @FXML public void loadZakaznici (ActionEvent event) throws Exception{
-        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
-	rootPane.getChildren().setAll(pane);	
+        rootPane.getChildren().setAll(pane);
     }
-    
-        @FXML
+
+    /**
+     * Metoda, která po zavolání vykreslí scénu s výpisem všech zákazníků.
+     *
+     * @param event událost při které se má metoda provést
+     * @throws Exception
+     */
+    @FXML
+    public void loadZakaznici(ActionEvent event) throws Exception {
+        VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
+
+    /**
+     * Metoda při kliknutí na příslušnou položku zobrazí modální okno s
+     * informacemi o programu.
+     *
+     * @param t událost při které se má metoda provést
+     */
+    @FXML
     public void zobrazInfo(ActionEvent t) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -119,6 +168,12 @@ public class OknoVychazka implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Metoda při kliknutí na příslušnou položku zobrazí nové okno s html
+     * nápovědou.
+     *
+     * @param t událost při které se má metoda provést
+     */
     @FXML
     public void zobrazNapovedu(ActionEvent t) {
 
@@ -132,7 +187,13 @@ public class OknoVychazka implements Initializable {
         stage.show();
 
     }
-    
+
+    /**
+     * Metoda naplňující grafické prvky daty z databáze při vytvoření scény.
+     *
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {

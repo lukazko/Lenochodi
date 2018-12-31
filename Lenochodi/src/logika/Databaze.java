@@ -9,6 +9,7 @@ import java.sql.*;
 /**
  *
  * @author Simona
+ * @created ZS 2018/2019
  * 
  * Třída sloužící k navázání spojení s databází.
  * 
