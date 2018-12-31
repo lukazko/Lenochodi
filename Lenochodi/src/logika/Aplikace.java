@@ -212,7 +212,7 @@ public class Aplikace {
     public ObservableList<String> getObservableListPruvodcu() throws SQLException {
         evidencePruvodcu = getEvidencePruvodcu();
         for (Pruvodce pom : evidencePruvodcu) {
-            listPruvodcu.add(pom.getCeleJmeno());
+               listPruvodcu.add(pom.getCeleJmeno() + " " + pom.getJazyk()); 
         }
         return listPruvodcu;
     }
