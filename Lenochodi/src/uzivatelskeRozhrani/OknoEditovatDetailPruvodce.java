@@ -26,7 +26,7 @@ import logika.Aplikace;
 import logika.Pruvodce;
 
 /**
- * OknoEditovatDetailPrůvodce
+ * OknoEditovatDetailPruvodce
  *
  * Třída, která slouží jako FXML controller pro okno s editací průvodce.
  *
@@ -116,6 +116,8 @@ public class OknoEditovatDetailPruvodce implements Initializable {
     /**
      * Metoda naplňující grafické prvky daty z databáze při vytvoření scény.
      *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -138,7 +140,7 @@ public class OknoEditovatDetailPruvodce implements Initializable {
     /**
      * Metoda, která po zavolání vykreslí scénu s výpisem všech vycházek.
      *
-     * @param ActionEvent event
+     * @param event událost při které se má metoda provést
      * @throws Exception
      */
     @FXML
@@ -150,7 +152,7 @@ public class OknoEditovatDetailPruvodce implements Initializable {
     /**
      * Metoda, která po zavolání vykreslí scénu s výpisem všech objednávek.
      *
-     * @param ActionEvent event
+     * @param event událost při které se má metoda provést
      * @throws Exception
      */
     @FXML
@@ -162,7 +164,7 @@ public class OknoEditovatDetailPruvodce implements Initializable {
     /**
      * Metoda, která po zavolání vykreslí scénu s výpisem všech průvodců.
      *
-     * @param ActionEvent event
+     * @param event událost při které se má metoda provést
      * @throws Exception
      */
     @FXML
@@ -174,7 +176,7 @@ public class OknoEditovatDetailPruvodce implements Initializable {
     /**
      * Metoda, která po zavolání vykreslí scénu s výpisem všech zákazníků.
      *
-     * @param ActionEvent event
+     * @param event událost při které se má metoda provést
      * @throws Exception
      */
     @FXML
@@ -187,7 +189,7 @@ public class OknoEditovatDetailPruvodce implements Initializable {
      * Metoda, která po zavolání vrátí uživatele o krok zpět, tedy na detail
      * zvoleného průvodce.
      *
-     * @param ActionEvent event
+     * @param event událost při které se má metoda provést
      * @throws Exception
      */
     public void detail(ActionEvent event) throws Exception {
@@ -199,7 +201,7 @@ public class OknoEditovatDetailPruvodce implements Initializable {
      * Metoda při kliknutí na příslušnou položku zobrazí modální okno s
      * informacemi o programu.
      *
-     * @param ActionEvent t
+     * @param t událost při které se má metoda provést
      */
     @FXML
     public void zobrazInfo(ActionEvent t) {
@@ -217,7 +219,7 @@ public class OknoEditovatDetailPruvodce implements Initializable {
      * Metoda při kliknutí na příslušnou položku zobrazí nové okno s html
      * nápovědou.
      *
-     * @param ActionEvent t
+     * @param t událost při které se má metoda provést
      */
     @FXML
     public void zobrazNapovedu(ActionEvent t) {
@@ -236,7 +238,7 @@ public class OknoEditovatDetailPruvodce implements Initializable {
     /**
      * Metoda kontroluje, zda je hodnota v příslušeném poli typu integer.
      *
-     * @param TextField t
+     * @param t textové pole s porovnávanou hodnotou
      */
     public static boolean isInteger(TextField t) {
         int x;
@@ -253,7 +255,7 @@ public class OknoEditovatDetailPruvodce implements Initializable {
      * splňují podmínky pro uložení, zobrazuje modální okna s informacemi o
      * průběhu ukládání.
      *
-     * @param ActionEvent event
+     * @param event událost při které se má metoda provést
      * @throws Exception
      */
     @FXML

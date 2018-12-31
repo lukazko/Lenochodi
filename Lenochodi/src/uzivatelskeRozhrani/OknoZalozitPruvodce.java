@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package uzivatelskeRozhrani;
 
 import java.net.URL;
@@ -28,9 +23,12 @@ import logika.Aplikace;
 import logika.Pruvodce;
 
 /**
- * FXML Controller class
+ * OknoZalozitPruvodce
  *
- * @author lukas, Simona
+ * Třída, která slouží jako FXML controller pro okno se založením průvodce.
+ *
+ * @author Lukáš, Simona
+ * @created ZS 2018/2019
  */
 public class OknoZalozitPruvodce implements Initializable {
 
@@ -107,30 +105,59 @@ public class OknoZalozitPruvodce implements Initializable {
 
     private Pruvodce pruvodce;
 
+    /**
+     * Metoda, která po zavolání vykreslí scénu s výpisem všech vycházek.
+     *
+     * @param event událost při které se má metoda provést
+     * @throws Exception
+     */
     @FXML
     public void loadVychazky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     * Metoda, která po zavolání vykreslí scénu s výpisem všech objednávek.
+     *
+     * @param event událost při které se má metoda provést
+     * @throws Exception
+     */
     @FXML
     public void loadObjednavky(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoObjednavka.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     * Metoda, která po zavolání vykreslí scénu s výpisem všech průvodců.
+     *
+     * @param event událost při které se má metoda provést
+     * @throws Exception
+     */
     @FXML
     public void loadPruvodci(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoPruvodce.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     * Metoda, která po zavolání vykreslí scénu s výpisem všech zákazníků.
+     *
+     * @param event událost při které se má metoda provést
+     * @throws Exception
+     */
     @FXML
     public void loadZakaznici(ActionEvent event) throws Exception {
         VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoZakaznik.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
+    /**
+     * Metoda kontroluje, zda je hodnota v příslušeném poli typu integer.
+     *
+     * @param t textové pole s porovnávanou hodnotou
+     */
     public static boolean isInteger(TextField t) {
         int x;
         try {
@@ -141,11 +168,19 @@ public class OknoZalozitPruvodce implements Initializable {
         }
     }
 
+    /**
+     * Metoda voláná před ukládáním dat do databáze. Kontroluje vstupy, zda
+     * splňují podmínky pro uložení, zobrazuje modální okna s informacemi o
+     * průběhu ukládání.
+     *
+     * @param event událost při které se má metoda provést
+     * @throws Exception
+     */
     @FXML
     public void potvrditPruvodce(ActionEvent event) throws Exception {
 
         if (isInteger(idInput)) {
-            if (idInput.getText().trim().equals("") || jmenoInput.getText().trim().equals("") || prijmeniInput.getText().trim().equals("") || telefonInput.getText().trim().equals("") || emailInput.getText().trim().equals("") || jazykyInput.getValue().toString().trim().equals("")) {
+            if (idInput.getText().trim().equals("") || jmenoInput.getText().trim().equals("") || prijmeniInput.getText().trim().equals("") || telefonInput.getText().trim().equals("") || emailInput.getText().trim().equals("") || jazykyInput.getValue().trim().equals("")) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Chyba");
                 alert.setHeaderText(null);
@@ -170,6 +205,12 @@ public class OknoZalozitPruvodce implements Initializable {
         }
     }
 
+    /**
+     * Metoda při kliknutí na příslušnou položku zobrazí modální okno s
+     * informacemi o programu.
+     *
+     * @param t událost při které se má metoda provést
+     */
     @FXML
     public void zobrazInfo(ActionEvent t) {
 
@@ -182,6 +223,12 @@ public class OknoZalozitPruvodce implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Metoda při kliknutí na příslušnou položku zobrazí nové okno s html
+     * nápovědou.
+     *
+     * @param t událost při které se má metoda provést
+     */
     @FXML
     public void zobrazNapovedu(ActionEvent t) {
 
@@ -196,6 +243,12 @@ public class OknoZalozitPruvodce implements Initializable {
 
     }
 
+    /**
+     * Metoda naplňující grafické prvky daty z databáze při vytvoření scény.
+     *
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         jazykyInput.setItems(FXCollections.observableArrayList("CZ", "EN", "DE"));
