@@ -147,6 +147,7 @@ public class OknoZalozitObjednavku implements Initializable {
      * Metoda kontroluje, zda je hodnota v příslušeném poli typu integer.
      *
      * @param t textové pole s porovnávanou hodnotou
+     * @return true/false zda porovnávané pole obsahuje int číslo
      */
     public static boolean isInteger(TextField t) {
         int x;

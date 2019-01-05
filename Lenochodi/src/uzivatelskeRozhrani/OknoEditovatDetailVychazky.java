@@ -263,6 +263,7 @@ public class OknoEditovatDetailVychazky implements Initializable {
      * Metoda kontroluje, zda je hodnota v příslušeném poli typu integer.
      *
      * @param t textové pole s porovnávanou hodnotou
+     * @return true/false zda porovnávané pole obsahuje int číslo
      */
     public static boolean isInteger(TextField t) {
         int x;
@@ -285,7 +286,7 @@ public class OknoEditovatDetailVychazky implements Initializable {
     @FXML
     public void ulozitVychazku(ActionEvent event) throws Exception {
 
-        if (isInteger(idInput)) {
+        if (isInteger(idInput) && isInteger(kapacitaInput) && isInteger(cenaInput)) {
             if (nazevInput.getText().trim().equals("") || datumInput.getValue().toString().trim().equals("") || casZacatkuInput.getText().trim().equals("") || mistoInput.getText().trim().equals("") || kapacitaInput.getText().trim().equals("") || cenaInput.getText().trim().equals("")) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Chyba");

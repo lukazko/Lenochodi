@@ -201,7 +201,7 @@ public class OknoZalozitVychazku implements Initializable {
     @FXML
     public void potvrditVychazku(ActionEvent event) throws Exception {
 
-        if (isInteger(idInput)) {
+        if (isInteger(idInput) && isInteger(kapacitaInput) && isInteger(cenaInput)) {
             if (idInput.getText().trim().equals("") || nazevInput.getText().trim().equals("") || datumInput.getValue().toString().trim().equals("") || casZacatkuInput.getText().trim().equals("") || mistoInput.getText().trim().equals("") || kapacitaInput.getText().trim().equals("") || cenaInput.getText().trim().equals("") || jazykInput.getValue().toString().trim().equals("") || inputPruvodce.getValue().toString().trim().equals("")) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Chyba");
