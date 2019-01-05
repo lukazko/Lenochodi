@@ -653,7 +653,7 @@ public class Aplikace {
         evidenceVychazek = getEvidenceVychazek();
         int id = 0;
         for (Vychazka vychazkaPom : evidenceVychazek) {
-            if (vychazkaPom.getNazev() == nazev) {
+            if (vychazkaPom.getNazev().equals(nazev)) {
                 id = vychazkaPom.getId();
                 break;
             }
@@ -661,7 +661,7 @@ public class Aplikace {
         vychazka = evidenceVychazek.get(id-1);
         int kapacita = vychazka.getKapacita();
         for (Objednavka objednavkaPom : evidenceObjednavek) {
-            if (objednavkaPom.getVychazkaString() == nazev) {
+            if (objednavkaPom.getVychazkaString().equals(nazev)) {
                 kapacita--;
             }
         }
