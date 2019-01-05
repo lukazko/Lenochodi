@@ -2,6 +2,7 @@ package uzivatelskeRozhrani;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,7 +32,7 @@ import logika.Vychazka;
  *
  * Třída, která slouží jako FXML controller pro okno s editací vycházky.
  *
- * @author Lukáš, Pavel, Simona
+ * @author Lukáš, Pavel, Simona, Katerina
  * @created ZS 2018/2019
  */
 public class OknoEditovatDetailVychazky implements Initializable {
@@ -152,7 +153,7 @@ public class OknoEditovatDetailVychazky implements Initializable {
         idInput.setText(Integer.toString(vychazka.getId()));
         idInput.setEditable(false);
         nazevInput.setText(vychazka.getNazev());
-        //datumInput.setValue(vychazka.getDatum());
+        datumInput.setValue(LocalDate.parse(vychazka.getDatum()));
         casZacatkuInput.setText(vychazka.getCasZacatek());
         mistoInput.setText(vychazka.getMistoZacatek());
         jazykyInput.setValue(vychazka.getJazyk());
