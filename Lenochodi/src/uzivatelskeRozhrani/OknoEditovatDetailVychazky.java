@@ -2,6 +2,7 @@ package uzivatelskeRozhrani;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,7 +32,7 @@ import logika.Vychazka;
  *
  * Třída, která slouží jako FXML controller pro okno s editací vycházky.
  *
- * @author Lukáš, Pavel, Simona
+ * @author Lukáš, Pavel, Simona, Katerina
  * @created ZS 2018/2019
  */
 public class OknoEditovatDetailVychazky implements Initializable {
@@ -152,7 +153,7 @@ public class OknoEditovatDetailVychazky implements Initializable {
         idInput.setText(Integer.toString(vychazka.getId()));
         idInput.setEditable(false);
         nazevInput.setText(vychazka.getNazev());
-        //datumInput.setValue(vychazka.getDatum());
+        datumInput.setValue(LocalDate.parse(vychazka.getDatum()));
         casZacatkuInput.setText(vychazka.getCasZacatek());
         mistoInput.setText(vychazka.getMistoZacatek());
         jazykyInput.setValue(vychazka.getJazyk());
@@ -283,33 +284,62 @@ public class OknoEditovatDetailVychazky implements Initializable {
      * @param event událost při které se má metoda provést
      * @throws Exception
      */
+    
     @FXML
-    public void ulozitVychazku(ActionEvent event) throws Exception {
-
-        if (isInteger(idInput) && isInteger(kapacitaInput) && isInteger(cenaInput)) {
-            if (nazevInput.getText().trim().equals("") || datumInput.getValue().toString().trim().equals("") || casZacatkuInput.getText().trim().equals("") || mistoInput.getText().trim().equals("") || kapacitaInput.getText().trim().equals("") || cenaInput.getText().trim().equals("")) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Chyba");
-                alert.setHeaderText(null);
-                alert.setContentText("Neočekávaná chyba ve vstupních datech");
-                alert.showAndWait();
-            } else {
-                aplikace.upravVychazku(idInput.getText(), nazevInput.getText(), datumInput.getValue().toString(), casZacatkuInput.getText(), mistoInput.getText(), jazykyInput.getValue(), kapacitaInput.getText(), cenaInput.getText(), inputPruvodce.getValue());
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Průvodce uložen");
-                alert.setHeaderText(null);
-                alert.setContentText("Změny byly úspěšně uloženy");
-                alert.showAndWait();
-                VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailVychazky.fxml"));
+    public void ulozitVychazku(ActionEvent event) throws Exception 
+    {
+        if (isInteger(idInput) && isInteger(kapacitaInput) && isInteger(cenaInput)) 
+        {
+            if (idInput.getText().trim().equals("") 
+                    || nazevInput.getText().trim().equals("") 
+                    || datumInput.getValue().toString().trim().equals("") 
+                    || casZacatkuInput.getText().trim().equals("") 
+                    || mistoInput.getText().trim().equals("") 
+                    || kapacitaInput.getText().trim().equals("") 
+                    || cenaInput.getText().trim().equals("") 
+                    || jazykyInput.getValue().toString().trim().equals("") 
+                    || inputPruvodce.getValue().toString().trim().equals("")) 
+            {
+                zavolejAlert("Chyba","Neočekávaná chyba ve vstupních datech");
+            } 
+            else 
+            {
+                String jazykPruvodce = inputPruvodce.getValue().substring(inputPruvodce.getValue().length() - 2);
+                if(jazykyInput.getValue().equals(jazykPruvodce))
+                { 
+                aplikace.zalozVychazku(idInput.getText(), nazevInput.getText(), datumInput.getValue().toString()
+                ,casZacatkuInput.getText(), mistoInput.getText(), jazykyInput.getValue(), kapacitaInput.getText() 
+                ,cenaInput.getText(), inputPruvodce.getValue());
+                
+                zavolejAlert("Vycházka založena","Vycházka byla úspěšně založena");
+                VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
                 rootPane.getChildren().setAll(pane);
+                }
+                else
+                {
+                    zavolejAlert("Chyba","Jazyk průvodce se musí rovnat jazyku vycházky");
+                }
             }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Chyba");
-            alert.setHeaderText(null);
-            alert.setContentText("Neočekávaná chyba ve vstupních datech");
-            alert.showAndWait();
+        } 
+        else 
+        {
+            zavolejAlert("Chyba","Neočekávaná chyba ve vstupních datech");
         }
+    }
+    
+    /**
+     * Metoda pro volání Alertu aby v tom nebyl guláš
+     * a nebyli tu tisíckrát ty samé řádky dokola
+     *
+     * @param nadpis a chyba
+     */
+    
+    public void zavolejAlert(String title,String content)
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
 }
