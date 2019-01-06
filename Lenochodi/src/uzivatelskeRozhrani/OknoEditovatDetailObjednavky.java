@@ -236,7 +236,7 @@ public class OknoEditovatDetailObjednavky implements Initializable {
     @FXML
     public void ulozitObjednavku(ActionEvent event) throws Exception {
 
-        if (aplikace.getZbylaKapacita(vychazkaInput1.getValue()) > 0) {
+        if (aplikace.getZbylaKapacita(vychazkaInput1.getValue()) >= 0) {
             if (stavInput.getText().trim().equals("")) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Chyba");
