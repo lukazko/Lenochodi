@@ -230,7 +230,7 @@ public class OknoZalozitVychazku implements Initializable {
                 }
                 else
                 {
-                    zavolejAlert("Chyba","Jazyk průvodce se musí rovnat jazyku vycházky");
+                    zavolejAlert("Chyba","Jazyk průvodce se musí odpovídat jazyku vycházky");
                 }
             }
         } 
