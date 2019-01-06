@@ -307,7 +307,7 @@ public class OknoEditovatDetailVychazky implements Initializable {
                     VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailVychazky.fxml"));
                     rootPane.getChildren().setAll(pane);
                 } else {
-                    zavolejAlert("Chyba", "Jazyk průvodce se musí rovnat jazyku vycházky");
+                    zavolejAlert("Chyba", "Jazyk průvodce se musí odpovídat jazyku vycházky");
                 }
             }
         } else {
