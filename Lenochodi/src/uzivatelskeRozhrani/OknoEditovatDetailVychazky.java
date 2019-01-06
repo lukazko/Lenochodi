@@ -294,15 +294,15 @@ public class OknoEditovatDetailVychazky implements Initializable {
                     || mistoInput.getText().trim().equals("")
                     || kapacitaInput.getText().trim().equals("")
                     || cenaInput.getText().trim().equals("")
-                    || jazykyInput.getValue().toString().trim().equals("")
-                    || inputPruvodce.getValue().toString().trim().equals("")) {
+                    || jazykyInput.getValue().trim().equals("")
+                    || inputPruvodce.getValue().trim().equals("")) {
                 zavolejAlert("Chyba", "Neočekávaná chyba ve vstupních datech");
             } else {
                 String jazykPruvodce = inputPruvodce.getValue().substring(inputPruvodce.getValue().length() - 2);
                 if (jazykyInput.getValue().equals(jazykPruvodce)) {
                     aplikace.upravVychazku(idInput.getText(), nazevInput.getText(), datumInput.getValue().toString(),
-                             casZacatkuInput.getText(), mistoInput.getText(), jazykyInput.getValue(), kapacitaInput.getText(),
-                             cenaInput.getText(), inputPruvodce.getValue());
+                            casZacatkuInput.getText(), mistoInput.getText(), jazykyInput.getValue(), kapacitaInput.getText(),
+                            cenaInput.getText(), inputPruvodce.getValue());
                     zavolejAlert("Vycházka založena", "Vycházka byla úspěšně založena");
                     VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailVychazky.fxml"));
                     rootPane.getChildren().setAll(pane);
@@ -319,7 +319,8 @@ public class OknoEditovatDetailVychazky implements Initializable {
      * Metoda pro volání Alertu aby v tom nebyl guláš a nebyli tu tisíckrát ty
      * samé řádky dokola
      *
-     * @param nadpis a chyba
+     * @param title nadpis
+     * @param content chyba
      */
     public void zavolejAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
