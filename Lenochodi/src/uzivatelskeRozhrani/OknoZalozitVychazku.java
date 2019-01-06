@@ -31,7 +31,7 @@ import logika.Vychazka;
  *
  * Třída, která slouží jako FXML controller pro okno se založením vycházky.
  *
- * @author Lukáš, Simona
+ * @author Lukáš, Simona, Katerina
  * @created ZS 2018/2019
  */
 public class OknoZalozitVychazku implements Initializable {
@@ -199,32 +199,59 @@ public class OknoZalozitVychazku implements Initializable {
      * @throws Exception
      */
     @FXML
-    public void potvrditVychazku(ActionEvent event) throws Exception {
-
-        if (isInteger(idInput) && isInteger(kapacitaInput) && isInteger(cenaInput)) {
-            if (idInput.getText().trim().equals("") || nazevInput.getText().trim().equals("") || datumInput.getValue().toString().trim().equals("") || casZacatkuInput.getText().trim().equals("") || mistoInput.getText().trim().equals("") || kapacitaInput.getText().trim().equals("") || cenaInput.getText().trim().equals("") || jazykInput.getValue().toString().trim().equals("") || inputPruvodce.getValue().toString().trim().equals("")) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Chyba");
-                alert.setHeaderText(null);
-                alert.setContentText("Neočekávaná chyba ve vstupních datech");
-                alert.showAndWait();
-            } else {
-                aplikace.zalozVychazku(idInput.getText(), nazevInput.getText(), datumInput.getValue().toString(), casZacatkuInput.getText(), mistoInput.getText(), jazykInput.getValue(), kapacitaInput.getText(), cenaInput.getText(), inputPruvodce.getValue());
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Vycházka založena");
-                alert.setHeaderText(null);
-                alert.setContentText("Vycházka byla úspěšně založena");
-                alert.showAndWait();
+    public void potvrditVychazku(ActionEvent event) throws Exception 
+    {
+        if (isInteger(idInput) && isInteger(kapacitaInput) && isInteger(cenaInput)) 
+        {
+            if (idInput.getText().trim().equals("") 
+                    || nazevInput.getText().trim().equals("") 
+                    || datumInput.getValue().toString().trim().equals("") 
+                    || casZacatkuInput.getText().trim().equals("") 
+                    || mistoInput.getText().trim().equals("") 
+                    || kapacitaInput.getText().trim().equals("") 
+                    || cenaInput.getText().trim().equals("") 
+                    || jazykInput.getValue().toString().trim().equals("") 
+                    || inputPruvodce.getValue().toString().trim().equals("")) 
+            {
+                zavolejAlert("Chyba","Neočekávaná chyba ve vstupních datech");
+            } 
+            else 
+            {
+                String jazykPruvodce = inputPruvodce.getValue().substring(inputPruvodce.getValue().length() - 2);
+                if(jazykInput.getValue().equals(jazykPruvodce))
+                {
+                aplikace.zalozVychazku(idInput.getText(), nazevInput.getText(), datumInput.getValue().toString()
+                ,casZacatkuInput.getText(), mistoInput.getText(), jazykInput.getValue(), kapacitaInput.getText() 
+                ,cenaInput.getText(), inputPruvodce.getValue());
+                
+                zavolejAlert("Vycházka založena","Vycházka byla úspěšně založena");
                 VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
                 rootPane.getChildren().setAll(pane);
+                }
+                else
+                {
+                    zavolejAlert("Chyba","Jazyk průvodce se musí rovnat jazyku vycházky");
+                }
             }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Chyba");
-            alert.setHeaderText(null);
-            alert.setContentText("Neočekávaná chyba ve vstupních datech");
-            alert.showAndWait();
+        } 
+        else 
+        {
+            zavolejAlert("Chyba","Neočekávaná chyba ve vstupních datech");
         }
+    }
+    
+    /**
+     * Metoda pro volání Alertu aby v tom nebyl guláš
+     * a nebyli tu tisíckrát ty samé řádky dokola
+     *
+     * @param nadpis a chyba
+     */
+    public void zavolejAlert(String title,String content)
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
     /**
