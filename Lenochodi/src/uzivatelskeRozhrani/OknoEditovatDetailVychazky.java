@@ -284,58 +284,44 @@ public class OknoEditovatDetailVychazky implements Initializable {
      * @param event událost při které se má metoda provést
      * @throws Exception
      */
-    
     @FXML
-    public void ulozitVychazku(ActionEvent event) throws Exception 
-    {
-        if (isInteger(idInput) && isInteger(kapacitaInput) && isInteger(cenaInput)) 
-        {
-            if (idInput.getText().trim().equals("") 
-                    || nazevInput.getText().trim().equals("") 
-                    || datumInput.getValue().toString().trim().equals("") 
-                    || casZacatkuInput.getText().trim().equals("") 
-                    || mistoInput.getText().trim().equals("") 
-                    || kapacitaInput.getText().trim().equals("") 
-                    || cenaInput.getText().trim().equals("") 
-                    || jazykyInput.getValue().toString().trim().equals("") 
-                    || inputPruvodce.getValue().toString().trim().equals("")) 
-            {
-                zavolejAlert("Chyba","Neočekávaná chyba ve vstupních datech");
-            } 
-            else 
-            {
+    public void ulozitVychazku(ActionEvent event) throws Exception {
+        if (isInteger(idInput) && isInteger(kapacitaInput) && isInteger(cenaInput)) {
+            if (idInput.getText().trim().equals("")
+                    || nazevInput.getText().trim().equals("")
+                    || datumInput.getValue().toString().trim().equals("")
+                    || casZacatkuInput.getText().trim().equals("")
+                    || mistoInput.getText().trim().equals("")
+                    || kapacitaInput.getText().trim().equals("")
+                    || cenaInput.getText().trim().equals("")
+                    || jazykyInput.getValue().toString().trim().equals("")
+                    || inputPruvodce.getValue().toString().trim().equals("")) {
+                zavolejAlert("Chyba", "Neočekávaná chyba ve vstupních datech");
+            } else {
                 String jazykPruvodce = inputPruvodce.getValue().substring(inputPruvodce.getValue().length() - 2);
-                if(jazykyInput.getValue().equals(jazykPruvodce))
-                { 
-                aplikace.zalozVychazku(idInput.getText(), nazevInput.getText(), datumInput.getValue().toString()
-                ,casZacatkuInput.getText(), mistoInput.getText(), jazykyInput.getValue(), kapacitaInput.getText() 
-                ,cenaInput.getText(), inputPruvodce.getValue());
-                
-                zavolejAlert("Vycházka založena","Vycházka byla úspěšně založena");
-                VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoVychazka.fxml"));
-                rootPane.getChildren().setAll(pane);
-                }
-                else
-                {
-                    zavolejAlert("Chyba","Jazyk průvodce se musí rovnat jazyku vycházky");
+                if (jazykyInput.getValue().equals(jazykPruvodce)) {
+                    aplikace.upravVychazku(idInput.getText(), nazevInput.getText(), datumInput.getValue().toString(),
+                             casZacatkuInput.getText(), mistoInput.getText(), jazykyInput.getValue(), kapacitaInput.getText(),
+                             cenaInput.getText(), inputPruvodce.getValue());
+                    zavolejAlert("Vycházka založena", "Vycházka byla úspěšně založena");
+                    VBox pane = FXMLLoader.load(getClass().getResource("/zdroje/OknoDetailVychazky.fxml"));
+                    rootPane.getChildren().setAll(pane);
+                } else {
+                    zavolejAlert("Chyba", "Jazyk průvodce se musí rovnat jazyku vycházky");
                 }
             }
-        } 
-        else 
-        {
-            zavolejAlert("Chyba","Neočekávaná chyba ve vstupních datech");
+        } else {
+            zavolejAlert("Chyba", "Neočekávaná chyba ve vstupních datech");
         }
     }
-    
+
     /**
-     * Metoda pro volání Alertu aby v tom nebyl guláš
-     * a nebyli tu tisíckrát ty samé řádky dokola
+     * Metoda pro volání Alertu aby v tom nebyl guláš a nebyli tu tisíckrát ty
+     * samé řádky dokola
      *
      * @param nadpis a chyba
      */
-    
-    public void zavolejAlert(String title,String content)
-    {
+    public void zavolejAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setContentText(content);
